@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="attendance__alert">
-    // メッセージ機能
+    商品一覧作成予定
 </div>
 
 <div class="attendance__content">

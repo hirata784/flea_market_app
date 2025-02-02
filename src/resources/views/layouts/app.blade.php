@@ -14,7 +14,21 @@
 <body>
     <header class="header">
         <div class="header__inner">
+            <div class="header-utilities">
                 <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
+                <nav>
+                    <ul class="header-nav">
+                        @if (Auth::check())
+                        <li class="header-nav__item">
+                            <form class="form-nav" action="/logout" method="post">
+                                @csrf
+                                <button class="header-nav__button">ログアウト</button>
+                            </form>
+                        </li>
+                        @endif
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 

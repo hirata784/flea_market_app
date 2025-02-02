@@ -3,8 +3,37 @@
 }
 
 .header__inner {
-    /* margin: 0 auto; */
     padding-left: 15px;
     max-width: 1230px;
     height: 80px;
+}
+
+.header-utilities {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-utilities nav {
+    width: 18%;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-nav__item{
+    height: 20px;
+    width: 40px;
+}
+
+.header-nav__button {
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100px;
 }

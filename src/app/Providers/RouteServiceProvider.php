@@ -17,8 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    // ログイン後のリダイレクト先をプロフへ
-    public const HOME = '/mypage/profile';
+    // ログイン後のリダイレクト先を商品一覧へ
+    public const HOME = '/';
 
 
     /**

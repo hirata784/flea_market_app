@@ -6,8 +6,8 @@
 
 @section('content')
 <div>プロフィール設定</div>
-<form class="form" action="/logout" method="post">
+<!-- <form class="form" action="/logout" method="post">
     @csrf
     <button class="header-nav__button">ログアウト</button>
-</form>
+</form> -->
 @endsection
