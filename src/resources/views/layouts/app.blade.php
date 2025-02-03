@@ -16,6 +16,11 @@
         <div class="header__inner">
             <div class="header-utilities">
                 <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
+
+                <form class="form-search" action="/search" method="get">
+                    @csrf
+                    <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
+                </form>
                 <nav>
                     <ul class="header-nav">
                         @if (Auth::check())
@@ -25,7 +30,26 @@
                                 <button class="header-nav__button">ログアウト</button>
                             </form>
                         </li>
+                        @else
+                        <li class="header-nav__item">
+                            <form class="form-nav" action="/login" method="get">
+                                @csrf
+                                <a class="login__button-submit" href="/login">ログイン</a>
+                            </form>
+                        </li>
                         @endif
+                        <li class="header-nav__item">
+                            <form class="form-nav" action="">
+                                @csrf
+                                <button class="header-nav__button">マイページ</button>
+                            </form>
+                        </li>
+                        <li class="header-nav__item">
+                            <form class="form-nav" action="">
+                                @csrf
+                                <button class="listing-nav__button">出品</button>
+                            </form>
+                        </li>
                     </ul>
                 </nav>
             </div>

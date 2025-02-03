@@ -4,7 +4,7 @@
 
 .header__inner {
     padding-left: 15px;
-    max-width: 1230px;
+    max-width: 1700px;
     height: 80px;
 }
 
@@ -18,13 +18,20 @@
     width: 18%;
 }
 
+.search-txt {
+    width: 560px;
+    line-height: 50px;
+    padding-left: 20px;
+    font-size: 24px;
+}
+
 .header-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.header-nav__item{
+.header-nav__item {
     height: 20px;
     width: 40px;
 }
@@ -36,4 +43,21 @@
     font-size: 16px;
     cursor: pointer;
     width: 100px;
+}
+
+.login__button-submit {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    width: 100px;
+}
+
+.listing-nav__button {
+    background-color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 50px;
 }
