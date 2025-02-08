@@ -20,6 +20,7 @@
                 <form class="form-search" action="/search" method="get">
                     @csrf
                     <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
+                    <button>検索</button>
                 </form>
                 <nav>
                     <ul class="header-nav">

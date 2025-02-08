@@ -17,8 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    // ログイン後のリダイレクト先を商品一覧へ
-    public const HOME = '/';
+
+     public const HOME = '/home';
 
 
     /**

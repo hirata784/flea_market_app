@@ -18,5 +18,10 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [ItemController::class, 'search']);
+Route::get('/item/:{item_id}', [ItemController::class, 'item']);
 
-Route::get('/mypage/profile', [AuthController::class, 'profile']);
+// 認証時のみ表示
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage/profile', [AuthController::class, 'profile']);
+    Route::get('/purchase', [ItemController::class, 'purchase']);
+});
