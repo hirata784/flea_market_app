@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AuthController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,4 +23,6 @@ Route::get('/item/:{item_id}', [ItemController::class, 'item']);
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [AuthController::class, 'profile']);
     Route::get('/purchase', [ItemController::class, 'purchase']);
+    Route::post('/item/:{item_id}/like', [ItemController::class, 'like']);
+    Route::delete('/item/:{item_id}/unlike', [ItemController::class, 'unlike']);
 });

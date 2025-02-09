@@ -34,9 +34,32 @@ p {
     font-size: 30px;
 }
 
-.tax{
+.tax {
     font-size: 20px;
     margin-left: 10px;
+}
+
+.like__group{
+    width: fit-content;
+    text-align: center;
+}
+
+.like {
+    border: none;
+    background: transparent;
+    color: #5F5F5F;
+    font-size: 30px;
+}
+
+.unlike {
+    border: none;
+    background: transparent;
+    color: red;
+    font-size: 30px;
+}
+
+.like__num{
+    font-size: 12px;
 }
 
 .btn {

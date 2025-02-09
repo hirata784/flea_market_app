@@ -16,4 +16,13 @@ class Item extends Model
             $query->where('name', 'like', '%' . $keyword . '%');
         }
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
