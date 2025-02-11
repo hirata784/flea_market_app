@@ -22,7 +22,8 @@ Route::get('/item/:{item_id}', [ItemController::class, 'item']);
 // 認証時のみ表示
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [AuthController::class, 'profile']);
-    Route::get('/purchase', [ItemController::class, 'purchase']);
+    Route::post('/purchase/:{item_id}', [ItemController::class, 'purchase']);
     Route::post('/item/:{item_id}/like', [ItemController::class, 'like']);
     Route::delete('/item/:{item_id}/unlike', [ItemController::class, 'unlike']);
+    Route::get('/purchase/address', [ItemController::class, 'address']);
 });

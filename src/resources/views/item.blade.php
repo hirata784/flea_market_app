@@ -7,7 +7,7 @@
 @section('content')
 <div class="item__content">
     <div>
-        <img class="item__img" src={{ $item_detail['img_url'] }} alt="">
+        <img class="item__img" src="{{ $item_detail['img_url'] }}" alt="">
     </div>
     <div class="detail__content">
         <div class="detail__group">
@@ -15,6 +15,8 @@
             <p>ブランド名</p>
             <div class="price">&yen;{{ $item_detail['price'] }}<span class="tax">(税込)</span></div>
             <div>
+                <!-- ログインしているとき(userがnullではない時) いいね使用可能 -->
+                @if(!Auth::user() == null)
                 @if(!Auth::user()->is_like($item_detail->id))
                 <form action="/item/:{{ $item_detail['id'] }}/like" method="post">
                     @csrf
@@ -33,13 +35,22 @@
                     </div>
                 </form>
                 @endif
+                @endif
+                <!-- ログアウトしている時(userがnullの時) いいね使用不可能 -->
+                @if(Auth::user() == null)
+                <form action="/item/:{{ $item_detail['id'] }}/like" method="post">
+                    @csrf
+                    <div class="like__group">
+                        <button class="like" type="submit">☆</button>
+                        <p class="like__num">{{ $item_detail->like->count() }}</p>
+                    </div>
+                </form>
+                @endif
             </div>
-
-            <form action="/purchase" method="get">
+            <form action="/purchase/:{{ $item_detail['id'] }}" method="post">
                 @csrf
                 <button class="btn purchase">購入手続きへ</button>
             </form>
-
         </div>
 
         <div class="detail__group">

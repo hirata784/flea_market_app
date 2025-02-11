@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Like;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Type\Integer;
@@ -29,9 +30,11 @@ class ItemController extends Controller
         return view('item', compact('item_detail'));
     }
 
-    public function purchase()
+    public function purchase($item_detail)
     {
-        return view('purchase');
+        $payments = Payment::all();
+        $item_buy = Item::find($item_detail);
+        return view('purchase', compact('payments', 'item_buy'));
     }
 
     public function like($item_detail)
@@ -75,5 +78,9 @@ class ItemController extends Controller
             Like::find($existingLike->id)->delete();
         }
         return redirect()->back();
+    }
+
+    public function address(){
+        return view('/purchase/address');
     }
 }
