@@ -26,4 +26,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/item/:{item_id}/like', [ItemController::class, 'like']);
     Route::delete('/item/:{item_id}/unlike', [ItemController::class, 'unlike']);
     Route::get('/purchase/address', [ItemController::class, 'address']);
+    Route::post('/comment', [ItemController::class, 'comment']);
+    Route::get('/tab', [ItemController::class, 'tab']);
 });

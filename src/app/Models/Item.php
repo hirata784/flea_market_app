@@ -17,6 +17,13 @@ class Item extends Model
         }
     }
 
+    public function scopeItemSearch($query, $item_id)
+    {
+        if (!empty($item_id)) {
+            $query->where('item_id', 'like', '%' . $item_id . '%');
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -24,5 +31,10 @@ class Item extends Model
     public function like()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

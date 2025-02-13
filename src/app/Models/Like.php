@@ -20,5 +20,12 @@ class Like extends Model
     public function item(){
         return $this->belongsTo(Item::class);
     }
+
+    public function scopeLikeSearch($query, $user_id)
+    {
+        if (!empty($user_id)) {
+            $query->where('user_id', 'like', '%' . $user_id . '%');
+        }
+    }
 }
 

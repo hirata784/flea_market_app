@@ -67,4 +67,6 @@
 
 .login__button-submit {
     text-decoration: none;
+    color: #0173cc;
+    width: fit-content;
 }

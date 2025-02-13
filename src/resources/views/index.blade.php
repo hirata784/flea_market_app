@@ -7,8 +7,11 @@
 @section('content')
 <div class="list__content">
     <div class="list-form__heading">
-        <form class="form">
+        <form class="recommendation-form" action="/" method="get">
             <button class="btn recommendation">おすすめ</button>
+        </form>
+        <form class="list-form" action="/tab" method="get">
+            @csrf
             <button class="btn list">マイリスト</button>
         </form>
     </div>

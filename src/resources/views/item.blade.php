@@ -55,7 +55,7 @@
 
         <div class="detail__group">
             <h2>商品説明</h2>
-            <p>商品の説明表示</p>
+            <p>{{ $item_detail['description'] }}</p>
         </div>
 
         <div class="detail__group">
@@ -65,13 +65,27 @@
         </div>
 
         <div class="detail__group">
-            <h2>コメント</h2>
-            <p>コメント一覧</p>
-            <h3>商品へのコメント</h3>
-            <textarea class="comment-txt"></textarea>
-            <div>
-                <button class="btn comment">コメントを送信する</button>
+            <h2>コメント({{ $item_detail->comment->count() }})</h2>
+            @foreach($comments as $comment)
+            <div class="comment__list">
+                <p class="comment__list__name">{{$comment->user->name}}</p>
+                <p class="comment__list__content">{{ $comment['comment'] }}</p>
             </div>
+            @endforeach
+            <h3>商品へのコメント</h3>
+            <form action="/comment" method="post">
+                @csrf
+                <textarea class="comment-txt" name="comment"></textarea>
+                <div class="form__error">
+                    @error('comment')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <input type="hidden" name="id" value={{ $item_detail['id'] }}>
+                <div>
+                    <button class="btn comment" type="submit">コメントを送信する</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

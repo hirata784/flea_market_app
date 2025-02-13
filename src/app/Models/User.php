@@ -42,6 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function is_like($item_id)
+    {
+        return $this->like()->where('item_id', $item_id)->exists();
+    }
+
+    public function is_comment($item_id)
+    {
+        return $this->comment()->where('item_id', $item_id)->exists();
+    }
+
     public function item()
     {
         return $this->hasMany(Item::class);
@@ -51,8 +61,9 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
-    public function is_like($item_id)
+    public function comment()
     {
-        return $this->like()->where('item_id', $item_id)->exists();
+        return $this->hasMany(Comment::class);
     }
+
 }

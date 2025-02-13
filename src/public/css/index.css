@@ -1,9 +1,15 @@
 .list-form__heading {
     border-bottom: #5F5F5F solid 2px;
+    display: flex;
+    justify-content: left;
 }
 
-.form {
+.recommendation-form {
     padding: 40px 0 5px 90px;
+}
+
+.list-form {
+    padding: 40px 0 5px 20px;
 }
 
 .btn {
@@ -14,7 +20,7 @@
     font-size: 20px;
 }
 
-.recommendation{
+.recommendation {
     color: red;
 }
 
