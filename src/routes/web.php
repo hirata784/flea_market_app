@@ -18,6 +18,7 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [ItemController::class, 'search']);
 Route::get('/item/:{item_id}', [ItemController::class, 'item']);
+Route::get('/tab', [ItemController::class, 'tab']);
 
 // 認証時のみ表示
 Route::middleware('auth')->group(function () {
@@ -27,5 +28,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/item/:{item_id}/unlike', [ItemController::class, 'unlike']);
     Route::get('/purchase/address', [ItemController::class, 'address']);
     Route::post('/comment', [ItemController::class, 'comment']);
-    Route::get('/tab', [ItemController::class, 'tab']);
 });

@@ -24,14 +24,16 @@ class Item extends Model
         }
     }
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
+        // return $this->belongsTo(User::class);
     }
-    public function like()
-    {
-        return $this->hasMany(Like::class);
-    }
+    // public function like()
+    // {
+    //     return $this->belongsToMany(User::class);
+    //     // return $this->hasMany(Like::class);
+    // }
 
     public function comment()
     {

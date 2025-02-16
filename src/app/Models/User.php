@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function is_like($item_id)
     {
-        return $this->like()->where('item_id', $item_id)->exists();
+        return $this->items()->where('item_id', $item_id)->exists();
     }
 
     public function is_comment($item_id)
@@ -52,14 +52,17 @@ class User extends Authenticatable
         return $this->comment()->where('item_id', $item_id)->exists();
     }
 
-    public function item()
+    public function items()
     {
-        return $this->hasMany(Item::class);
+        return $this->belongsToMany(Item::class);
+        // return $this->hasMany(Item::class);
     }
-    public function like()
-    {
-        return $this->hasMany(Like::class);
-    }
+
+    // public function like()
+    // {
+    //     return $this->belongsToMany(Item::class);
+    //     // return $this->hasMany(Like::class);
+    // }
 
     public function comment()
     {

@@ -51,17 +51,14 @@ class ItemController extends Controller
         $item_id = (int)$item_detail;
 
         // 既にいいねしているかチェック
-        $existingLike = like::where('item_id', $item_id)
-            ->where('user_id', $user_id)
-            ->first();
-
-        // いいねがされていない場合、新しいいいね作成
-        if (!$existingLike) {
-            Like::create([
-                'user_id' => $user_id,
-                'item_id' => $item_id,
-            ]);
+        $user = auth()->user();
+        $isLiked = $user->items()->where('item_id', $item_id)->exists();
+        // まだいいねしていない場合のみデータ追加
+        if (!$isLiked) {
+            $user = User::find($user_id);
+            $user->items()->attach($item_id);
         }
+
         return redirect()->back();
     }
 
@@ -74,14 +71,15 @@ class ItemController extends Controller
         $item_id = (int)$item_detail;
 
         // 既にいいねしているかチェック
-        $existingLike = like::where('item_id', $item_id)
-            ->where('user_id', $user_id)
-            ->first();
-
-        // いいねがされている場合、削除
-        if ($existingLike) {
-            Like::find($existingLike->id)->delete();
+        $user = auth()->user();
+        $isLiked = $user->items()->where('item_id', $item_id)->exists();
+        // 既にいいねしている場合のみデータ削除
+        if ($isLiked) {
+            // ここでいいね取消
+            $user = User::find($user_id);
+            $user->items()->detach($item_id);
         }
+
         return redirect()->back();
     }
 
@@ -111,18 +109,16 @@ class ItemController extends Controller
 
     public function tab(Request $request)
     {
-        // user1がいいねした商品のみ出力
-        $items = User::find(2)->like;
-        // dd($items);
+        if (Auth::check()) {
+            // 認証時、いいねしている商品を取得
+            // Userのid取得
+            $user_id = Auth::id();
+            // ユーザーがいいねした商品のみ出力
+            $items = User::find($user_id)->items;
+        } else {
+            // 未認証時、全商品を仮代入
+            $items = Item::all();
+        }
         return view('index', compact('items'));
-
-        // $items = Item::all();
-        // $user_id = Auth::id();
-
-        // // いいねしている商品のみ表示
-        // $mylist = $request->mylist;
-
-        // $items = Item::find(Like::LikeSearch($request->mylist)->get());
-        // return view('index', compact('items', 'user_id'));
     }
 }

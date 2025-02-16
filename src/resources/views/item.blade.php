@@ -22,7 +22,7 @@
                     @csrf
                     <div class="like__group">
                         <button class="like" type="submit">☆</button>
-                        <p class="like__num">{{ $item_detail->like->count() }}</p>
+                        <p class="like__num">{{ $item_detail->users->count() }}</p>
                     </div>
                 </form>
                 @else
@@ -31,7 +31,7 @@
                     @csrf
                     <div class="like__group">
                         <button class="unlike" type="submit">☆</button>
-                        <p class="like__num">{{ $item_detail->like->count() }}</p>
+                        <p class="like__num">{{ $item_detail->users->count() }}</p>
                     </div>
                 </form>
                 @endif
@@ -42,7 +42,7 @@
                     @csrf
                     <div class="like__group">
                         <button class="like" type="submit">☆</button>
-                        <p class="like__num">{{ $item_detail->like->count() }}</p>
+                        <p class="like__num">{{ $item_detail->users->count() }}</p>
                     </div>
                 </form>
                 @endif
