@@ -1,0 +1,68 @@
+div{
+    margin: 0;
+}
+
+.img_btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.img_user {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+
+.username{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 60px;
+}
+
+.profile-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit {
+    color: #FF5555;
+    border: 1px solid #FF5555;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 320px;
+    padding: 5px 20px;
+}
+
+.mypage-form__heading {
+    border-bottom: #5F5F5F solid 2px;
+    display: flex;
+    justify-content: left;
+}
+
+.Products_exhibited-form {
+    padding: 40px 0 5px 90px;
+}
+
+.Purchased_items-form {
+    padding: 40px 0 5px 20px;
+}
+
+.btn {
+    margin-left: 50px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.choice {
+    color: red;
+}
+
+.not_choice {
+    color: black;
+}

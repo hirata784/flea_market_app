@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,12 @@ Route::get('/tab', [ItemController::class, 'tab']);
 
 // 認証時のみ表示
 Route::middleware('auth')->group(function () {
-    Route::get('/mypage/profile', [AuthController::class, 'profile']);
+    Route::get('/mypage', [ProfileController::class, 'mypage']);
+    Route::get('/mypage/profile', [ProfileController::class, 'profile']);
+    Route::get('/purchase/address/:{item_id}', [ProfileController::class, 'address']);
+    Route::post('/item/:{item_id}/like', [LikeController::class, 'like']);
+    Route::delete('/item/:{item_id}/unlike', [LikeController::class, 'unlike']);
     Route::post('/purchase/:{item_id}', [ItemController::class, 'purchase']);
-    Route::post('/item/:{item_id}/like', [ItemController::class, 'like']);
-    Route::delete('/item/:{item_id}/unlike', [ItemController::class, 'unlike']);
-    Route::get('/purchase/address', [ItemController::class, 'address']);
     Route::post('/comment', [ItemController::class, 'comment']);
+    Route::get('/sell', [ItemController::class, 'sell']);
 });

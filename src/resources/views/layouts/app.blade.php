@@ -40,13 +40,13 @@
                         </li>
                         @endif
                         <li class="header-nav__item">
-                            <form class="form-nav" action="">
+                            <form class="form-nav" action="/mypage">
                                 @csrf
                                 <button class="header-nav__button">マイページ</button>
                             </form>
                         </li>
                         <li class="header-nav__item">
-                            <form class="form-nav" action="">
+                            <form class="form-nav" action="/sell" method="get">
                                 @csrf
                                 <button class="listing-nav__button">出品</button>
                             </form>

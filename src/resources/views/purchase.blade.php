@@ -28,11 +28,11 @@
         <div class="shipping_address">
             <div class="shipping_address--link">
                 <h3>配送先</h3>
-                <a class="change" href="/purchase/address">変更する</a>
+                <a class="change" href="/purchase/address/:{{ $item_buy['id'] }}">変更する</a>
             </div>
-            <div class="address">
-                <p>郵便番号</p>
-                <p>住所と建物</p>
+            <div class=" address">
+                    <p>郵便番号</p>
+                    <p>住所と建物</p>
             </div>
         </div>
     </div>
