@@ -23,7 +23,12 @@
         @continue
         @else
         <div class="items__card">
-            <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ asset($item['img_url']) }}"></a>
+            <div class="items__card__sold">
+                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ asset($item['img_url']) }}"></a>
+                @if($item->purchase()->where('item_id', $item->id)->exists())
+                <p>Sold</p>
+                @endif
+            </div>
             <div class="items__name">
                 <span>{{$item['name']}}</span>
             </div>

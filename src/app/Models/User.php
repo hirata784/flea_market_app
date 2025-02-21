@@ -55,18 +55,15 @@ class User extends Authenticatable
     public function items()
     {
         return $this->belongsToMany(Item::class);
-        // return $this->hasMany(Item::class);
     }
-
-    // public function like()
-    // {
-    //     return $this->belongsToMany(Item::class);
-    //     // return $this->hasMany(Like::class);
-    // }
 
     public function comment()
     {
         return $this->hasMany(Comment::class);
     }
 
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }

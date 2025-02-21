@@ -66,3 +66,41 @@ div{
 .not_choice {
     color: black;
 }
+
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.items__card {
+    margin-left: 100px;
+    margin-top: 100px;
+}
+
+.items__card__sold {
+    position: relative;
+}
+
+.items__card__sold p {
+    position: absolute;
+    background-color: #fff;
+    color: red;
+    font-size: 40px;
+    font-weight: bold;
+    width: 90%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+}
+
+.items__img {
+    width: 300px;
+    height: 300px;
+}

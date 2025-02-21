@@ -39,7 +39,12 @@ p {
     margin-left: 10px;
 }
 
-.like__group{
+.icon {
+    display: flex;
+    justify-content: left;
+}
+
+.like__group {
     width: fit-content;
     text-align: center;
 }
@@ -58,7 +63,22 @@ p {
     font-size: 30px;
 }
 
-.like__num{
+.like__num {
+    font-size: 12px;
+}
+
+.comment__group {
+    width: fit-content;
+    text-align: center;
+}
+
+.comment__icon{
+    margin: 10px 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.comment__num {
     font-size: 12px;
 }
 
@@ -78,16 +98,16 @@ p {
     font-size: 22px;
 }
 
-.comment__list{
+.comment__list {
     margin: 10px 0;
 }
 
-.comment__list__name{
+.comment__list__name {
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.comment__list__content{
+.comment__list__content {
     background-color: #E5E5E5;
     border-radius: 5px;
     padding: 10px;

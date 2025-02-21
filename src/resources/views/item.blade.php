@@ -14,44 +14,54 @@
             <h1>{{ $item_detail['name'] }}</h1>
             <p>ブランド名</p>
             <div class="price">&yen;{{ $item_detail['price'] }}<span class="tax">(税込)</span></div>
-            <div>
-                <!-- ログインしているとき(userがnullではない時) いいね使用可能 -->
-                @if(!Auth::user() == null)
-                @if(!Auth::user()->is_like($item_detail->id))
-                <form action="/item/:{{ $item_detail['id'] }}/like" method="post">
-                    @csrf
-                    <div class="like__group">
-                        <button class="like" type="submit">☆</button>
-                        <p class="like__num">{{ $item_detail->users->count() }}</p>
-                    </div>
-                </form>
-                @else
-                <form action="/item/:{{ $item_detail['id'] }}/unlike" method="post">
-                    @method('delete')
-                    @csrf
-                    <div class="like__group">
-                        <button class="unlike" type="submit">☆</button>
-                        <p class="like__num">{{ $item_detail->users->count() }}</p>
-                    </div>
-                </form>
-                @endif
-                @endif
-                <!-- ログアウトしている時(userがnullの時) いいね使用不可能 -->
-                @if(Auth::user() == null)
-                <form action="/item/:{{ $item_detail['id'] }}/like" method="post">
-                    @csrf
-                    <div class="like__group">
-                        <button class="like" type="submit">☆</button>
-                        <p class="like__num">{{ $item_detail->users->count() }}</p>
-                    </div>
-                </form>
-                @endif
+            <div class="icon">
+                <div>
+                    <!-- ログインしているとき(userがnullではない時) いいね使用可能 -->
+                    @if(!Auth::user() == null)
+                    @if(!Auth::user()->is_like($item_detail->id))
+                    <form action="/item/:{{ $item_detail['id'] }}/like" method="post">
+                        @csrf
+                        <div class="like__group">
+                            <button class="like" type="submit">☆</button>
+                            <p class="like__num">{{ $item_detail->users->count() }}</p>
+                        </div>
+                    </form>
+                    @else
+                    <form action="/item/:{{ $item_detail['id'] }}/unlike" method="post">
+                        @method('delete')
+                        @csrf
+                        <div class="like__group">
+                            <button class="unlike" type="submit">☆</button>
+                            <p class="like__num">{{ $item_detail->users->count() }}</p>
+                        </div>
+                    </form>
+                    @endif
+                    @endif
+                    <!-- ログアウトしている時(userがnullの時) いいね使用不可能 -->
+                    @if(Auth::user() == null)
+                    <form action="/item/:{{ $item_detail['id'] }}/like" method="post">
+                        @csrf
+                        <div class="like__group">
+                            <button class="like" type="submit">☆</button>
+                            <p class="like__num">{{ $item_detail->users->count() }}</p>
+                        </div>
+                    </form>
+                    @endif
+                </div>
+                <div class="comment__group">
+                    <img class="comment__icon" src="{{ asset('storage/images/comment.png') }}">
+                    <div class="comment__num">{{ $item_detail->comment->count() }}</div>
+                </div>
             </div>
+
             <form action="/purchase/:{{ $item_detail['id'] }}" method="post">
                 @csrf
                 <button class="btn purchase">購入手続きへ</button>
             </form>
         </div>
+
+
+
 
         <div class="detail__group">
             <h2>商品説明</h2>

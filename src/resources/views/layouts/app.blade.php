@@ -40,7 +40,7 @@
                         </li>
                         @endif
                         <li class="header-nav__item">
-                            <form class="form-nav" action="/mypage">
+                            <form class="form-nav" action="/mypage" method="post">
                                 @csrf
                                 <button class="header-nav__button">マイページ</button>
                             </form>

@@ -31,8 +31,8 @@
                 <a class="change" href="/purchase/address/:{{ $item_buy['id'] }}">変更する</a>
             </div>
             <div class=" address">
-                    <p>郵便番号</p>
-                    <p>住所と建物</p>
+                <p>郵便番号</p>
+                <p>住所と建物</p>
             </div>
         </div>
     </div>
@@ -48,11 +48,14 @@
                 <td>作成中</td>
             </tr>
         </table>
-        <div>
+        <form action="/" method="post">
+            @csrf
             <button class="buy-btn">
                 購入する
             </button>
-        </div>
+            <input type="hidden" name="id" value="{{ $item_buy['id'] }}">
+
+        </form>
     </div>
 </div>
 @endsection

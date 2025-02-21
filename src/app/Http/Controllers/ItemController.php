@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\Payment;
 use App\Models\Comment;
 use App\Models\Category;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
@@ -45,10 +46,8 @@ class ItemController extends Controller
     {
         // Userのid取得
         $user_id = Auth::id();
-
         // Itemのid取得
         $item_id = (int)$request['id'];
-
         // コメント取得
         $comment = $request['comment'];
 
@@ -79,5 +78,21 @@ class ItemController extends Controller
     {
         $categories = Category::all();
         return view('sell', compact('categories'));
+    }
+
+    public function buy(Request $request)
+    {
+        $items = Item::all();
+        // Userのid取得
+        $user_id = Auth::id();
+        // Itemのid取得
+        $item_id = $request['id'];
+
+        Purchase::create([
+            'user_id' => $user_id,
+            'item_id' => $item_id,
+        ]);
+
+        return view('index', compact('items'));
     }
 }

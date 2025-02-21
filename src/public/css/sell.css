@@ -35,6 +35,7 @@ h3 {
 }
 
 .form__input--cb {
+    height: 200px;
 }
 
 .cb {
@@ -56,6 +57,7 @@ input[type="checkbox"]:checked+label {
     text-align: center;
     line-height: 15px;
     border-radius: 50px;
+    float: left;
 }
 
 .form__label--item {

@@ -27,16 +27,15 @@ class Item extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
-        // return $this->belongsTo(User::class);
     }
-    // public function like()
-    // {
-    //     return $this->belongsToMany(User::class);
-    //     // return $this->hasMany(Like::class);
-    // }
 
     public function comment()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function purchase()
+    {
+        return $this->hasOne(Purchase::class);
     }
 }
