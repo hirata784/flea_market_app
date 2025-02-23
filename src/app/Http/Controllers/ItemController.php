@@ -32,7 +32,10 @@ class ItemController extends Controller
         $item_detail = Item::find($item_id);
         // 閲覧中の商品コメントのみ表示
         $comments = Comment::CommentSearch($request->item_id)->get();
-        return view('item', compact('item_detail', 'comments'));
+
+        // 閲覧中のカテゴリーのみ表示
+        $categories = $item_detail->categories;
+        return view('item', compact('item_detail', 'comments', 'categories'));
     }
 
     public function purchase($item_detail)
@@ -77,7 +80,14 @@ class ItemController extends Controller
     public function sell()
     {
         $categories = Category::all();
-        return view('sell', compact('categories'));
+        // 商品の状態値 配列作成
+        $product_conditions = array(
+            0 => '良好',
+            1 => '目立った傷や汚れなし',
+            2 => 'やや傷や汚れあり',
+            3 => '状態が悪い',
+        );
+        return view('sell', compact('categories', 'product_conditions'));
     }
 
     public function buy(Request $request)
@@ -92,7 +102,29 @@ class ItemController extends Controller
             'user_id' => $user_id,
             'item_id' => $item_id,
         ]);
-
         return view('index', compact('items'));
+    }
+
+    public function add(Request $request)
+    {
+        $items = Item::all();
+        $categories = Category::all();
+        // 商品の状態値 配列作成
+        $product_conditions = array(
+            0 => '良好',
+            1 => '目立った傷や汚れなし',
+            2 => 'やや傷や汚れあり',
+            3 => '状態が悪い',
+        );
+
+        // itemsテーブル
+        // 画像は一旦仮で代入
+        $item_detail = $request->only('img_url', 'condition', 'name', 'brand', 'description', 'price');
+        Item::create($item_detail);
+
+        // category_itemテーブル
+        $item_id = item::count();
+        Item::find($item_id)->categories()->attach($request->category);
+        return view('sell', compact('items', 'categories', 'product_conditions'));
     }
 }

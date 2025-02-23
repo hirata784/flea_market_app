@@ -12,7 +12,7 @@
     <div class="detail__content">
         <div class="detail__group">
             <h1>{{ $item_detail['name'] }}</h1>
-            <p>ブランド名</p>
+            <p>{{ $item_detail['brand'] }}</p>
             <div class="price">&yen;{{ $item_detail['price'] }}<span class="tax">(税込)</span></div>
             <div class="icon">
                 <div>
@@ -53,15 +53,11 @@
                     <div class="comment__num">{{ $item_detail->comment->count() }}</div>
                 </div>
             </div>
-
             <form action="/purchase/:{{ $item_detail['id'] }}" method="post">
                 @csrf
                 <button class="btn purchase">購入手続きへ</button>
             </form>
         </div>
-
-
-
 
         <div class="detail__group">
             <h2>商品説明</h2>
@@ -69,9 +65,18 @@
         </div>
 
         <div class="detail__group">
-            <h2>商品情報</h2>
-            <h3>カテゴリー</h3>
-            <h3>商品の状態</h3>
+            <h2>商品の情報</h2>
+            <div class="category__group">
+                <h3>カテゴリー</h3>
+                @foreach($categories as $category)
+                <p class="category_content">{{$category['content']}}</p>
+                @endforeach
+            </div>
+
+            <div class="condition__group">
+                <h3>商品の状態</h3>
+                <p class="condition_content">{{ $item_detail['condition'] }}</p>
+            </div>
         </div>
 
         <div class="detail__group">

@@ -19,7 +19,11 @@ class ProfileController extends Controller
 
     public function profile()
     {
-        return view('mypage/profile');
+        $user_all = User::all();
+        $user_id = Auth::id();
+        $user = $user_all[$user_id - 1];
+
+        return view('mypage/profile', compact('user'));
     }
 
     public function tubbuy()

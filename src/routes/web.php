@@ -33,4 +33,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/comment', [ItemController::class, 'comment']);
     Route::get('/sell', [ItemController::class, 'sell']);
     Route::post('/', [ItemController::class, 'buy']);
+    Route::post('/add', [ItemController::class, 'add']);
 });

@@ -22,6 +22,10 @@ h2 {
     margin: 0;
 }
 
+h3 {
+    margin-right: 40px;
+}
+
 p {
     margin: 0;
 }
@@ -72,7 +76,7 @@ p {
     text-align: center;
 }
 
-.comment__icon{
+.comment__icon {
     margin: 10px 10px;
     width: 25px;
     height: 25px;
@@ -96,6 +100,29 @@ p {
 
 .purchase {
     font-size: 22px;
+}
+
+.category__group {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.category_content {
+    margin-right: 20px;
+    padding: 0 15px;
+    background-color: #E5E5E5;
+    border-radius: 10px;
+}
+
+.condition__group {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.condition_content {
+    margin-left: 20px;
 }
 
 .comment__list {

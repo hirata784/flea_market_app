@@ -9,6 +9,15 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'price',
+        'description',
+        'img_url',
+        'condition',
+        'brand',
+    ];
+
     // 名前で検索
     public function scopeKeywordSearch($query, $keyword)
     {
@@ -24,6 +33,11 @@ class Item extends Model
         }
     }
 
+    public function is_category($item_id)
+    {
+        return $this->categories()->where('item_id', $item_id)->exists();
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class);
@@ -37,5 +51,10 @@ class Item extends Model
     public function purchase()
     {
         return $this->hasOne(Purchase::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

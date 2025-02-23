@@ -98,7 +98,7 @@ input[type="checkbox"]:checked+label {
     padding: 5px 200px 5px 0;
 }
 
-.explanation {
+.description {
     width: 100%;
     height: 100px;
     line-height: 20px;

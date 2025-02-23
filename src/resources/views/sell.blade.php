@@ -9,7 +9,7 @@
     <div class="address-form__heading">
         <h2>商品の出品</h2>
     </div>
-    <form class="form" action="">
+    <form class="form" action="/add" method="post">
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -18,6 +18,7 @@
             <div class="form__group-content">
                 <div class="form__input--btn">
                     <button class="choice_img">画像を選択する</button>
+                    <input type="hidden" name="img_url" value="https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg">
                 </div>
                 <div class="form__error">
                     @error('name')
@@ -35,7 +36,7 @@
             <div class="form__group-content">
                 <div class="form__input--cb">
                     @foreach ($categories as $category)
-                    <input class="cb" type="checkbox" id="{{ $category['id'] }}" name="{{ $category['id'] }}" />
+                    <input class="cb" type="checkbox" id="{{ $category['id'] }}" name="category[]" value="{{ $category['id'] }}" />
                     <label class="lb" for="{{ $category['id'] }}">{{ $category['content'] }}</label>
                     @endforeach
                 </div>
@@ -53,12 +54,11 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <select class="condition--cb" id="select">
+                    <select class="condition--cb" name="condition" id="select">
                         <option value="" disabled selected style="display:none;">選択してください</option>
-                        <option value="良好">良好</option>
-                        <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
-                        <option value="やや傷や汚れあり">やや傷や汚れあり</option>
-                        <option value="状態が悪い">状態が悪い</option>
+                        @foreach ($product_conditions as $product_condition)
+                        <option value="{{$product_condition}}">{{$product_condition}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form__error">
@@ -106,7 +106,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <textarea class="explanation" name="" id=""></textarea>
+                    <textarea class="description" name="description" id=""></textarea>
                 </div>
                 <div class="form__error">
                     @error('price')
