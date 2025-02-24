@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Item;
-use App\Models\Payment;
 use App\Models\Comment;
 use App\Models\Category;
 use App\Models\Purchase;
+use App\Models\Sell;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
@@ -38,11 +38,22 @@ class ItemController extends Controller
         return view('item', compact('item_detail', 'comments', 'categories'));
     }
 
-    public function purchase($item_detail)
+    public function purchase($item_detail, Request $request)
     {
-        $payments = Payment::all();
+        $user = User::find(Auth::id());
         $item_buy = Item::find($item_detail);
-        return view('purchase', compact('payments', 'item_buy'));
+        // 支払い方法 配列作成
+        $payments = array(
+            0 => 'コンビニ払い',
+            1 => 'カード支払い',
+        );
+
+        // 届け先の初期値は登録済みの住所を代入
+        $post_code = $user->post_code;
+        $address = $user->address;
+        $building = $user->building;
+
+        return view('purchase', compact('user', 'item_buy', 'payments', 'post_code', 'address', 'building'));
     }
 
     public function comment(CommentRequest $request)
@@ -97,7 +108,19 @@ class ItemController extends Controller
         $user_id = Auth::id();
         // Itemのid取得
         $item_id = $request['id'];
+        // 送付先住所の取得
+        $post_code = $request['post_code'];
+        $address = $request['address'];
+        $building = $request['building'];
 
+        // itemテーブル
+        Item::find($item_id)->update([
+            'post_code' => $post_code,
+            'address' => $address,
+            'building' => $building,
+        ]);
+
+        // purchaseテーブル
         Purchase::create([
             'user_id' => $user_id,
             'item_id' => $item_id,
@@ -125,6 +148,27 @@ class ItemController extends Controller
         // category_itemテーブル
         $item_id = item::count();
         Item::find($item_id)->categories()->attach($request->category);
+
+        // sellsテーブル
+        // Userのid取得
+        $user_id = Auth::id();
+
+        Sell::create([
+            'user_id' => $user_id,
+            'item_id' => $item_id,
+        ]);
+
         return view('sell', compact('items', 'categories', 'product_conditions'));
+    }
+
+    public function edit(Request $request)
+    {
+        $items = Item::all();
+
+        $form = $request->all();
+        unset($form['_token']);
+        User::find($request->id)->update($form);
+
+        return view('index', compact('items'));
     }
 }

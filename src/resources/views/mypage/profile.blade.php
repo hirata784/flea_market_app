@@ -9,8 +9,11 @@
     <div class="profile-form__heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form class="form" action="/" method="get">
+    <form class="form" action="/edit" method="post">
         @csrf
+        <input type="hidden" name="id" value="{{ $user['id'] }}">
+        <input type="hidden" name="email" value="{{ $user['email'] }}">
+        <input type="hidden" name="password" value="{{ $user['password'] }}">
         <div class="icon__group">
             <div class="icon__group-img">
                 <div>イメージアイコン</div>
@@ -46,7 +49,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="post_code" value="{{ old('post_code') }}" />
+                    <input type="text" name="post_code" value="{{ old('post_code', $user->post_code )}}" />
                 </div>
                 <div class="form__error">
                     @error('post_code')
@@ -61,7 +64,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="address" value="{{ old('address') }}" />
+                    <input type="text" name="address" value="{{ old('address', $user->address )}}" />
                 </div>
                 <div class="form__error">
                     @error('address')
@@ -76,7 +79,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="building" value="{{ old('building') }}" />
+                    <input type="text" name="building" value="{{ old('building', $user->building )}}" />
                 </div>
                 <div class="form__error">
                     @error('building')

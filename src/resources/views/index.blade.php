@@ -22,6 +22,10 @@
         @if (!(Auth::check()) and Request::is('tab'))
         @continue
         @else
+        <!-- 認証中かつ自分が出品した商品は表示しない -->
+        @if(Auth::check() and ($item->sells()->where('user_id', Auth::user()->id)->exists()))
+        @continue
+        @else
         <div class="items__card">
             <div class="items__card__sold">
                 <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ asset($item['img_url']) }}"></a>
@@ -33,6 +37,7 @@
                 <span>{{$item['name']}}</span>
             </div>
         </div>
+        @endif
         @endif
         @endforeach
     </div>

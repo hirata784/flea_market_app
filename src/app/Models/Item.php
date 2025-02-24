@@ -16,6 +16,9 @@ class Item extends Model
         'img_url',
         'condition',
         'brand',
+        'post_code',
+        'address',
+        'building',
     ];
 
     // 名前で検索
@@ -51,6 +54,11 @@ class Item extends Model
     public function purchase()
     {
         return $this->hasOne(Purchase::class);
+    }
+
+    public function sells()
+    {
+        return $this->hasOne(Sell::class);
     }
 
     public function categories()

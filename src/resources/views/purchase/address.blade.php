@@ -9,7 +9,7 @@
     <div class="address-form__heading">
         <h2>住所の変更</h2>
     </div>
-    <form class="form" action="/purchase/:{{ $item_detail }}" method="post">
+    <form class="form" action="/purchase/edit/:{{ $item_detail }}" method="post">
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -58,6 +58,9 @@
         </div>
         <div class="form__button">
             <button class="update__button" type="submit">更新する</button>
+            <input type="hidden" name="old_post_code" value="{{ $old_post_code }}">
+            <input type="hidden" name="old_address" value="{{ $old_address }}">
+            <input type="hidden" name="old_building" value="{{ $old_building }}">
         </div>
     </form>
 </div>

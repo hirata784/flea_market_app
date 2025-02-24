@@ -26,15 +26,47 @@ class ProfileController extends Controller
         return view('mypage/profile', compact('user'));
     }
 
-    public function tubbuy()
-    {
-        $items = Item::all();
-        return view('mypage', compact('items'));
-    }
-
-    public function address($item_buy)
+    public function address($item_buy, Request $request)
     {
         $item_detail = $item_buy;
-        return view('/purchase/address', compact('item_detail'));
+        // 入力済みの送付先住所の取得
+        $old_post_code = $request['post_code'];
+        $old_address = $request['address'];
+        $old_building = $request['building'];
+        return view('/purchase/address', compact('item_detail', 'old_post_code', 'old_address' , 'old_building'));
+    }
+
+    public function edit($item_detail, Request $request)
+    {
+        $user = User::find(Auth::id());
+        $item_buy = Item::find($item_detail);
+        // 支払い方法 配列作成
+        $payments = array(
+            0 => 'コンビニ払い',
+            1 => 'カード支払い',
+        );
+
+        if ($request['post_code'] == "") {
+            // 空白の場合、住所変更なし
+            $post_code = $request->old_post_code;
+        } else {
+            // 住所の変更をした場合、届け先を更新
+            $post_code = $request->post_code;
+        }
+
+        if ($request['address'] == "") {
+            $address = $request->old_address;
+        } else {
+            $address = $request->address;
+        }
+
+        if ($request['building'] == "") {
+            // 空白の場合、空白へ(建物はnull許可してる為)
+            $building = "";
+        } else {
+            $building = $request->building;
+        }
+
+        return view('purchase', compact('user', 'item_buy', 'payments', 'post_code', 'address', 'building'));
     }
 }

@@ -26,7 +26,8 @@ Route::get('/tab', [ItemController::class, 'tab']);
 Route::middleware('auth')->group(function () {
     Route::post('/mypage', [ProfileController::class, 'mypage']);
     Route::get('/mypage/profile', [ProfileController::class, 'profile']);
-    Route::get('/purchase/address/:{item_id}', [ProfileController::class, 'address']);
+    Route::post('/purchase/address/:{item_id}', [ProfileController::class, 'address']);
+    Route::post('/purchase/edit/:{item_id}', [ProfileController::class, 'edit']);
     Route::post('/item/:{item_id}/like', [LikeController::class, 'like']);
     Route::delete('/item/:{item_id}/unlike', [LikeController::class, 'unlike']);
     Route::post('/purchase/:{item_id}', [ItemController::class, 'purchase']);
@@ -34,4 +35,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [ItemController::class, 'sell']);
     Route::post('/', [ItemController::class, 'buy']);
     Route::post('/add', [ItemController::class, 'add']);
+    Route::post('/edit', [ItemController::class, 'edit']);
 });

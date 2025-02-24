@@ -21,6 +21,9 @@ class CreateItemsTable extends Migration
             $table->string('img_url');
             $table->string('condition');
             $table->string('brand')->nullable();
+            $table->string('post_code')->nullable();
+            $table->string('address')->nullable();
+            $table->string('building')->nullable();
             $table->timestamps();
         });
     }
