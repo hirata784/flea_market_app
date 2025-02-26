@@ -37,7 +37,7 @@
                     <input type="text" name="name" value="{{ old('name', $user->name )}}" />
                 </div>
                 <div class="form__error">
-                    @error(' name')
+                    @error('name')
                     {{ $message }}
                     @enderror
                 </div>
@@ -82,9 +82,6 @@
                     <input type="text" name="building" value="{{ old('building', $user->building )}}" />
                 </div>
                 <div class="form__error">
-                    @error('building')
-                    {{ $message }}
-                    @enderror
                 </div>
             </div>
         </div>

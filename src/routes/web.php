@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +19,12 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [ItemController::class, 'search']);
 Route::get('/item/:{item_id}', [ItemController::class, 'item']);
-Route::get('/tab', [ItemController::class, 'tab']);
 
 // 認証時のみ表示
 Route::middleware('auth')->group(function () {
     Route::post('/mypage', [ProfileController::class, 'mypage']);
     Route::get('/mypage/profile', [ProfileController::class, 'profile']);
-    Route::post('/purchase/address/:{item_id}', [ProfileController::class, 'address']);
+    Route::get('/purchase/address/:{item_id}', [ProfileController::class, 'address']);
     Route::post('/purchase/edit/:{item_id}', [ProfileController::class, 'edit']);
     Route::post('/item/:{item_id}/like', [LikeController::class, 'like']);
     Route::delete('/item/:{item_id}/unlike', [LikeController::class, 'unlike']);

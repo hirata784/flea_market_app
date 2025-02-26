@@ -11,20 +11,25 @@ use App\Models\Sell;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\ProfileRequest;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $items = Item::all();
         $user_id = Auth::id();
-        return view('index', compact('items', 'user_id'));
+        $data = $request->tab;
+        return view('index', compact('items', 'user_id', 'data'));
     }
 
     public function search(Request $request)
     {
         $items = Item::KeywordSearch($request->keyword)->get();
-        return view('index', compact('items'));
+        $data = $request->tab;
+        return view('index', compact('items', 'data'));
     }
 
     public function item($item_id, Request $request)
@@ -52,7 +57,6 @@ class ItemController extends Controller
         $post_code = $user->post_code;
         $address = $user->address;
         $building = $user->building;
-
         return view('purchase', compact('user', 'item_buy', 'payments', 'post_code', 'address', 'building'));
     }
 
@@ -73,21 +77,6 @@ class ItemController extends Controller
         return back();
     }
 
-    public function tab(Request $request)
-    {
-        if (Auth::check()) {
-            // 認証時、いいねしている商品を取得
-            // Userのid取得
-            $user_id = Auth::id();
-            // ユーザーがいいねした商品のみ出力
-            $items = User::find($user_id)->items;
-        } else {
-            // 未認証時、全商品を仮代入
-            $items = Item::all();
-        }
-        return view('index', compact('items'));
-    }
-
     public function sell()
     {
         $categories = Category::all();
@@ -101,8 +90,9 @@ class ItemController extends Controller
         return view('sell', compact('categories', 'product_conditions'));
     }
 
-    public function buy(Request $request)
+    public function buy(PurchaseRequest $request)
     {
+        $data = $request->tab;
         $items = Item::all();
         // Userのid取得
         $user_id = Auth::id();
@@ -125,10 +115,10 @@ class ItemController extends Controller
             'user_id' => $user_id,
             'item_id' => $item_id,
         ]);
-        return view('index', compact('items'));
+        return view('index', compact('items', 'data'));
     }
 
-    public function add(Request $request)
+    public function add(ExhibitionRequest $request)
     {
         $items = Item::all();
         $categories = Category::all();
@@ -157,18 +147,16 @@ class ItemController extends Controller
             'user_id' => $user_id,
             'item_id' => $item_id,
         ]);
-
         return view('sell', compact('items', 'categories', 'product_conditions'));
     }
 
-    public function edit(Request $request)
+    public function edit(ProfileRequest $request)
     {
         $items = Item::all();
-
+        $data = $request->tab;
         $form = $request->all();
         unset($form['_token']);
         User::find($request->id)->update($form);
-
-        return view('index', compact('items'));
+        return view('index', compact('items', 'data'));
     }
 }

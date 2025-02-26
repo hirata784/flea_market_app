@@ -23,7 +23,6 @@
         <form class="Purchased_items-form" action="/mypage?tab=buy" method="post">
             @csrf
             <button class="btn {{($data == 'buy') ? 'choice' : 'not_choice'}}">購入した商品</button>
-            <input type="hidden" name="tub" value="buy">
         </form>
     </div>
 

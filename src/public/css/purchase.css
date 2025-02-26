@@ -54,21 +54,32 @@ p {
     border-bottom: 1px solid #000;
 }
 
-.shipping_address--link {
+.shipping_address--btn {
     display: flex;
     justify-content: space-between;
 }
 
 .change {
-    border: none;
-    background: none;
-    color: #0173cc;
+    text-decoration: none;
     font-size: 18px;
 }
 
-.address {
+.shipping_address--str {
     margin: 30px 0;
     padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.post_code__group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shipping_address--txt {
+    border: none;
+    outline: none;
+    width: 100%;
     font-size: 20px;
 }
 
@@ -99,4 +110,10 @@ td {
     cursor: pointer;
     font-weight: bold;
     font-size: 20px;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
 }

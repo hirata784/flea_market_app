@@ -96,7 +96,7 @@
                     {{ $message }}
                     @enderror
                 </div>
-                <input type="hidden" name="id" value={{ $item_detail['id'] }}>
+                <input type="hidden" name="id" value="{{ $item_detail['id'] }}">
                 <div>
                     <button class="btn comment" type="submit">コメントを送信する</button>
                 </div>

@@ -21,7 +21,7 @@
                     <input type="hidden" name="img_url" value="https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg">
                 </div>
                 <div class="form__error">
-                    @error('name')
+                    @error('img_url')
                     {{ $message }}
                     @enderror
                 </div>
@@ -41,7 +41,7 @@
                     @endforeach
                 </div>
                 <div class="form__error">
-                    @error('name')
+                    @error('category')
                     {{ $message }}
                     @enderror
                 </div>
@@ -109,7 +109,7 @@
                     <textarea class="description" name="description" id=""></textarea>
                 </div>
                 <div class="form__error">
-                    @error('price')
+                    @error('description')
                     {{ $message }}
                     @enderror
                 </div>

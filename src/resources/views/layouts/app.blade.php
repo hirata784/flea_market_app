@@ -16,7 +16,6 @@
         <div class="header__inner">
             <div class="header-utilities">
                 <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
-
                 <form class="form-search" action="/search" method="get">
                     @csrf
                     <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
@@ -56,7 +55,6 @@
             </div>
         </div>
     </header>
-
     <main>
         @yield('content')
     </main>

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Item;
-use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddressRequest;
+
 
 class ProfileController extends Controller
 {
@@ -22,21 +23,16 @@ class ProfileController extends Controller
         $user_all = User::all();
         $user_id = Auth::id();
         $user = $user_all[$user_id - 1];
-
         return view('mypage/profile', compact('user'));
     }
 
     public function address($item_buy, Request $request)
     {
         $item_detail = $item_buy;
-        // 入力済みの送付先住所の取得
-        $old_post_code = $request['post_code'];
-        $old_address = $request['address'];
-        $old_building = $request['building'];
-        return view('/purchase/address', compact('item_detail', 'old_post_code', 'old_address' , 'old_building'));
+        return view('/purchase/address', compact('item_detail'));
     }
 
-    public function edit($item_detail, Request $request)
+    public function edit($item_detail, AddressRequest $request)
     {
         $user = User::find(Auth::id());
         $item_buy = Item::find($item_detail);
@@ -46,27 +42,10 @@ class ProfileController extends Controller
             1 => 'カード支払い',
         );
 
-        if ($request['post_code'] == "") {
-            // 空白の場合、住所変更なし
-            $post_code = $request->old_post_code;
-        } else {
-            // 住所の変更をした場合、届け先を更新
-            $post_code = $request->post_code;
-        }
-
-        if ($request['address'] == "") {
-            $address = $request->old_address;
-        } else {
-            $address = $request->address;
-        }
-
-        if ($request['building'] == "") {
-            // 空白の場合、空白へ(建物はnull許可してる為)
-            $building = "";
-        } else {
-            $building = $request->building;
-        }
-
+        // 住所の変更
+        $post_code = $request->post_code;
+        $address = $request->address;
+        $building = $request->building;
         return view('purchase', compact('user', 'item_buy', 'payments', 'post_code', 'address', 'building'));
     }
 }

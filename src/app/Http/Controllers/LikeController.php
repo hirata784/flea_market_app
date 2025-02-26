@@ -23,7 +23,6 @@ class LikeController extends Controller
             $user = User::find($user_id);
             $user->items()->attach($item_id);
         }
-
         return redirect()->back();
     }
 
@@ -44,7 +43,6 @@ class LikeController extends Controller
             $user = User::find($user_id);
             $user->items()->detach($item_id);
         }
-
         return redirect()->back();
     }
 }

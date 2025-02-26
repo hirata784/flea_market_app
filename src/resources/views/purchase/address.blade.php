@@ -49,18 +49,10 @@
                 <div class="form__input--text">
                     <input type="text" name="building" value="{{ old('building') }}" />
                 </div>
-                <div class="form__error">
-                    @error('building')
-                    {{ $message }}
-                    @enderror
-                </div>
             </div>
         </div>
         <div class="form__button">
             <button class="update__button" type="submit">更新する</button>
-            <input type="hidden" name="old_post_code" value="{{ $old_post_code }}">
-            <input type="hidden" name="old_address" value="{{ $old_address }}">
-            <input type="hidden" name="old_building" value="{{ $old_building }}">
         </div>
     </form>
 </div>
