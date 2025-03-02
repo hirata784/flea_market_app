@@ -9,23 +9,27 @@
     <div class="profile-form__heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form class="form" action="/edit" method="post">
+    <form class="form" action="/edit" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $user['id'] }}">
         <input type="hidden" name="email" value="{{ $user['email'] }}">
         <input type="hidden" name="password" value="{{ $user['password'] }}">
+
         <div class="icon__group">
+            <input class="icon__group-btn" type="file" name="profile_img" onchange="preview(this)">
+            <div class="preview-area"></div>
             <div class="icon__group-img">
-                <div>イメージアイコン</div>
-                <div class="form__error">
-                    @error('icon')
-                    {{ $message }}
-                    @enderror
-                </div>
+                @if ($user->profile_img === null)
+                <img class="profile" id="hidden" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
+                @else
+                <img class=" profile" id="hidden" src="{{ Storage::url($user['profile_img']) }}" alt="プロフィール画像">
+                @endif
             </div>
-            <div class="icon__group-button">
-                <button class="choice_img">画像を選択する</button>
-            </div>
+        </div>
+        <div class="form__error">
+            @error('profile_img')
+            {{ $message }}
+            @enderror
         </div>
 
         <div class="form__group">
@@ -34,10 +38,10 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="name" value="{{ old('name', $user->name )}}" />
+                    <input type="text" name="nickname" value="{{ old('nickname', $user->nickname )}}" />
                 </div>
                 <div class="form__error">
-                    @error('name')
+                    @error('nickname')
                     {{ $message }}
                     @enderror
                 </div>
@@ -90,4 +94,15 @@
         </div>
     </form>
 </div>
+
+<script>
+    function preview(elem) {
+        const file = elem.files[0]
+        const isOK = file?.type?.startsWith('image/')
+        const image = (file && isOK) ? `<img src=${URL.createObjectURL(file)}>` : ''
+        elem.nextElementSibling.innerHTML = image
+        // 画像選択時、デフォルトの画像を非表示にする
+        hidden.style.display = "none";
+    }
+</script>
 @endsection

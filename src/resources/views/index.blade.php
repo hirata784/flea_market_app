@@ -28,7 +28,13 @@
         @else
         <div class="items__card">
             <div class="items__card__sold">
+                <!-- ダミーの商品画像出力 -->
+                @if(preg_match("/https/", $item['img_url']))
                 <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ asset($item['img_url']) }}"></a>
+                <!-- 出品した商品画像出力 -->
+                @else
+                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ Storage::url($item['img_url']) }}"></a>
+                @endif
                 @if($item->purchase()->where('item_id', $item->id)->exists())
                 <p>Sold</p>
                 @endif
@@ -53,7 +59,13 @@
         @if($item->users()->where('user_id', Auth::user()->id)->exists())
         <div class="items__card">
             <div class="items__card__sold">
-                <img class="items__img" src="{{ asset($item['img_url']) }}">
+                <!-- ダミーの商品画像出力 -->
+                @if(preg_match("/https/", $item['img_url']))
+                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ asset($item['img_url']) }}"></a>
+                <!-- 出品した商品画像出力 -->
+                @else
+                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ Storage::url($item['img_url']) }}"></a>
+                @endif
             </div>
             <div class="items__name">
                 <span>{{$item['name']}}</span>

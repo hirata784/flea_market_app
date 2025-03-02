@@ -11,7 +11,13 @@
         <div class="purchase__information">
             <div class="item">
                 <div>
-                    <img class="item__img" src="{{ $item_buy['img_url'] }}" alt="">
+                    <!-- ダミーの商品画像出力 -->
+                    @if(preg_match("/https/", $item_buy['img_url']))
+                    <img class="item__img" src="{{ asset($item_buy['img_url']) }}">
+                    <!-- 出品した商品画像出力 -->
+                    @else
+                    <img class="item__img" src="{{ Storage::url($item_buy['img_url']) }}">
+                    @endif
                 </div>
                 <div>
                     <h2>{{ $item_buy['name'] }}</h2>
@@ -23,15 +29,16 @@
                 <div>
                     <select class="payment--cb" name="payment" id="sample" onchange="viewChange();">
                         <option value="" disabled selected style="display:none;">選択してください</option>
+                        <!-- <option value="">選択してください</option> -->
                         @foreach($payments as $payment)
                         <option value="{{ $payment }}">{{ $payment }}</option>
                         @endforeach
-                        <div class="form__error">
-                            @error('payment')
-                            {{ $message }}
-                            @enderror
-                        </div>
                     </select>
+                    <div class="form__error">
+                        @error('payment')
+                        {{ $message }}
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="shipping_address">

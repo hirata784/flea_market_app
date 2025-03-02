@@ -7,7 +7,13 @@
 @section('content')
 <div class="item__content">
     <div>
-        <img class="item__img" src="{{ $item_detail['img_url'] }}" alt="">
+        <!-- ダミーの商品画像出力 -->
+        @if(preg_match("/https/", $item_detail['img_url']))
+        <img class="item__img" src="{{ asset($item_detail['img_url']) }}">
+        <!-- 出品した商品画像出力 -->
+        @else
+        <img class="item__img" src="{{ Storage::url($item_detail['img_url']) }}">
+        @endif
     </div>
     <div class="detail__content">
         <div class="detail__group">

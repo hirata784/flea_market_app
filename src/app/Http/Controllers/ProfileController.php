@@ -15,7 +15,9 @@ class ProfileController extends Controller
     {
         $data = $request->tab;
         $items = Item::all();
-        return view('mypage', compact('items', 'data'));
+        $user = User::find(Auth::id());
+
+        return view('mypage', compact('items', 'data', 'user'));
     }
 
     public function profile()

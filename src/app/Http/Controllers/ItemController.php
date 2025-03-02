@@ -92,6 +92,8 @@ class ItemController extends Controller
 
     public function buy(PurchaseRequest $request)
     {
+        // dd($request['payment']);
+        // dd($request->all());
         $data = $request->tab;
         $items = Item::all();
         // Userのid取得
@@ -131,9 +133,15 @@ class ItemController extends Controller
         );
 
         // itemsテーブル
-        // 画像は一旦仮で代入
         $item_detail = $request->only('img_url', 'condition', 'name', 'brand', 'description', 'price');
         Item::create($item_detail);
+
+        // 画像ファイルの保存場所指定
+        if (request('img_url')) {
+            $filename = request()->file('img_url')->getClientOriginalName();
+            $inputs['img_url'] = request('img_url')->storeAs('public/images', $filename);
+            Item::find(Item::count())->update($inputs);
+        }
 
         // category_itemテーブル
         $item_id = item::count();
@@ -157,6 +165,13 @@ class ItemController extends Controller
         $form = $request->all();
         unset($form['_token']);
         User::find($request->id)->update($form);
+
+        // 画像ファイルの保存場所指定
+        if (request('profile_img')) {
+            $filename = request()->file('profile_img')->getClientOriginalName();
+            $inputs['profile_img'] = request('profile_img')->storeAs('public/images', $filename);
+            User::find($request->id)->update($inputs);
+        }
         return view('index', compact('items', 'data'));
     }
 }

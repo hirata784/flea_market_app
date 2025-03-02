@@ -9,7 +9,7 @@
     <div class="address-form__heading">
         <h2>商品の出品</h2>
     </div>
-    <form class="form" action="/add" method="post">
+    <form class="form" action="/add" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -17,8 +17,9 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--btn">
-                    <button class="choice_img">画像を選択する</button>
-                    <input type="hidden" name="img_url" value="https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg">
+                    <input class="icon__group-btn" type="file" id="fileElem" name="img_url" style="display:none" onchange="preview(this)">
+                    <button id="fileSelect" type="button">ファイルを選択</button>
+                    <div class="preview-area"></div>
                 </div>
                 <div class="form__error">
                     @error('img_url')
@@ -135,4 +136,24 @@
         </div>
     </form>
 </div>
+
+<script>
+    function preview(elem) {
+        const file = elem.files[0]
+        const isOK = file?.type?.startsWith('image/')
+        const image = (file && isOK) ? `<img class="img-btn" src=${URL.createObjectURL(file)}>` : ''
+        elem.nextElementSibling.innerHTML = image
+        // 画像選択時、デフォルトの画像を非表示にする
+        hidden.style.display = "none";
+    }
+
+    const fileSelect = document.getElementById("fileSelect");
+    const fileElem = document.getElementById("fileElem");
+
+    fileSelect.addEventListener("click", (e) => {
+        if (fileElem) {
+            fileElem.click();
+        }
+    }, false);
+</script>
 @endsection

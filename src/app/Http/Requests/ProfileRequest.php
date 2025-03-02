@@ -24,7 +24,8 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'profile_img' => ['mimes:jpg,png'],
+            'nickname' => ['required'],
             'post_code' => ['required', 'regex:/^\d{3}[-]\d{4}$/'],
             'address' => ['required'],
         ];
@@ -33,7 +34,8 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'ユーザー名を入力してください',
+            'profile_img.mimes' => '拡張子が.jpgもしくは.pngの画像を選択してください',
+            'nickname.required' => 'ユーザー名を入力してください',
             'post_code.required' => '郵便番号を入力してください',
             'post_code.regex' => '郵便番号の書式に誤りがあります',
             'address.required' => '住所を選択してください',

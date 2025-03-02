@@ -24,6 +24,7 @@ class ExhibitionRequest extends FormRequest
     public function rules()
     {
         return [
+            'img_url' => ['required','mimes:jpg,png'],
             'name' => ['required'],
             'description' => ['required', 'max:255'],
             'category' => ['required'],
@@ -35,6 +36,8 @@ class ExhibitionRequest extends FormRequest
     public function messages()
     {
         return [
+            'img_url.required' => '画像をアップロードしてください',
+            'img_url.mimes' => '拡張子が.jpgもしくは.pngの画像を選択してください',
             'name.required' => '商品名を入力してください',
             'description.required' => '商品説明を入力してください',
             'category.required' => 'カテゴリーを選択してください',
