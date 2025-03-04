@@ -25,17 +25,14 @@ class PurchaseRequest extends FormRequest
     {
         return [
             'payment' => ['required'],
-            // 'payment' => ['prohibited_if:payment,""'],
             'post_code' => ['required'],
             'address' => ['required'],
         ];
     }
-
     public function messages()
     {
         return [
             'payment.required' => '支払い方法を選択してください。',
-            // 'payment.prohibited_if' => '支払い方法を選択してください。',
             'post_code.required' => '郵便番号を選択してください',
             'address.required' => '住所を選択してください',
         ];

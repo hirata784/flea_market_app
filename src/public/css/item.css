@@ -53,18 +53,11 @@ p {
     text-align: center;
 }
 
-.like {
-    border: none;
-    background: transparent;
-    color: #5F5F5F;
-    font-size: 30px;
-}
-
-.unlike {
-    border: none;
-    background: transparent;
-    color: red;
-    font-size: 30px;
+.like__icon,
+.unlike__icon {
+    margin: 10px 10px;
+    width: 25px;
+    height: 25px;
 }
 
 .like__num {

@@ -63,7 +63,7 @@
                     </select>
                 </div>
                 <div class="form__error">
-                    @error('brand')
+                    @error('condition')
                     {{ $message }}
                     @enderror
                 </div>

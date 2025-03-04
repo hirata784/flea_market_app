@@ -66,6 +66,9 @@
                 @else
                 <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ Storage::url($item['img_url']) }}"></a>
                 @endif
+                @if($item->purchase()->where('item_id', $item->id)->exists())
+                <p>Sold</p>
+                @endif
             </div>
             <div class="items__name">
                 <span>{{$item['name']}}</span>

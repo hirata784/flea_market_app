@@ -29,7 +29,6 @@
                 <div>
                     <select class="payment--cb" name="payment" id="sample" onchange="viewChange();">
                         <option value="" disabled selected style="display:none;">選択してください</option>
-                        <!-- <option value="">選択してください</option> -->
                         @foreach($payments as $payment)
                         <option value="{{ $payment }}">{{ $payment }}</option>
                         @endforeach

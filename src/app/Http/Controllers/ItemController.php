@@ -92,8 +92,6 @@ class ItemController extends Controller
 
     public function buy(PurchaseRequest $request)
     {
-        // dd($request['payment']);
-        // dd($request->all());
         $data = $request->tab;
         $items = Item::all();
         // Userのid取得
