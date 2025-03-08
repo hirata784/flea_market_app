@@ -20,8 +20,11 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [ItemController::class, 'search']);
 Route::get('/item/:{item_id}', [ItemController::class, 'item']);
 
-// 認証時のみ表示
-Route::middleware('auth')->group(function () {
+// // 認証時のみ表示
+// Route::middleware('auth')->group(function () {
+
+//verifiedを追加
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/mypage', [ProfileController::class, 'mypage']);
     Route::get('/mypage/profile', [ProfileController::class, 'profile']);
     Route::get('/purchase/address/:{item_id}', [ProfileController::class, 'address']);
@@ -34,4 +37,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/', [ItemController::class, 'buy']);
     Route::post('/add', [ItemController::class, 'add']);
     Route::post('/edit', [ItemController::class, 'edit']);
+    Route::post('/verify_email', [ProfileController::class, 'verify_email']);
 });

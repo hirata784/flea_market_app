@@ -28,6 +28,22 @@ class ProfileController extends Controller
         return view('mypage/profile', compact('user'));
     }
 
+    public function verify_email()
+    {
+        dd("メール");
+        $user_all = User::all();
+        $user_id = Auth::id();
+        $user = $user_all[$user_id - 1];
+        $email_verified_at = now();
+
+        User::updated([
+            'email_verified_at' => $email_verified_at,
+        ]);
+
+        // $user->sendEmailVerificationNotification();
+        return view('mypage/profile', compact('user'));
+    }
+
     public function address($item_buy, Request $request)
     {
         $item_detail = $item_buy;
