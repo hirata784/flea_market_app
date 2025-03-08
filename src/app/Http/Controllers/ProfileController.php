@@ -28,20 +28,31 @@ class ProfileController extends Controller
         return view('mypage/profile', compact('user'));
     }
 
-    public function verify_email()
+    public function email(Request $request)
     {
-        dd("メール");
         $user_all = User::all();
         $user_id = Auth::id();
         $user = $user_all[$user_id - 1];
-        $email_verified_at = now();
-
-        User::updated([
-            'email_verified_at' => $email_verified_at,
-        ]);
-
-        // $user->sendEmailVerificationNotification();
+        $email_verified_at = date('Y-m-d H:i:s');
+        // 注意：更新できない
+        User::find($user_id)->update(['email_verified_at' => $email_verified_at]);
         return view('mypage/profile', compact('user'));
+    }
+
+    public function re_verified(Request $request)
+    {
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+        if (!$user['email_verified_at']) {
+            // メール認証していなければ認証画面へ
+            return view('verify-email');
+        } else {
+            // メール認証していれば商品一覧画面へ
+            $items = Item::all();
+            $user_id = Auth::id();
+            $data = $request->tab;
+            return view('index', compact('items', 'user_id', 'data'));
+        }
     }
 
     public function address($item_buy, Request $request)

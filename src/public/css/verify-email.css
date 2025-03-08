@@ -16,7 +16,6 @@ p {
     text-align: center;
 }
 
-
 .form__button {
     margin: 60px 0;
 }
@@ -39,6 +38,10 @@ p {
 
 .verify__button {
     text-decoration: none;
+    background: none;
     color: #0173cc;
     width: fit-content;
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }

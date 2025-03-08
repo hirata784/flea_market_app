@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Responses;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 
 class LoginResponse implements LoginResponseContract
@@ -14,7 +15,18 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
-        $home = '/';
-        return redirect($home);
+        // メール認証しているかチェック
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+
+        if (!$user['email_verified_at']) {
+            // メール認証していなければメール認証画面へ
+            $home = 're_verified';
+            return redirect($home);
+        } else {
+            // メール認証していれば商品一覧画面へ
+            $home = '/';
+            return redirect($home);
+        }
     }
 }
