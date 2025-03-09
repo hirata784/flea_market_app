@@ -19,9 +19,8 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [ItemController::class, 'search']);
 Route::get('/item/:{item_id}', [ItemController::class, 'item']);
-Route::post('/email', [ProfileController::class, 'email']);
 
-//verifiedを追加
+//ログインかつメール認証済みのみアクセス可能
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
     Route::post('/mypage', [ProfileController::class, 'mypage']);
     Route::get('/mypage/profile', [ProfileController::class, 'profile']);

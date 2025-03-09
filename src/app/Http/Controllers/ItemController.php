@@ -19,7 +19,13 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $items = Item::all();
+        $search = $request->session()->get('keyword');
+        if (!$search) {
+            $items = Item::all();
+        } else {
+            // 検索状態保持
+            $items = Item::KeywordSearch($search)->get();
+        }
         $user_id = Auth::id();
         $data = $request->tab;
         return view('index', compact('items', 'user_id', 'data'));
@@ -29,6 +35,8 @@ class ItemController extends Controller
     {
         $items = Item::KeywordSearch($request->keyword)->get();
         $data = $request->tab;
+        // 検索状態保持
+        $request->session()->put('keyword', $request->keyword);
         return view('index', compact('items', 'data'));
     }
 

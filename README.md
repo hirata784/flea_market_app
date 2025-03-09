@@ -19,6 +19,10 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+SESSION_DRIVER=database
+MAIL_HOST=mail
+MAIL_FROM_ADDRESS=info@example.com
+
 ```
 4. アプリケーションキーの作成
 ``` bash
@@ -44,3 +48,4 @@ php artisan db:seed
 ## URL
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
+- mailhog：http://localhost:8025/

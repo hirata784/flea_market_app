@@ -9,7 +9,7 @@
     <div class="img_btn">
         <div class="img_user">
             <div>
-                @if ($user->profile_img === "")
+                @if ($user->profile_img === "" or $user->profile_img === null)
                 <img class="profile" id="hidden" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
                 @else
                 <img class=" profile" id="hidden" src="{{ Storage::url($user['profile_img']) }}" alt="プロフィール画像">

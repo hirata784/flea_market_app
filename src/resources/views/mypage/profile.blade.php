@@ -19,7 +19,7 @@
             <input class="icon__group-btn" type="file" name="profile_img" onchange="preview(this)">
             <div class="preview-area"></div>
             <div class="icon__group-img">
-                @if ($user->profile_img === "")
+                @if ($user->profile_img === "" or $user->profile_img === null)
                 <img class="profile" id="hidden" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
                 @else
                 <img class=" profile" id="hidden" src="{{ Storage::url($user['profile_img']) }}" alt="プロフィール画像">

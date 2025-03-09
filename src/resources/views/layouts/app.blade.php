@@ -19,6 +19,14 @@
                 <form class="form-search" action="/search" method="get">
                     @csrf
                     <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
+                    <!-- マイリスト選択時に検索→マイリストのまま結果表示 -->
+                    @if(Request::is('/'))
+                    @if ($data == null)
+                    <input type="hidden" name="tab" value="">
+                    @elseif ($data == 'mylist')
+                    <input type="hidden" name="tab" value="mylist">
+                    @endif
+                    @endif
                     <button>検索</button>
                 </form>
                 <nav>

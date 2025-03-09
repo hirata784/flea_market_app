@@ -10,11 +10,13 @@
         <form class="recommendation-form" action="/" method="get">
             @csrf
             <button class="btn {{($data == null) ? 'choice' : 'not_choice'}}">おすすめ</button>
+            <input type="hidden" name="keyword">
         </form>
         <form class="list-form" action="/?tab=mylist" method="get">
             @csrf
             <button class="btn {{($data == 'mylist') ? 'choice' : 'not_choice'}}">マイリスト</button>
             <input type="hidden" name="tab" value="mylist">
+            <input type="hidden" name="keyword">
         </form>
     </div>
 

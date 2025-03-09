@@ -28,17 +28,6 @@ class ProfileController extends Controller
         return view('mypage/profile', compact('user'));
     }
 
-    public function email(Request $request)
-    {
-        $user_all = User::all();
-        $user_id = Auth::id();
-        $user = $user_all[$user_id - 1];
-        $email_verified_at = date('Y-m-d H:i:s');
-        // 注意：更新できない
-        User::find($user_id)->update(['email_verified_at' => $email_verified_at]);
-        return view('mypage/profile', compact('user'));
-    }
-
     public function re_verified(Request $request)
     {
         $user_id = Auth::id();
