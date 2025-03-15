@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [ItemController::class, 'search']);
 Route::get('/item/:{item_id}', [ItemController::class, 'item']);
+Route::post('/charge', 'StripeController@charge')->name('stripe.charge');
 
 //ログインかつメール認証済みのみアクセス可能
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {

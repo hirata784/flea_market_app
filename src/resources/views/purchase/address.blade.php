@@ -5,54 +5,54 @@
 @endsection
 
 @section('content')
-<div class="address__content">
-    <div class="address-form__heading">
+<div>
+    <div class="heading">
         <h2>住所の変更</h2>
     </div>
-    <form class="form" action="/purchase/edit/:{{ $item_detail }}" method="post">
+    <form class="form-address" action="/purchase/edit/:{{ $item_detail }}" method="post">
         @csrf
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">郵便番号</span>
+        <div class="form-group">
+            <div class="form-title">
+                <span class="form-span">郵便番号</span>
             </div>
-            <div class="form__group-content">
-                <div class="form__input--text">
-                    <input type="text" name="post_code" value="{{ old('post_code') }}" />
+            <div>
+                <div>
+                    <input class="form-txt" type="text" name="post_code" value="{{ old('post_code') }}" />
                 </div>
-                <div class="form__error">
+                <div class="form-error">
                     @error('post_code')
                     {{ $message }}
                     @enderror
                 </div>
             </div>
         </div>
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">住所</span>
+        <div class="form-group">
+            <div class="form-title">
+                <span class="form-span">住所</span>
             </div>
-            <div class="form__group-content">
-                <div class="form__input--text">
-                    <input type="text" name="address" value="{{ old('address') }}" />
+            <div>
+                <div>
+                    <input class="form-txt" type="text" name="address" value="{{ old('address') }}" />
                 </div>
-                <div class="form__error">
+                <div class="form-error">
                     @error('address')
                     {{ $message }}
                     @enderror
                 </div>
             </div>
         </div>
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">建物名</span>
+        <div class="form-group">
+            <div class="form-title">
+                <span class="form-span">建物名</span>
             </div>
-            <div class="form__group-content">
-                <div class="form__input--text">
-                    <input type="text" name="building" value="{{ old('building') }}" />
+            <div>
+                <div>
+                    <input class="form-txt" type="text" name="building" value="{{ old('building') }}" />
                 </div>
             </div>
         </div>
-        <div class="form__button">
-            <button class="update__button" type="submit">更新する</button>
+        <div class="form-btn">
+            <button class="update-btn" type="submit">更新する</button>
         </div>
     </form>
 </div>

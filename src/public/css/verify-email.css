@@ -4,7 +4,7 @@ p {
     font-size: 25px;
 }
 
-.verify__content {
+.verify-content {
     margin: 200px auto;
     padding: 30px 15px;
     max-width: 1230px;
@@ -12,11 +12,7 @@ p {
     text-align: center;
 }
 
-.form__button {
-    margin: 60px 0;
-}
-
-.verify__button {
+.verify-button {
     text-decoration: none;
     background: none;
     color: #0173cc;

@@ -2,13 +2,13 @@ div {
     margin: 0;
 }
 
-.img_btn {
+.img-btn {
     display: flex;
     justify-content: center;
     margin-top: 60px;
 }
 
-.img_user {
+.img-user {
     display: flex;
     justify-content: center;
     padding: 60px;
@@ -21,7 +21,7 @@ div {
     border-radius: 200px;
 }
 
-.username {
+.user-name {
     font-size: 25px;
     font-weight: bold;
     margin-left: 60px;
@@ -44,17 +44,17 @@ div {
     padding: 5px 20px;
 }
 
-.mypage-form__heading {
+.mypage-form-heading {
     border-bottom: #5F5F5F solid 2px;
     display: flex;
     justify-content: left;
 }
 
-.Products_exhibited-form {
+.Products-exhibited-form {
     padding: 40px 0 5px 90px;
 }
 
-.Purchased_items-form {
+.Purchased-items-form {
     padding: 40px 0 5px 20px;
 }
 
@@ -81,16 +81,21 @@ div {
     padding: 20px;
 }
 
-.items__card {
+.item-list {
     margin-left: 100px;
     margin-top: 100px;
 }
 
-.items__card__sold {
+.items-card-sold {
     position: relative;
 }
 
-.items__card__sold p {
+.items-img {
+    width: 300px;
+    height: 300px;
+}
+
+.item-list {
     position: absolute;
     background-color: #fff;
     color: red;
@@ -105,9 +110,4 @@ div {
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0;
-}
-
-.items__img {
-    width: 300px;
-    height: 300px;
 }

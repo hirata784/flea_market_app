@@ -1,4 +1,4 @@
-.list-form__heading {
+.form-heading {
     border-bottom: #5F5F5F solid 2px;
     display: flex;
     justify-content: left;
@@ -24,7 +24,7 @@
     color: red;
 }
 
-.not_choice {
+.not-choice {
     color: black;
 }
 
@@ -34,16 +34,21 @@
     padding: 20px;
 }
 
-.items__card {
+.item-list {
     margin-left: 100px;
     margin-top: 100px;
 }
 
-.items__card__sold {
+.item-card {
     position: relative;
 }
 
-.items__card__sold p {
+.item-img {
+    width: 300px;
+    height: 300px;
+}
+
+.sold-str {
     position: absolute;
     background-color: #fff;
     color: red;
@@ -58,9 +63,4 @@
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0;
-}
-
-.items__img {
-    width: 300px;
-    height: 300px;
 }

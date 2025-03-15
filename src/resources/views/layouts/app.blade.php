@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Attendance Management</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
@@ -13,13 +13,12 @@
 
 <body>
     <header class="header">
-        <div class="header__inner">
+        <div class="header-inner">
             <div class="header-utilities">
                 <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
                 <form class="form-search" action="/search" method="get">
                     @csrf
                     <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
-                    <!-- マイリスト選択時に検索→マイリストのまま結果表示 -->
                     @if(Request::is('/'))
                     @if ($data == null)
                     <input type="hidden" name="tab" value="">
@@ -27,35 +26,35 @@
                     <input type="hidden" name="tab" value="mylist">
                     @endif
                     @endif
-                    <button>検索</button>
+                    <button class="search-btn">検索</button>
                 </form>
                 <nav>
-                    <ul class="header-nav">
+                    <ul class="nav-items">
                         @if (Auth::check())
-                        <li class="header-nav__item">
-                            <form class="form-nav" action="/logout" method="post">
+                        <li class="nav-item">
+                            <form action="/logout" method="post">
                                 @csrf
-                                <button class="header-nav__button">ログアウト</button>
+                                <button class="nav-btn">ログアウト</button>
                             </form>
                         </li>
                         @else
-                        <li class="header-nav__item">
-                            <form class="form-nav" action="/login" method="get">
+                        <li class="nav-item">
+                            <form action="/login" method="get">
                                 @csrf
-                                <a class="login__button-submit" href="/login">ログイン</a>
+                                <button class="nav-btn" href="/login">ログイン</button>
                             </form>
                         </li>
                         @endif
-                        <li class="header-nav__item">
-                            <form class="form-nav" action="/mypage" method="post">
+                        <li class="nav-item">
+                            <form action="/mypage" method="post">
                                 @csrf
-                                <button class="header-nav__button">マイページ</button>
+                                <button class="nav-btn">マイページ</button>
                             </form>
                         </li>
-                        <li class="header-nav__item">
-                            <form class="form-nav" action="/sell" method="get">
+                        <li class="nav-item">
+                            <form action="/sell" method="get">
                                 @csrf
-                                <button class="listing-nav__button">出品</button>
+                                <button class="listing-btn">出品</button>
                             </form>
                         </li>
                     </ul>

@@ -5,16 +5,16 @@
 @endsection
 
 @section('content')
-<div class="list__content">
-    <div class="list-form__heading">
+<div>
+    <div class="form-heading">
         <form class="recommendation-form" action="/" method="get">
             @csrf
-            <button class="btn {{($data == null) ? 'choice' : 'not_choice'}}">おすすめ</button>
+            <button class="btn {{($data == null) ? 'choice' : 'not-choice'}}">おすすめ</button>
             <input type="hidden" name="keyword">
         </form>
         <form class="list-form" action="/?tab=mylist" method="get">
             @csrf
-            <button class="btn {{($data == 'mylist') ? 'choice' : 'not_choice'}}">マイリスト</button>
+            <button class="btn {{($data == 'mylist') ? 'choice' : 'not-choice'}}">マイリスト</button>
             <input type="hidden" name="tab" value="mylist">
             <input type="hidden" name="keyword">
         </form>
@@ -28,20 +28,20 @@
         @if(Auth::check() and ($item->sells()->where('user_id', Auth::user()->id)->exists()))
         @continue
         @else
-        <div class="items__card">
-            <div class="items__card__sold">
+        <div class="item-list">
+            <div class="item-card">
                 <!-- ダミーの商品画像出力 -->
                 @if(preg_match("/https/", $item['img_url']))
-                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ asset($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ asset($item['img_url']) }}"></a>
                 <!-- 出品した商品画像出力 -->
                 @else
-                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ Storage::url($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ Storage::url($item['img_url']) }}"></a>
                 @endif
                 @if($item->purchase()->where('item_id', $item->id)->exists())
-                <p>Sold</p>
+                <p class="sold-str">Sold</p>
                 @endif
             </div>
-            <div class="items__name">
+            <div>
                 <span>{{$item['name']}}</span>
             </div>
         </div>
@@ -59,20 +59,20 @@
         @continue
         @endif
         @if($item->users()->where('user_id', Auth::user()->id)->exists())
-        <div class="items__card">
-            <div class="items__card__sold">
+        <div class="item-list">
+            <div class="item-card">
                 <!-- ダミーの商品画像出力 -->
                 @if(preg_match("/https/", $item['img_url']))
-                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ asset($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ asset($item['img_url']) }}"></a>
                 <!-- 出品した商品画像出力 -->
                 @else
-                <a href="/item/:{{ $item['id'] }}"><img class="items__img" src="{{ Storage::url($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ Storage::url($item['img_url']) }}"></a>
                 @endif
                 @if($item->purchase()->where('item_id', $item->id)->exists())
-                <p>Sold</p>
+                <p class="sold-str">Sold</p>
                 @endif
             </div>
-            <div class="items__name">
+            <div>
                 <span>{{$item['name']}}</span>
             </div>
         </div>
