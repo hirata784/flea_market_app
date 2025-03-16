@@ -15,20 +15,23 @@
     <header class="header">
         <div class="header-inner">
             <div class="header-utilities">
-                <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
-                <form class="form-search" action="/search" method="get">
-                    @csrf
-                    <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
-                    @if(Request::is('/'))
-                    @if ($data == null)
-                    <input type="hidden" name="tab" value="">
-                    @elseif ($data == 'mylist')
-                    <input type="hidden" name="tab" value="mylist">
-                    @endif
-                    @endif
-                    <button class="search-btn">検索</button>
-                </form>
-                <nav>
+                <div class="a">
+                    <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
+                    <form class="form-search" action="/search" method="get">
+                        @csrf
+                        <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
+                        <!-- マイリスト選択時に検索→マイリストのまま結果表示 -->
+                        @if(Request::is('/'))
+                        @if ($data == null)
+                        <input type="hidden" name="tab" value="">
+                        @elseif ($data == 'mylist')
+                        <input type="hidden" name="tab" value="mylist">
+                        @endif
+                        @endif
+                        <button class="search-btn">検索</button>
+                    </form>
+                </div>
+                <nav class="b">
                     <ul class="nav-items">
                         @if (Auth::check())
                         <li class="nav-item">

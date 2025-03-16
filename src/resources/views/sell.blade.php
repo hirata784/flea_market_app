@@ -6,14 +6,14 @@
 
 @section('content')
 <div>
-    <div class="address-form-heading">
+    <div class="heading">
         <h2>商品の出品</h2>
     </div>
-    <form class="form" action="/add" method="post" enctype="multipart/form-data">
+    <form class="form-sell" action="/add" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <div class="form-group-title">
-                <span class="form-label-item">商品画像</span>
+            <div class="form-title">
+                <span class="form-span">商品画像</span>
             </div>
             <div>
                 <div class="form-input-btn">
@@ -31,14 +31,14 @@
 
         <h3 class="subheading">商品の詳細</h3>
         <div class="form-group">
-            <div class="form-group-title">
-                <span class="form-label-item">カテゴリー</span>
+            <div class="form-title">
+                <span class="form-span">カテゴリー</span>
             </div>
             <div>
-                <div class="form-input-cb">
+                <div class="category">
                     @foreach ($categories as $category)
-                    <input class="cb" type="checkbox" id="{{ $category['id'] }}" name="category[]" value="{{ $category['id'] }}" />
-                    <label class="lb" for="{{ $category['id'] }}">{{ $category['content'] }}</label>
+                    <input class="category-checkbox" type="checkbox" id="{{ $category['id'] }}" name="category[]" value="{{ $category['id'] }}" />
+                    <label class="category-label" for="{{ $category['id'] }}">{{ $category['content'] }}</label>
                     @endforeach
                 </div>
                 <div class="form-error">
@@ -50,12 +50,12 @@
         </div>
 
         <div class="form-group">
-            <div class="form-group-title">
-                <span class="form-label-item">商品の状態</span>
+            <div class="form-title">
+                <span class="form-span">商品の状態</span>
             </div>
             <div>
-                <div class="form-input-text">
-                    <select class="condition-cb" name="condition" id="select">
+                <div>
+                    <select class="condition-select" name="condition" id="select">
                         <option value="" disabled selected style="display:none;">選択してください</option>
                         @foreach ($product_conditions as $product_condition)
                         <option value="{{$product_condition}}">{{$product_condition}}</option>
@@ -72,12 +72,12 @@
 
         <h3 class="subheading">商品名と説明</h3>
         <div class="form-group">
-            <div class="form-group-title">
-                <span class="form-label-item">商品名</span>
+            <div class="form-title">
+                <span class="form-span">商品名</span>
             </div>
             <div>
-                <div class="form-input-text">
-                    <input type="text" name="name" value="{{ old('name') }}" />
+                <div>
+                    <input class="form-txt" type="text" name="name" value="{{ old('name') }}" />
                 </div>
                 <div class="form-error">
                     @error('name')
@@ -87,12 +87,12 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="form-group-title">
-                <span class="form-label-item">ブランド名</span>
+            <div class="form-title">
+                <span class="form-span">ブランド名</span>
             </div>
             <div>
-                <div class="form-input-text">
-                    <input type="text" name="brand" value="{{ old('brand') }}" />
+                <div>
+                    <input class="form-txt" type="text" name="brand" value="{{ old('brand') }}" />
                 </div>
                 <div class="form-error">
                     @error('brand')
@@ -102,11 +102,11 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="form-group-title">
-                <span class="form-label-item">商品の説明</span>
+            <div class="form-title">
+                <span class="form-span">商品の説明</span>
             </div>
             <div>
-                <div class="form-input-text">
+                <div>
                     <textarea class="description" name="description" id=""></textarea>
                 </div>
                 <div class="form-error">
@@ -117,12 +117,12 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="form-group-title">
-                <span class="form-label-item">販売価格</span>
+            <div class="form-title">
+                <span class="form-span">販売価格</span>
             </div>
             <div>
-                <div class="form-input-text">
-                    <input type="text" name="price" value="{{ old('price') }}" />
+                <div>
+                    <input class="form-txt" type="text" name="price" value="{{ old('price') }}" />
                 </div>
                 <div class="form-error">
                     @error('price')
@@ -131,8 +131,8 @@
                 </div>
             </div>
         </div>
-        <div class="form-button">
-            <button class="list-button" type="submit">出品する</button>
+        <div class="form-btn">
+            <button class="list-btn" type="submit">出品する</button>
         </div>
     </form>
 </div>

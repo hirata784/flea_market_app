@@ -6,13 +6,13 @@
 
 @section('content')
 <div>
-    <div class="form-heading">
-        <form class="recommendation-form" action="/" method="get">
+    <div class="heading">
+        <form class="form-recommendation" action="/" method="get">
             @csrf
             <button class="btn {{($data == null) ? 'choice' : 'not-choice'}}">おすすめ</button>
             <input type="hidden" name="keyword">
         </form>
-        <form class="list-form" action="/?tab=mylist" method="get">
+        <form class="form-list" action="/?tab=mylist" method="get">
             @csrf
             <button class="btn {{($data == 'mylist') ? 'choice' : 'not-choice'}}">マイリスト</button>
             <input type="hidden" name="tab" value="mylist">

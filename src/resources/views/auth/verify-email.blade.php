@@ -6,12 +6,13 @@
 
 @section('content')
 <div class="verify-content">
-    <p>登録していただいたメールアドレスに認証メールを送付しました。</p>
-    <p>メール認証を完了してください。</p>
-
+    <p>
+        <span>登録していただいた</span><span>メールアドレスに</span><span>認証メールを</span><span>送付しました。</span>
+    </p>
+    <p><span>メール認証を</span><span>完了してください。</span></p>
     <form method="POST" action="/email/verification-notification">
         @csrf
-        <button class="verify-button" type="submit">
+        <button class="verify-btn" type="submit">
             認証メールを再送する
         </button>
     </form>

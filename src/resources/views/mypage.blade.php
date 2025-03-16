@@ -21,12 +21,12 @@
             <button class="edit">プロフィールを編集</button>
         </form>
     </div>
-    <div class="mypage-form-heading">
-        <form class="Products-exhibited-form" action="/mypage?tab=sell" method="post">
+    <div class="heading">
+        <form class="form-exhibited" action="/mypage?tab=sell" method="post">
             @csrf
             <button class="btn {{($data == 'sell') ? 'choice' : 'not_choice'}}">出品した商品</button>
         </form>
-        <form class="Purchased-items-form" action="/mypage?tab=buy" method="post">
+        <form class="form-purchased" action="/mypage?tab=buy" method="post">
             @csrf
             <button class="btn {{($data == 'buy') ? 'choice' : 'not_choice'}}">購入した商品</button>
         </form>
@@ -37,17 +37,15 @@
     <div class="items">
         @foreach($items as $item)
         @if($item->sells()->where('user_id', Auth::user()->id)->exists())
-        <div class="items-card">
-            <div class="items-card-sold">
+        <div>
+            <div class="item-list">
                 <!-- ダミーの商品画像出力 -->
                 @if(preg_match("/https/", $item['img_url']))
-                <a href="/item/:{{ $item['id'] }}"><img class="items-img" src="{{ asset($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ asset($item['img_url']) }}"></a>
                 <!-- 出品した商品画像出力 -->
                 @else
-                <a href="/item/:{{ $item['id'] }}"><img class="items-img" src="{{ Storage::url($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ Storage::url($item['img_url']) }}"></a>
                 @endif
-            </div>
-            <div>
                 <span>{{$item['name']}}</span>
             </div>
         </div>
@@ -63,17 +61,15 @@
     <div class="items">
         @foreach($items as $item)
         @if($item->purchase()->where('user_id', Auth::user()->id)->exists())
-        <div class="item-list">
-            <div class="items-card-sold">
+        <div>
+            <div class="item-list">
                 <!-- ダミーの商品画像出力 -->
                 @if(preg_match("/https/", $item['img_url']))
-                <a href="/item/:{{ $item['id'] }}"><img class="items-img" src="{{ asset($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ asset($item['img_url']) }}"></a>
                 <!-- 出品した商品画像出力 -->
                 @else
-                <a href="/item/:{{ $item['id'] }}"><img class="items-img" src="{{ Storage::url($item['img_url']) }}"></a>
+                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ Storage::url($item['img_url']) }}"></a>
                 @endif
-            </div>
-            <div>
                 <span>{{$item['name']}}</span>
             </div>
         </div>
@@ -84,4 +80,4 @@
     </div>
     @endif
 </div>
-@endsection 
+@endsection

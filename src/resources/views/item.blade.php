@@ -31,7 +31,7 @@
                     </div>
                     @else
                     <div class="like-group">
-                        <a href="/item/:{{ $item_detail['id'] }}/unlike"><img class="unlike-icon" src="{{ asset('storage/images/unlike.png') }}"></a>
+                        <a href="/item/:{{ $item_detail['id'] }}/unlike"><img class="like-icon" src="{{ asset('storage/images/unlike.png') }}"></a>
                         <p class="like-num">{{ $item_detail->users->count() }}</p>
                     </div>
                     @endif
@@ -51,7 +51,7 @@
             </div>
             <form action="/purchase/:{{ $item_detail['id'] }}" method="get">
                 @csrf
-                <button class="btn purchase">購入手続きへ</button>
+                <button class="purchase-btn">購入手続きへ</button>
             </form>
         </div>
 
@@ -79,8 +79,17 @@
             <h2>コメント({{ $item_detail->comment->count() }})</h2>
             @foreach($comments as $comment)
             <div class="comment-list">
-                <p class="comment-list-name">{{$comment->user->name}}</p>
-                <p class="comment-list-content">{{ $comment['comment'] }}</p>
+                <div class="img-name">
+                    <p>
+                        @if ($comment->user->profile_img === "" or $comment->user->profile_img === null)
+                        <img class="comment-img" id="hidden" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
+                        @else
+                        <img class="comment-img" id="hidden" src="{{ Storage::url($comment->user->profile_img) }}" alt="プロフィール画像">
+                        @endif
+                    </p>
+                    <p class="comment-name">{{$comment->user->name}}</p>
+                </div>
+                <p class="comment-content">{{ $comment['comment'] }}</p>
             </div>
             @endforeach
             <h3>商品へのコメント</h3>
@@ -94,7 +103,7 @@
                 </div>
                 <input type="hidden" name="id" value="{{ $item_detail['id'] }}">
                 <div>
-                    <button class="btn comment" type="submit">コメントを送信する</button>
+                    <button class="comment-btn" type="submit">コメントを送信する</button>
                 </div>
             </form>
         </div>

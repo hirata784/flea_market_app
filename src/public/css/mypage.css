@@ -44,17 +44,25 @@ div {
     padding: 5px 20px;
 }
 
-.mypage-form-heading {
+.heading {
     border-bottom: #5F5F5F solid 2px;
     display: flex;
     justify-content: left;
 }
 
-.Products-exhibited-form {
+.form-exhibited {
     padding: 40px 0 5px 90px;
 }
 
-.Purchased-items-form {
+.choice {
+    color: red;
+}
+
+.not_choice {
+    color: black;
+}
+
+.form-purchased {
     padding: 40px 0 5px 20px;
 }
 
@@ -66,48 +74,54 @@ div {
     font-size: 20px;
 }
 
-.choice {
-    color: red;
-}
-
-.not_choice {
-    color: black;
-}
-
-
 .items {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 400px;
+    grid-template-columns: 400px 400px 400px 400px;
+    justify-content: center;
 }
 
 .item-list {
-    margin-left: 100px;
-    margin-top: 100px;
+    margin: 100px 60px 0;
 }
 
-.items-card-sold {
-    position: relative;
-}
-
-.items-img {
+.item-img {
     width: 300px;
     height: 300px;
 }
 
-.item-list {
-    position: absolute;
-    background-color: #fff;
-    color: red;
-    font-size: 40px;
-    font-weight: bold;
-    width: 90%;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    margin: 0;
-    padding: 0;
+@media (max-width:1650px) {
+    .items {
+        grid-template-columns: 400px 400px 400px;
+    }
+
+    .btn {
+        font-size: 25px;
+    }
+}
+
+@media (max-width:1200px) {
+    .edit {
+        margin-left: 120px;
+    }
+
+    .btn {
+        font-size: 30px;
+    }
+
+    .items {
+        grid-template-columns: 400px 400px;
+    }
+}
+
+@media (max-width:850px) {
+    .edit {
+        margin-left: 20px;
+    }
+
+    .profile {
+        width: 200px;
+        height: 200px;
+    }
 }

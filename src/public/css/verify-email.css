@@ -12,7 +12,11 @@ p {
     text-align: center;
 }
 
-.verify-button {
+span {
+    display: inline-block;
+}
+
+.verify-btn {
     text-decoration: none;
     background: none;
     color: #0173cc;
@@ -21,4 +25,14 @@ p {
     border: none;
     cursor: pointer;
     margin-top: 60px;
+}
+
+@media (max-width:850px) {
+    span {
+        font-size: 30px;
+    }
+
+    .verify-btn {
+        font-size: 20px;
+    }
 }

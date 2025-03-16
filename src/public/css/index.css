@@ -1,14 +1,22 @@
-.form-heading {
+.heading {
     border-bottom: #5F5F5F solid 2px;
     display: flex;
     justify-content: left;
 }
 
-.recommendation-form {
+.form-recommendation {
     padding: 40px 0 5px 90px;
 }
 
-.list-form {
+.choice {
+    color: red;
+}
+
+.not-choice {
+    color: black;
+}
+
+.form-list {
     padding: 40px 0 5px 20px;
 }
 
@@ -20,23 +28,16 @@
     font-size: 20px;
 }
 
-.choice {
-    color: red;
-}
-
-.not-choice {
-    color: black;
-}
-
 .items {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 400px;
+    grid-template-columns: 400px 400px 400px 400px;
+    justify-content: center;
 }
 
 .item-list {
-    margin-left: 100px;
-    margin-top: 100px;
+    margin: 100px 60px 0;
 }
 
 .item-card {
@@ -63,4 +64,25 @@
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0;
+}
+
+@media (max-width:1650px) {
+    .items {
+        grid-template-columns: 400px 400px 400px;
+    }
+
+    .btn {
+        font-size: 25px;
+    }
+}
+
+@media (max-width:1200px) {
+
+    .btn {
+        font-size: 30px;
+    }
+
+    .items {
+        grid-template-columns: 400px 400px;
+    }
 }

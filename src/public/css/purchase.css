@@ -17,6 +17,7 @@ tr {
 th,
 td {
     padding: 35px 50px;
+    width: 200px;
     text-align: center;
     font-weight: normal;
 }
@@ -55,17 +56,23 @@ td {
     border-bottom: 1px solid #000;
 }
 
-.payment-cb {
+.payment-select {
     margin: 30px 50px;
     padding: 5px 200px 5px 0;
 }
 
-.shipping-address {
+.form-error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.address {
     padding: 30px 50px;
     border-bottom: 1px solid #000;
 }
 
-.shipping-address-btn {
+.address-btn {
     display: flex;
     justify-content: space-between;
 }
@@ -75,26 +82,26 @@ td {
     font-size: 18px;
 }
 
-.shipping-address-str {
+.address-str {
     margin: 30px 0;
     padding-left: 60px;
     display: flex;
     flex-direction: column;
 }
 
-.post-code-group {
+.postcode-group {
     display: flex;
     justify-content: space-between;
 }
 
-.shipping-address-txt {
+.address-txt {
     border: none;
     outline: none;
     width: 100%;
     font-size: 20px;
 }
 
-.purchase-confirmation {
+.subtotal {
     width: 400px;
 }
 
@@ -112,8 +119,21 @@ td {
     font-size: 20px;
 }
 
-.form-error {
-    height: 20px;
-    color: #ff0000;
-    text-align: left;
+@media (max-width:1550px) {
+    .purchase-information {
+        margin-right: 100px;
+        width: 600px;
+    }
+}
+
+@media (max-width:1290px) {
+    .purchase-contents {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .purchase-information {
+        margin-bottom: 80px;
+    }
 }

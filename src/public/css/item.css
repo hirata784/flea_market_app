@@ -54,8 +54,7 @@ p {
     text-align: center;
 }
 
-.like-icon,
-.unlike-icon {
+.like-icon {
     margin: 10px 10px;
     width: 25px;
     height: 25px;
@@ -80,7 +79,7 @@ p {
     font-size: 12px;
 }
 
-.btn {
+.purchase-btn {
     padding: 5px 200px;
     height: 40px;
     border: none;
@@ -90,10 +89,8 @@ p {
     cursor: pointer;
     font-weight: bold;
     white-space: nowrap;
-}
-
-.purchase {
     font-size: 22px;
+    width: 100%;
 }
 
 .category-group {
@@ -123,19 +120,33 @@ p {
     margin: 10px 0;
 }
 
-.comment-list-name {
-    font-weight: bold;
+.img-name {
+    display: flex;
+    justify-content: left;
+    align-items: center;
     margin-bottom: 10px;
 }
 
-.comment-list-content {
+.comment-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 200px;
+}
+
+.comment-name {
+    font-weight: bold;
+    margin-left: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.comment-content {
     background-color: #E5E5E5;
     border-radius: 5px;
     padding: 10px;
 }
 
 .comment-txt {
-    width: 530px;
+    width: 100%;
     height: 150px;
     line-height: 20px;
     padding-left: 10px;
@@ -147,7 +158,35 @@ p {
     text-align: left;
 }
 
-.comment {
+.comment-btn {
+    padding: 5px 200px;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background: #FF5555;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
     font-size: 15px;
     margin-top: 20px;
+    width: 100%;
+}
+
+@media (max-width:1120px) {
+    .item-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item-img {
+        width: 535px;
+        height: 535px;
+        margin: 0 0 20px 0;
+    }
+
+    .detail-content {
+        max-width: 600px;
+    }
 }

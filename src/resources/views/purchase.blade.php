@@ -27,7 +27,7 @@
             <div class="payment">
                 <h3>支払い方法</h3>
                 <div>
-                    <select class="payment-cb" name="payment" id="sample" onchange="viewChange();">
+                    <select class="payment-select" name="payment" id="sample" onchange="viewChange();">
                         <option value="" disabled selected style="display:none;">選択してください</option>
                         @foreach($payments as $payment)
                         <option value="{{ $payment }}">{{ $payment }}</option>
@@ -40,17 +40,17 @@
                     </div>
                 </div>
             </div>
-            <div class="shipping-address">
-                <div class="shipping-address-btn">
+            <div class="address">
+                <div class="address-btn">
                     <h3>配送先</h3>
                     <a class="change" href="/purchase/address/:{{ $item_buy['id'] }}">変更する</a>
                 </div>
-                <div class="shipping-address-str">
-                    <div class="post-code-group">
+                <div class="address-str">
+                    <div class="postcode-group">
                         <span>〒</span>
-                        <input type="text" class="shipping-address-txt" name="post_code" value="{{$post_code}}" readonly>
+                        <input type="text" class="address-txt" name="post_code" value="{{$post_code}}" readonly>
                     </div>
-                    <input type="text" class="shipping-address-txt" name="address" value="{{$address}}{{$building}}" readonly>
+                    <input type="text" class="address-txt" name="address" value="{{$address}}{{$building}}" readonly>
                     <div class="form-error">
                         @error('post_code')
                         {{ $message }}
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <div class="purchase-confirmation">
+        <div class="subtotal">
             <table>
                 <tr>
                     <th>商品代金</th>

@@ -34,6 +34,7 @@ class UsersTableSeeder extends Seeder
             'nickname' => 'テスト花子',
             'post_code' => '123-4567',
             'address' => 'メッセージ県メッセージ市メッセージ町',
+            'profile_img' => 'public/images/test_icon2.jpg',
         ];
         DB::table('users')->insert($param);
     }
