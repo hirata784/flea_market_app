@@ -16,12 +16,6 @@
     justify-content: space-between;
 }
 
-.a {
-    display: flex;
-    align-items: center;
-    justify-content: left;
-}
-
 .header-utilities nav {
     width: 18%;
 }
@@ -42,17 +36,17 @@
 }
 
 .nav-item {
-    height: 20px;
-    width: 40px;
+    text-align: center;
+    font-size: 24px;
 }
 
 .nav-btn {
     border: none;
     background: transparent;
     color: #fff;
-    font-size: 16px;
+    font-size: 24px;
     cursor: pointer;
-    width: 100px;
+    width: 130px;
 }
 
 .login-btn-submit {
@@ -64,38 +58,112 @@
     width: 100px;
 }
 
-.search-btn,
-.listing-btn {
+.search-btn {
     background-color: #fff;
     border: none;
     font-size: 16px;
     cursor: pointer;
-    width: 50px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 
-@media (max-width:1219px) {
-    .header {
-        background: #000;
-        height: 140px;
-        /* width: 100%; */
-    }
-
-    .header-utilities {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-items {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.listing-btn {
+    background-color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 130px;
+    padding: 5px 30px;
+    border-radius: 5px;
 }
 
-@media (max-width:1020px) {
+.sm {
+    display: none;
+}
+
+@media (max-width: 1280px) {
     .search-txt {
-        width: 300px;
+        width: 400px;
+        font-size: 16px;
+    }
+
+    .hamburger {
+        background-color: transparent;
+        position: relative;
+        cursor: pointer;
+        margin: 0 0 0 auto;
+        height: 60px;
+        width: 60px;
+    }
+
+    .icon span {
+        position: absolute;
+        left: 15px;
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        border-radius: 8px;
+        transition: ease 0.75s;
+    }
+
+    .icon span:nth-of-type(1) {
+        top: 16px;
+    }
+
+    .icon span:nth-of-type(2) {
+        top: 28px;
+    }
+
+    .icon span:nth-of-type(3) {
+        bottom: 16px;
+    }
+
+    .close span:nth-of-type(1) {
+        transform: rotate(45deg);
+        top: 28px;
+    }
+
+    .close span:nth-of-type(2) {
+        opacity: 0;
+    }
+
+    .close span:nth-of-type(3) {
+        transform: rotate(-45deg);
+        top: 28px;
+    }
+
+    .sm {
+        top: 80px;
+        right: 0px;
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        background-color: rgba(34, 49, 52, 0.9);
+    }
+
+    ul {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        text-align: center;
+        border-top: solid 0.5px rgba(255, 255, 255, 0.6);
+    }
+
+    .pc {
+        display: none;
+    }
+
+    .nav-btn {
+        font-size: 20px;
+    }
+
+    .listing-btn {
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 20px;
+        padding: 0;
+        width: 100px;
     }
 }
