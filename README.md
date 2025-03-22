@@ -22,8 +22,14 @@ DB_PASSWORD=laravel_pass
 SESSION_DRIVER=database
 MAIL_HOST=mail
 MAIL_FROM_ADDRESS=info@example.com
-
+STRIPE_KEY=公開可能キーを入力
+STRIPE_SECRET=シークレットキーを入力
 ```
+STRIPE_KEY=公開可能キーを入力
+STRIPE_SECRET=シークレットキーを入力
+上記2行はstripeのテストAPIキーの公開鍵、秘密鍵を入力して下さい
+。
+アカウントを取得していない場合、下記URL欄のstripeからアカウントを作成して下さい。
 4. アプリケーションキーの作成
 ``` bash
 php artisan key:generate
@@ -37,15 +43,29 @@ php artisan migrate
 php artisan db:seed
 ```
 
+単体テストの準備
+1. cp .env .env.testing
+2. .env.testingの環境変数を変更
+``` text
+APP_ENV=test
+APP_KEY=
+DB_DATABASE=demo_test
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+3. php artisan key:generate --env=testing
+4. php artisan config:clear
+5. php artisan migrate --env=testing
+
 ## 使用技術
 - PHP 7.4.9
 - Laravel 8.83.29
 - MySQL 8.0.26
 
 ## ER図
-![画像]
-
+![画像](https://coachtech-lms-bucket.s3.ap-northeast-1.amazonaws.com/question/20250322103623_flea_market_app.png)
 ## URL
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
 - mailhog：http://localhost:8025/
+- stripe：https://stripe.com/jp
