@@ -2,12 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Http\Requests\RegisterRequest;
-use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
-
 
 class RegisterTest extends TestCase
 {
@@ -168,22 +167,12 @@ class RegisterTest extends TestCase
             'name' => 'testuser',
             'email' => 'abcd@example.com',
             'password' => 'password',
-            'nickname' => "",
-            'post_code' => "",
-            'address' => "",
-            'building' => "",
-            'profile_img' => "",
         ])->create();
         // データベースにデータが存在するかをチェック
         $this->assertDatabaseHas('users', [
             'name' => 'testuser',
             'email' => 'abcd@example.com',
             'password' => 'password',
-            'nickname' => "",
-            'post_code' => "",
-            'address' => "",
-            'building' => "",
-            'profile_img' => "",
         ]);
 
         // ログイン

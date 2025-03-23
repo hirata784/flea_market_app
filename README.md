@@ -25,11 +25,10 @@ MAIL_FROM_ADDRESS=info@example.com
 STRIPE_KEY=公開可能キーを入力
 STRIPE_SECRET=シークレットキーを入力
 ```
-STRIPE_KEY=公開可能キーを入力
-STRIPE_SECRET=シークレットキーを入力
-上記2行はstripeのテストAPIキーの公開鍵、秘密鍵を入力して下さい
-。
-アカウントを取得していない場合、下記URL欄のstripeからアカウントを作成して下さい。
+STRIPE_KEY=公開可能キーを入力  
+STRIPE_SECRET=シークレットキーを入力  
+上記2行はstripeのテストAPIキーの公開鍵、秘密鍵を入力して下さい。  
+アカウントを取得していない場合、下記URL欄のstripeからアカウントを作成して下さい。  
 4. アプリケーションキーの作成
 ``` bash
 php artisan key:generate
