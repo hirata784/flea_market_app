@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <h2>{{ $item_buy['name'] }}</h2>
-                    <p class="price">&yen;{{ $item_buy['price'] }}</p>
+                    <p class="price">&yen;{{ number_format($item_buy['price']) }}</p>
                 </div>
             </div>
             <div class="payment">
@@ -50,7 +50,8 @@
                         <span>〒</span>
                         <input type="text" class="address-txt" name="post_code" value="{{$post_code}}" readonly>
                     </div>
-                    <input type="text" class="address-txt" name="address" value="{{$address}}{{$building}}" readonly>
+                    <input type="text" class="address-txt" name="address" value="{{$address}}" readonly>
+                    <input type="text" class="address-txt" name="building" value="{{$building}}" readonly>
                     <div class="form-error">
                         @error('post_code')
                         {{ $message }}
@@ -66,7 +67,7 @@
         </div>
 
         <div class="subtotal">
-            <table>
+            <table class="subtotal-table">
                 <tr>
                     <th>商品代金</th>
                     <td>&yen;{{ $item_buy['price'] }}</td>
@@ -83,10 +84,12 @@
                     </td>
                 </tr>
             </table>
+
             <form value="購入ボタン" action="{{route('stripe.charge')}}" method="POST">
                 @csrf
                 <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    src="https://checkout.stripe.com/checkout.js"
+                    class="stripe-button"
                     data-key="{{ env('STRIPE_KEY') }}"
                     data-amount="{{ $item_buy['price'] }}"
                     data-name="お支払い画面"
@@ -98,9 +101,6 @@
                     value>
                 </script>
             </form>
-            <!-- <button class="buy-btn" type="submit">
-                購入する
-            </button> -->
             <input type="hidden" name="id" value="{{ $item_buy['id'] }}">
         </div>
     </div>

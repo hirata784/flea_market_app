@@ -20,65 +20,68 @@ class IndexTest extends TestCase
     {
         // 商品一覧データシーディング
         $this->seed(ItemsTableSeeder::class);
-
         // 商品一覧画面へ移動
         $response = $this->get('/');
         // 移動できたかテスト
         $response->assertStatus(200);
 
-        // 全商品呼び出したかテスト
-        $recordCount = DB::table('items')->count();
-        $this->assertDatabaseCount('items', $recordCount);
-        // データベースのレコードが指定数より多いかどうか
-        $this->assertTrue($recordCount >= 10);
+        // 全商品表示できたかテスト
+        $response->assertSee('腕時計');
+        $response->assertSee('HDD');
+        $response->assertSee('玉ねぎ3束');
+        $response->assertSee('革靴');
+        $response->assertSee('ノートPC');
+        $response->assertSee('マイク');
+        $response->assertSee('ショルダーバッグ');
+        $response->assertSee('タンブラー');
+        $response->assertSee('コーヒーミル');
+        $response->assertSee('メイクセット');
     }
 
     public function test商品一覧_購入済み商品()
     {
+        // 商品一覧データシーディング
+        $this->seed(ItemsTableSeeder::class);
+        // 商品一覧画面へ移動
+        $response = $this->get('/');
+        // 移動できたかテスト
+        $response->assertStatus(200);
+
+        // 購入前はSold表示しない
+        $response->assertDontSee('Sold');
+
         // 外部キー制約を無効化
         Schema::disableForeignKeyConstraints();
 
-        // 商品一覧データシーディング
-        $this->seed(ItemsTableSeeder::class);
 
         // 商品購入済みデータ作成
         $purchases = Purchase::factory([
             'user_id' => '1',
             'item_id' => '1',
         ])->create();
-        $purchases = Purchase::factory([
-            'user_id' => '2',
-            'item_id' => '3',
-        ])->create();
         // 作成できたかチェック
         $this->assertDatabaseHas('purchases', [
             'user_id' => '1',
             'item_id' => '1',
         ]);
-        $this->assertDatabaseHas('purchases', [
-            'user_id' => '2',
-            'item_id' => '3',
-        ]);
 
-        // 商品一覧画面へ移動
-        $response = $this->get('/');
-        // 移動できたかテスト
-        $response->assertStatus(200);
+        // 購入前はSold表示しない
+        $response->assertSee('Sold');
 
-        // 購入商品呼び出せたかテスト
-        $recordCount = DB::table('purchases')->count();
-        $this->assertDatabaseCount('purchases', $recordCount);
-        // データベースのレコードが指定数より多いかどうか
-        $this->assertTrue($recordCount >= 2);
+        // // 購入商品呼び出せたかテスト
+        // $recordCount = DB::table('purchases')->count();
+        // $this->assertDatabaseCount('purchases', $recordCount);
+        // // データベースのレコードが指定数より多いかどうか
+        // $this->assertTrue($recordCount >= 2);
 
-        // soldラベル表示されてるかテスト(purchasesテーブルのitem_idに入力された数値にsold表示される)
-        // 商品id:1は購入済→sold表示
-        $place = Purchase::where('item_id', 1)->first();
-        $this->assertNotNull($place); // Nullで無ければtrue
+        // // soldラベル表示されてるかテスト(purchasesテーブルのitem_idに入力された数値にsold表示される)
+        // // 商品id:1は購入済→sold表示
+        // $place = Purchase::where('item_id', 1)->first();
+        // $this->assertNotNull($place); // Nullで無ければtrue
 
-        // 商品id:2は購入されてない→sold非表示
-        $place = Purchase::where('item_id', 2)->first();
-        $this->assertNull($place); // Nullならtrue
+        // // 商品id:2は購入されてない→sold非表示
+        // $place = Purchase::where('item_id', 2)->first();
+        // $this->assertNull($place); // Nullならtrue
 
         // 外部キー制約を有効化
         Schema::enableForeignKeyConstraints();

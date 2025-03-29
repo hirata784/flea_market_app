@@ -20,7 +20,6 @@ use App\Http\Controllers\StripeController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [ItemController::class, 'search']);
 Route::get('/item/:{item_id}', [ItemController::class, 'item']);
-Route::post('/charge', 'StripeController@charge')->name('stripe.charge');
 
 //ログインかつメール認証済みのみアクセス可能
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
@@ -37,4 +36,5 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
     Route::post('/add', [ItemController::class, 'add']);
     Route::post('/edit', [ItemController::class, 'edit']);
     Route::get('/re_verified', [ProfileController::class, 're_verified']);
+    Route::post('/charge', 'StripeController@charge')->name('stripe.charge');
 });

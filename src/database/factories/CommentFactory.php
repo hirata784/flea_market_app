@@ -14,8 +14,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 2),
-            'item_id' => $this->faker->numberBetween(1, 10),
+            'user_id' => \App\Models\User::factory(),
+            'item_id' => \App\Models\Item::factory(),
             'comment' => $this->faker->word(),
         ];
     }

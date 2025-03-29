@@ -19,7 +19,7 @@
         <div class="detail-group">
             <h1>{{ $item_detail['name'] }}</h1>
             <p>{{ $item_detail['brand'] }}</p>
-            <div class="price">&yen;{{ $item_detail['price'] }}<span class="tax-str">(税込)</span></div>
+            <div class="price">&yen;{{ number_format($item_detail['price']) }}<span class="tax-str">(税込)</span></div>
             <div class="icon">
                 <div>
                     <!-- ログインしているとき(userがnullではない時) いいね使用可能 -->

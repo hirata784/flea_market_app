@@ -1,13 +1,10 @@
 .header {
     background: #000;
-    height: 80px;
-    /* width: 100%; */
 }
 
 .header-inner {
     padding: 0 15px;
-    max-width: 1700px;
-    height: 80px;
+    width: 100%;
 }
 
 .header-utilities {
@@ -17,11 +14,15 @@
 }
 
 .header-utilities nav {
-    width: 18%;
+    width: 30%;
+}
+
+.form-search {
+    width: 50%;
 }
 
 .search-txt {
-    width: 560px;
+    width: 70%;
     line-height: 50px;
     padding-left: 20px;
     margin-left: 60px;
@@ -38,6 +39,7 @@
 .nav-item {
     text-align: center;
     font-size: 24px;
+    width: 100%
 }
 
 .nav-btn {
@@ -46,7 +48,6 @@
     color: #fff;
     font-size: 24px;
     cursor: pointer;
-    width: 130px;
 }
 
 .login-btn-submit {
@@ -81,9 +82,9 @@
     display: none;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1400px) {
     .search-txt {
-        width: 400px;
+        width: 60%;
         font-size: 16px;
     }
 
@@ -91,7 +92,7 @@
         background-color: transparent;
         position: relative;
         cursor: pointer;
-        margin: 0 0 0 auto;
+        margin: 0 0 0 0;
         height: 60px;
         width: 60px;
     }
