@@ -10,9 +10,15 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
+
     use RefreshDatabase;
 
-    public function testログイン_メールアドレス未入力エラー()
+    public function testログイン機能_メールアドレス未入力エラー()
     {
         $response = $this->get('/login'); // ログインページを開く
         $response->assertStatus(200);
@@ -52,7 +58,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function testログイン_パスワード未入力エラー()
+    public function testログイン機能_パスワード未入力エラー()
     {
         $response = $this->get('/login'); // ログインページを開く
         $response->assertStatus(200);
@@ -79,7 +85,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function testログイン_入力間違いエラー()
+    public function testログイン機能_入力間違いエラー()
     {
         $response = $this->get('/login'); // ログインページを開く
         $response->assertStatus(200);
@@ -106,7 +112,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function testログイン_ログイン成功()
+    public function testログイン機能_ログイン成功()
     {
         $response = $this->get('/login'); // 会員登録ページを開く
         $response->assertStatus(200);

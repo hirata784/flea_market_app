@@ -20,6 +20,9 @@ class ItemFactory extends Factory
             'img_url' => $this->faker->word(),
             'condition' => $this->faker->word(),
             'brand' => $this->faker->word(),
+            'post_code' => $this->faker->postcode(),
+            'address' => $this->faker->city(),
+            'building' => $this->faker->streetAddress(),
         ];
     }
 }

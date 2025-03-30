@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -14,8 +16,12 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => \App\Models\User::factory(),
-            'item_id' => \App\Models\Item::factory(),
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
+            'item_id' => function () {
+                return Item::factory()->create()->id;
+            },
             'comment' => $this->faker->word(),
         ];
     }

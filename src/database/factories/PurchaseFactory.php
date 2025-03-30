@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PurchaseFactory extends Factory
@@ -14,8 +16,12 @@ class PurchaseFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 2),
-            'item_id' => $this->faker->numberBetween(1, 10),
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
+            'item_id' => function () {
+                return Item::factory()->create()->id;
+            },
         ];
     }
 }

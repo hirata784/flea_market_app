@@ -10,9 +10,15 @@ use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
+
     use RefreshDatabase;
 
-    public function test会員登録_名前未入力エラー()
+    public function test会員登録機能_名前未入力エラー()
     {
         $response = $this->get('/register'); // 会員登録ページを開く
         $response->assertStatus(200);
@@ -41,7 +47,7 @@ class RegisterTest extends TestCase
         );
     }
 
-    public function test会員登録_メールアドレス未入力エラー()
+    public function test会員登録機能_メールアドレス未入力エラー()
     {
         $response = $this->get('/register'); // 会員登録ページを開く
         $response->assertStatus(200);
@@ -70,7 +76,7 @@ class RegisterTest extends TestCase
         );
     }
 
-    public function test会員登録_パスワード未入力エラー()
+    public function test会員登録機能_パスワード未入力エラー()
     {
         $response = $this->get('/register'); // 会員登録ページを開く
         $response->assertStatus(200);
@@ -99,7 +105,7 @@ class RegisterTest extends TestCase
         );
     }
 
-    public function test会員登録_パスワード7文字以下エラー()
+    public function test会員登録機能_パスワード7文字以下エラー()
     {
         $response = $this->get('/register'); // 会員登録ページを開く
         $response->assertStatus(200);
@@ -128,7 +134,7 @@ class RegisterTest extends TestCase
         );
     }
 
-    public function test会員登録_確認パスワード不一致エラー()
+    public function test会員登録機能_確認パスワード不一致エラー()
     {
         $response = $this->get('/register'); // 会員登録ページを開く
         $response->assertStatus(200);
@@ -157,7 +163,7 @@ class RegisterTest extends TestCase
         );
     }
 
-    public function test会員登録_新規登録_ログイン成功()
+    public function test会員登録機能_新規登録_ログイン成功()
     {
         $response = $this->get('/register'); // 会員登録ページを開く
         $response->assertStatus(200);

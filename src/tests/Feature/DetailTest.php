@@ -21,7 +21,7 @@ class DetailTest extends TestCase
      *
      * @return void
      */
-    public function test商品詳細_情報表示()
+    public function test商品詳細情報取得_情報表示()
     {
         $this->seed(ItemsTableSeeder::class);
         $this->seed(CategoriesTableSeeder::class);
@@ -81,7 +81,7 @@ class DetailTest extends TestCase
         $this->assertTrue($recordCount >= 2);
     }
 
-    public function test商品詳細__複数カテゴリ表示() {
+    public function test商品詳細情報取得_複数カテゴリ表示() {
         $this->seed(ItemsTableSeeder::class);
         $this->seed(CategoriesTableSeeder::class);
         $this->seed(CategoryItemTableSeeder::class);
