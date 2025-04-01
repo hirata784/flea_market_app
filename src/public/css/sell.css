@@ -97,7 +97,8 @@ input[type="checkbox"]:checked+label {
 }
 
 .form-txt {
-    padding: 3px 0 3px 2em;    width: 100%;
+    padding: 3px 0 3px 2em;
+    width: 100%;
     height: 40px;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -154,15 +155,19 @@ input[type="checkbox"]:checked+label {
         font-size: 25px;
     }
 
+    .search_box::before {
+        width: 20px;
+        height: 20px;
+        top: 15px;
+    }
+
     .form-txt {
         font-size: 20px;
-        padding: 15px;
         height: 45px;
     }
 
     .condition-select {
         font-size: 20px;
-        /* padding: 15px; */
         height: 45px;
     }
 
