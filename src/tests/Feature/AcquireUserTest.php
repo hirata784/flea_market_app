@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\User;
+use App\Models\Item;
 use App\Models\Purchase;
 use App\Models\Sell;
-use App\Models\Item;
+use App\Models\User;
 use Database\Seeders\ItemsTableSeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AcquireUserTest extends TestCase

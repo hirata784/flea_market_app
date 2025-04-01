@@ -19,7 +19,6 @@
             <input type="hidden" name="keyword">
         </form>
     </div>
-
     <!-- おすすめ -->
     @if ($data == null)
     <div class="items">
@@ -49,7 +48,6 @@
         @endforeach
     </div>
     @endif
-
     <!-- マイリスト -->
     @if ($data == 'mylist')
     <div class="items">

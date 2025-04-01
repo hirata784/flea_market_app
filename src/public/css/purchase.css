@@ -109,20 +109,6 @@ td {
     width: 100%;
 }
 
-.buy-btn {
-    padding: 10px;
-    margin-top: 50px;
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 3px;
-    background: #FF5555;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 20px;
-}
-
 .stripe-button-el {
     padding: 10px;
     margin-top: 50px;

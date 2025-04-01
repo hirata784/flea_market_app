@@ -59,7 +59,6 @@
             <h2>商品説明</h2>
             <p>{{ $item_detail['description'] }}</p>
         </div>
-
         <div class="detail-group">
             <h2>商品の情報</h2>
             <div class="category-group">
@@ -68,13 +67,11 @@
                 <p class="category-content">{{$category['content']}}</p>
                 @endforeach
             </div>
-
             <div class="condition-group">
                 <h3>商品の状態</h3>
                 <p class="condition-content">{{ $item_detail['condition'] }}</p>
             </div>
         </div>
-
         <div class="detail-group">
             <h2>コメント({{ $item_detail->comment->count() }})</h2>
             @foreach($comments as $comment)

@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Models\Item;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\User;
 use Database\Seeders\ItemsTableSeeder;
-
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ChangeAddressTest extends TestCase

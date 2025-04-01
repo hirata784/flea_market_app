@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
@@ -16,7 +16,7 @@ class LoginTest extends TestCase
      * @return void
      */
 
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testログイン機能_メールアドレス未入力エラー()
     {
@@ -136,6 +136,5 @@ class LoginTest extends TestCase
         $response->assertRedirect('/login');
         // このユーザーがログイン認証されているか
         $this->assertAuthenticated();
-        // $this->assertTrue(Auth::check());
     }
 }

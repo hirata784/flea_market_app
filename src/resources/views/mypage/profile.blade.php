@@ -14,7 +14,6 @@
         <input type="hidden" name="id" value="{{ $user['id'] }}">
         <input type="hidden" name="email" value="{{ $user['email'] }}">
         <input type="hidden" name="password" value="{{ $user['password'] }}">
-
         <div class="icon-group">
             <input class="icon-btn" type="file" name="profile_img" onchange="preview(this)">
             <div class="preview-area"></div>
@@ -31,7 +30,6 @@
             {{ $message }}
             @enderror
         </div>
-
         <div class="form-group">
             <div class="form-title">
                 <span class="form-span">ユーザー名</span>
@@ -94,7 +92,6 @@
         </div>
     </form>
 </div>
-
 <script>
     function preview(elem) {
         const file = elem.files[0]

@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Database\Seeders\ItemsTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -44,10 +42,5 @@ class SearchTest extends TestCase
         // 商品一覧画面に「マイク」のみ表示
         $response->assertSee('マイク');
         $response->assertDontSee('ショルダーバッグ');
-    }
-
-    public function test商品検索機能_マイリスト保持()
-    {
-
     }
 }

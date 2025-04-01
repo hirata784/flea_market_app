@@ -97,6 +97,8 @@ CVC：3つの数値を入力(例：123)
 ![画像](https://coachtech-lms-bucket.s3.ap-northeast-1.amazonaws.com/question/20250322103623_flea_market_app.png)
 ## URL
 - 開発環境：http://localhost/
+- 会員登録画面：http://localhost/register
+- ログイン画面：http://localhost/login
 - phpMyAdmin：http://localhost:8080/
 - mailhog：http://localhost:8025/
 - stripe：https://stripe.com/jp

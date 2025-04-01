@@ -28,7 +28,6 @@
                 </div>
             </div>
         </div>
-
         <h3 class="subheading">商品の詳細</h3>
         <div class="form-group">
             <div class="form-title">
@@ -48,7 +47,6 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             <div class="form-title">
                 <span class="form-span">商品の状態</span>
@@ -69,7 +67,6 @@
                 </div>
             </div>
         </div>
-
         <h3 class="subheading">商品名と説明</h3>
         <div class="form-group">
             <div class="form-title">
@@ -121,7 +118,7 @@
                 <span class="form-span">販売価格</span>
             </div>
             <div>
-                <div>
+                <div class="search_box">
                     <input class="form-txt" type="text" name="price" value="{{ old('price') }}" />
                 </div>
                 <div class="form-error">
@@ -136,7 +133,6 @@
         </div>
     </form>
 </div>
-
 <script>
     function preview(elem) {
         const file = elem.files[0]
@@ -146,7 +142,6 @@
         // 画像選択時、デフォルトの画像を非表示にする
         hidden.style.display = "none";
     }
-
     const fileSelect = document.getElementById("fileSelect");
     const fileElem = document.getElementById("fileElem");
 

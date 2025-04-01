@@ -65,7 +65,6 @@
                 </div>
             </div>
         </div>
-
         <div class="subtotal">
             <table class="subtotal-table">
                 <tr>
@@ -84,7 +83,6 @@
                     </td>
                 </tr>
             </table>
-
             <form value="購入ボタン" action="{{route('stripe.charge')}}" method="POST">
                 @csrf
                 <script
@@ -105,7 +103,6 @@
         </div>
     </div>
 </form>
-
 <script type="text/javascript">
     function viewChange() {
         if (document.getElementById('sample')) {

@@ -31,7 +31,6 @@
             <button class="btn {{($data == 'buy') ? 'choice' : 'not_choice'}}">購入した商品</button>
         </form>
     </div>
-
     <!-- 出品した商品のみ表示 -->
     @if ($data == 'sell')
     <div class="items">
@@ -55,7 +54,6 @@
         @endforeach
     </div>
     @endif
-
     <!-- 購入した商品のみ表示 -->
     @if ($data == 'buy')
     <div class="items">
