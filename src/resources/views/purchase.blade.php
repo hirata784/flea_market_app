@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<form action="/" method="post">
+<form action="/purchase/:item_id/update" method="post">
     @csrf
     <div class="purchase-contents">
         <div class="purchase-information">

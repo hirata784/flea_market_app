@@ -20,6 +20,7 @@ class IndexTest extends TestCase
 
     use DatabaseMigrations;
 
+    // 4.商品一覧取得
     public function test商品一覧取得_全商品取得()
     {
         // 商品一覧データシーディング

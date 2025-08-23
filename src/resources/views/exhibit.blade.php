@@ -9,7 +9,7 @@
     <div class="heading">
         <h2>商品の出品</h2>
     </div>
-    <form class="form-sell" action="/add" method="post" enctype="multipart/form-data">
+    <form class="form-sell" action="/sell/add" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <div class="form-title">

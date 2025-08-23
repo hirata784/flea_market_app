@@ -20,6 +20,7 @@ class AcquireUserTest extends TestCase
 
     use RefreshDatabase;
 
+    // 13.ユーザー情報取得
     public function testユーザー情報取得_必須情報取得()
     {
         // 商品一覧データシーディング
@@ -78,7 +79,7 @@ class AcquireUserTest extends TestCase
         ]);
 
         // ユーザーにログイン後、プロフィール画面を開く
-        $response =  $this->actingAs($this->user)->post('/mypage');
+        $response =  $this->actingAs($this->user)->get('/mypage');
         $response->assertStatus(200);
 
         // 画面上に各項目が表示されているかテスト
@@ -86,11 +87,11 @@ class AcquireUserTest extends TestCase
         $response->assertSee($this->user['nickname']);
 
         // 購入商品リストへ移動
-        $response = $this->post('/mypage?tab=buy');
+        $response = $this->get('/mypage?tab=buy');
         $response->assertSee('腕時計');
 
         // 出品商品リストへ移動
-        $response = $this->post('/mypage?tab=sell');
+        $response = $this->get('/mypage?tab=sell');
         $response->assertSee('AAAA');
     }
 }

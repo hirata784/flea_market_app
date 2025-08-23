@@ -9,7 +9,7 @@
     <div class="heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form class="form-profile" action="/edit" method="post" enctype="multipart/form-data">
+    <form class="form-profile" action="/mypage/profile/update" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $user['id'] }}">
         <input type="hidden" name="email" value="{{ $user['email'] }}">

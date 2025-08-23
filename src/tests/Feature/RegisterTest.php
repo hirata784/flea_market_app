@@ -18,6 +18,7 @@ class RegisterTest extends TestCase
 
     use RefreshDatabase;
 
+    // 1.会員登録機能
     public function test会員登録機能_名前未入力エラー()
     {
         $response = $this->get('/register'); // 会員登録ページを開く

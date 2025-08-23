@@ -21,6 +21,8 @@ class DetailTest extends TestCase
      *
      * @return void
      */
+
+    // 7.商品詳細情報取得
     public function test商品詳細情報取得_情報表示()
     {
         $this->seed(ItemsTableSeeder::class);

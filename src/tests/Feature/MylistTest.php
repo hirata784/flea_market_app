@@ -19,6 +19,7 @@ class MylistTest extends TestCase
 
     use DatabaseMigrations;
 
+    // 5.マイリスト一覧取得
     public function testマイリスト一覧取得_いいね商品取得()
     {
         // 商品一覧データシーディング

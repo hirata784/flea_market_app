@@ -21,6 +21,7 @@ class ListingTest extends TestCase
 
     use RefreshDatabase;
 
+    // 15.出品商品情報取得
     public function test出品商品情報登録_必須情報保存()
     {
         // 商品一覧データシーディング

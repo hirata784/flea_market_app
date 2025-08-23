@@ -22,13 +22,13 @@
         </form>
     </div>
     <div class="heading">
-        <form class="form-exhibited" action="/mypage?tab=sell" method="post">
-            @csrf
+        <form class="form-exhibited" action="/mypage?tab=sell" method="get">
             <button class="btn {{($data == 'sell') ? 'choice' : 'not_choice'}}">出品した商品</button>
+            <input type="hidden" name="tab" value="sell">
         </form>
-        <form class="form-purchased" action="/mypage?tab=buy" method="post">
-            @csrf
+        <form class="form-purchased" action="/mypage?tab=buy" method="get">
             <button class="btn {{($data == 'buy') ? 'choice' : 'not_choice'}}">購入した商品</button>
+            <input type="hidden" name="tab" value="buy">
         </form>
     </div>
     <!-- 出品した商品のみ表示 -->

@@ -17,7 +17,6 @@
             <div class="header-utilities">
                 <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
                 <form class="form-search" action="/search" method="get">
-                    @csrf
                     <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
                     <!-- マイリスト選択時に検索→マイリストのまま結果表示 -->
                     @if(Request::is('/'))
@@ -48,20 +47,17 @@
                         @else
                         <li class="nav-item">
                             <form action="/login" method="get">
-                                @csrf
                                 <button class="nav-btn" href="/login">ログイン</button>
                             </form>
                         </li>
                         @endif
                         <li class="nav-item">
-                            <form action="/mypage" method="post">
-                                @csrf
+                            <form action="/mypage" method="get">
                                 <button class="nav-btn">マイページ</button>
                             </form>
                         </li>
                         <li class="nav-item">
                             <form action="/sell" method="get">
-                                @csrf
                                 <button class="listing-btn">出品</button>
                             </form>
                         </li>
@@ -79,20 +75,17 @@
                         @else
                         <li class="nav-item">
                             <form action="/login" method="get">
-                                @csrf
                                 <button class="nav-btn" href="/login">ログイン</button>
                             </form>
                         </li>
                         @endif
                         <li class="nav-item">
-                            <form action="/mypage" method="post">
-                                @csrf
+                            <form action="/mypage" method="get">
                                 <button class="nav-btn">マイページ</button>
                             </form>
                         </li>
                         <li class="nav-item">
                             <form action="/sell" method="get">
-                                @csrf
                                 <button class="listing-btn">出品</button>
                             </form>
                         </li>

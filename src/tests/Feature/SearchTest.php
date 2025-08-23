@@ -16,6 +16,7 @@ class SearchTest extends TestCase
 
     use DatabaseMigrations;
 
+    // 6.商品検索機能
     public function test商品検索機能_部分一致検索()
     {
         // 商品一覧データシーディング

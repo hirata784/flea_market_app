@@ -18,6 +18,7 @@ class ChangeAddressTest extends TestCase
 
     use DatabaseMigrations;
 
+    // 12.配送先変更機能
     public function test配送先変更機能_登録住所反映()
     {
         // 商品一覧データシーディング
@@ -49,7 +50,7 @@ class ChangeAddressTest extends TestCase
         $response->assertStatus(200);
 
         // 住所変更画面で住所を登録し、再度購入画面へ移動
-        $response = $this->post('purchase/edit/:1', [
+        $response = $this->post('/purchase/address/:1/update', [
             'post_code' => "123-4567",
             'address' => "テスト県テスト市",
             'building' => "テスト区98-7-6",
@@ -93,7 +94,7 @@ class ChangeAddressTest extends TestCase
         $response->assertStatus(200);
 
         // 住所変更画面で住所を登録し、再度購入画面へ移動
-        $response = $this->post('/purchase/edit/:1', [
+        $response = $this->post('/purchase/address/:1/update', [
             'post_code' => "123-4567",
             'address' => "テスト県テスト市",
             'building' => "テスト区98-7-6",

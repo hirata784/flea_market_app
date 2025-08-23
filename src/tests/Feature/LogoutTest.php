@@ -16,6 +16,7 @@ class LogoutTest extends TestCase
 
     use RefreshDatabase;
 
+    // 3.ログアウト機能
     public function testログアウト_ログアウト成功()
     {
         // テスト用ユーザーを作成

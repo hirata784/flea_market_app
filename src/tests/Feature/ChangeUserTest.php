@@ -16,6 +16,7 @@ class ChangeUserTest extends TestCase
 
     use RefreshDatabase;
 
+    // 14.ユーザー情報変更
     public function testユーザー情報変更_初期値設定()
     {
         // ユーザー作成

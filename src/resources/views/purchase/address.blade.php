@@ -9,7 +9,7 @@
     <div class="heading">
         <h2>住所の変更</h2>
     </div>
-    <form class="form-address" action="/purchase/edit/:{{ $item_detail }}" method="post">
+    <form class="form-address" action="/purchase/address/:{{ $item_detail }}/update" method="post">
         @csrf
         <div class="form-group">
             <div class="form-title">

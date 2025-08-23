@@ -18,6 +18,7 @@ class LoginTest extends TestCase
 
     use DatabaseMigrations;
 
+    // 2.ログイン機能
     public function testログイン機能_メールアドレス未入力エラー()
     {
         $response = $this->get('/login'); // ログインページを開く

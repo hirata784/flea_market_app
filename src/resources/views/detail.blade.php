@@ -26,12 +26,12 @@
                     @if(!Auth::user() == null)
                     @if(!Auth::user()->is_like($item_detail->id))
                     <div class="like-group">
-                        <a href="/item/:{{ $item_detail['id'] }}/like"><img class="like-icon" src="{{ asset('storage/images/like.png') }}"></a>
+                        <a href="/item/:{{ $item_detail['id'] }}/add_like"><img class="like-icon" src="{{ asset('storage/images/like.png') }}"></a>
                         <p class="like-num">{{ $item_detail->users->count() }}</p>
                     </div>
                     @else
                     <div class="like-group">
-                        <a href="/item/:{{ $item_detail['id'] }}/unlike"><img class="like-icon" src="{{ asset('storage/images/unlike.png') }}"></a>
+                        <a href="/item/:{{ $item_detail['id'] }}/delete_like"><img class="like-icon" src="{{ asset('storage/images/unlike.png') }}"></a>
                         <p class="like-num">{{ $item_detail->users->count() }}</p>
                     </div>
                     @endif
@@ -39,7 +39,7 @@
                     <!-- ログアウトしている時(userがnullの時) いいね使用不可能 -->
                     @if(Auth::user() == null)
                     <div class="like-group">
-                        <a href="/item/:{{ $item_detail['id'] }}/like"><img class="like-icon" src="{{ asset('storage/images/like.png') }}"></a>
+                        <a href="/item/:{{ $item_detail['id'] }}/add_like"><img class="like-icon" src="{{ asset('storage/images/like.png') }}"></a>
                         <p class="like-num">{{ $item_detail->users->count() }}</p>
                     </div>
                     @endif
@@ -50,7 +50,6 @@
                 </div>
             </div>
             <form action="/purchase/:{{ $item_detail['id'] }}" method="get">
-                @csrf
                 <button class="purchase-btn">購入手続きへ</button>
             </form>
         </div>
@@ -90,7 +89,7 @@
             </div>
             @endforeach
             <h3>商品へのコメント</h3>
-            <form action="/comment" method="post">
+            <form action="/add_comment" method="post">
                 @csrf
                 <textarea class="comment-txt" name="comment"></textarea>
                 <div class="form-error">

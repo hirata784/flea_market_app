@@ -21,6 +21,7 @@ class CommentTest extends TestCase
 
     use RefreshDatabase;
 
+    // 9.コメント送信機能
     public function testコメント送信機能_ログイン済コメント送信()
     {
         $this->item = $this->seed(ItemsTableSeeder::class);
