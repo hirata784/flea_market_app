@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-<form action="/purchase/:item_id/update" method="post">
-    @csrf
     <div class="purchase-contents">
         <div class="purchase-information">
             <div class="item">
@@ -83,26 +81,65 @@
                     </td>
                 </tr>
             </table>
-            <form value="購入ボタン" action="{{route('stripe.charge')}}" method="POST">
-                @csrf
-                <script
-                    src="https://checkout.stripe.com/checkout.js"
-                    class="stripe-button"
-                    data-key="{{ env('STRIPE_KEY') }}"
-                    data-amount="{{ $item_buy['price'] }}"
-                    data-name="お支払い画面"
-                    data-label="購入する"
-                    data-description="現在はデモ画面です"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto"
-                    data-currency="JPY"
-                    value>
-                </script>
+
+            {{-- Stripeカード入力フォーム --}}
+            <form id="payment-form">
+                <div id="card-element"><!-- Stripeカード入力欄 --></div>
+                <button id="submit" class="btn btn-primary mt-3">購入する</button>
+                <div id="error-message" class="text-danger mt-2"></div>
             </form>
+
+            {{-- Stripe.js --}}
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+                const stripe = Stripe("{{ env('STRIPE_KEY') }}"); // 公開可能キー
+                const clientSecret = "{{ $client_secret }}"; // サーバーで作ったPaymentIntentのシークレット
+
+                const elements = stripe.elements();
+                const cardElement = elements.create("card");
+                cardElement.mount("#card-element");
+
+                const form = document.getElementById("payment-form");
+                const errorMessage = document.getElementById("error-message");
+
+                form.addEventListener("submit", async (event) => {
+                    event.preventDefault();
+
+                    const {
+                        paymentIntent,
+                        error
+                    } = await stripe.confirmCardPayment(clientSecret, {
+                        payment_method: {
+                            card: cardElement,
+                        }
+                    });
+
+                    if (error) {
+                        errorMessage.textContent = error.message;
+                    } else if (paymentIntent.status === "succeeded") {
+                        // 決済成功 → サーバーに通知
+                        fetch("/purchase/success", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                            },
+                            body: JSON.stringify({
+                                item_id: "{{ $item_buy->id }}",
+                                post_code: "{{ $user->post_code }}",
+                                address: "{{ $user->address }}",
+                                building: "{{ $user->building }}"
+                            })
+                        }).then(() => {
+                            window.location.href = "/"; // 購入完了後にリスト画面へ
+                        });
+                    }
+                });
+            </script>
             <input type="hidden" name="id" value="{{ $item_buy['id'] }}">
+            <input type="hidden" name="price" value="{{ $item_buy['price'] }}">
         </div>
     </div>
-</form>
 <script type="text/javascript">
     function viewChange() {
         if (document.getElementById('sample')) {
