@@ -31,8 +31,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
     Route::post('/add_comment', [DetailController::class, 'addComment']);
 
     Route::get('/purchase/:{item_id}', [PurchaseController::class, 'index']);
-    // Route::post('/purchase/:item_id/update', [PurchaseController::class, 'update']);
-    Route::get('/purchase/{item_id}/success', [PurchaseController::class, 'success'])->name('purchase.success');
     Route::post('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
 
     Route::get('/purchase/address/:{item_id}', [AddressController::class, 'index']);

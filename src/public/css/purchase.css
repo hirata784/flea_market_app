@@ -109,7 +109,7 @@ td {
     width: 100%;
 }
 
-.stripe-button-el {
+.btn-primary {
     padding: 10px;
     margin-top: 50px;
     width: 100%;
@@ -121,6 +121,71 @@ td {
     cursor: pointer;
     font-weight: bold;
     font-size: 20px;
+}
+
+/* モーダル */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-backdrop.is-open {
+    display: flex;
+}
+
+.modal-card {
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+    padding: 20px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.modal-close {
+    background: none;
+    border: 0;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.modal-card-element {
+    padding: 12px 14px;
+    border: 1px solid #cfd7df;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.modal-errors {
+    color: #fa755a;
+    margin-top: 8px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.payment-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 @media (max-width:1730px) {
