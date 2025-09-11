@@ -15,8 +15,8 @@
         <input type="hidden" name="email" value="{{ $user['email'] }}">
         <input type="hidden" name="password" value="{{ $user['password'] }}">
         <div class="icon-group">
-            <input class="icon-btn" type="file" name="profile_img" onchange="preview(this)">
-            <div class="preview-area"></div>
+            <input id="profile-img-input" class="icon-btn" type="file" name="profile_img" onchange="preview(this)" hidden>
+            <label for="profile-img-input" class="custom-file-btn">画像を選択する</label>
             <div>
                 @if ($user->profile_img === "" or $user->profile_img === null)
                 <img class="profile-img" id="hidden" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
@@ -94,12 +94,22 @@
 </div>
 <script>
     function preview(elem) {
-        const file = elem.files[0]
-        const isOK = file?.type?.startsWith('image/')
-        const image = (file && isOK) ? `<img class="preview-img" src=${URL.createObjectURL(file)}>` : ''
-        elem.nextElementSibling.innerHTML = image
-        // 画像選択時、デフォルトの画像を非表示にする
-        hidden.style.display = "none";
+        const file = elem.files[0];
+        const isOK = file?.type?.startsWith('image/');
+        const hidden = document.getElementById('hidden');
+
+        if (file && isOK) {
+            // 元画像をプレビューに差し替える
+            hidden.src = URL.createObjectURL(file);
+            hidden.style.display = "block";
+        } else {
+            // ファイル選択キャンセル時は元の画像を復活
+            hidden.src = "{{ $user->profile_img ? Storage::url($user['profile_img']) : asset('storage/images/default.png') }}";
+            hidden.style.display = "block";
+
+            // valueをクリアして、ボタンの見た目をリセット
+            elem.value = "";
+        }
     }
 </script>
 @endsection

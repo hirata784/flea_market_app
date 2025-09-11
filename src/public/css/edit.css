@@ -12,14 +12,27 @@
 .icon-group {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row-reverse;
     padding: 20px 40px;
     margin-bottom: 20px;
 }
 
+/* input自体は隠す */
 .icon-btn {
-    display: inline;
-    margin: 0 auto;
+    display: none;
+}
+
+/* カスタムボタン */
+.custom-file-btn {
+    display: inline-block;
+    color: #FF5555;
+    border: 1px solid #FF5555;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px 20px;
 }
 
 .preview-img {
