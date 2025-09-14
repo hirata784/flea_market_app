@@ -21,10 +21,13 @@ div {
     border-radius: 200px;
 }
 
+.user-information {
+    margin-left: 60px;
+}
+
 .user-name {
     font-size: 25px;
     font-weight: bold;
-    margin-left: 60px;
 }
 
 .profile-form {

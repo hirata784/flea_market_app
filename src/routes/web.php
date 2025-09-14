@@ -8,6 +8,8 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ExhibitController;
 use App\Http\Controllers\EditController;
+use App\Http\Controllers\TransactionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +48,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
     Route::post('/mypage/profile/update', [EditController::class, 'update']);
 
     Route::get('/re_verified', [ProfileController::class, 're_verified']);
+
+    Route::get('/transaction/:{item_id}', [TransactionController::class, 'index']);
 });

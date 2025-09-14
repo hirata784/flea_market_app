@@ -88,6 +88,34 @@ DB_PASSWORD=root
 (例：今日が2025年4月の場合、[04/25]以降は使用可能。[03/25]までは使用不可能。)  
 CVC：3つの数値を入力(例：123)
 
+## テストアカウント
+name: テスト太郎  
+email: taro@example.com  
+password: testtest  
+出品商品：  
+CO01：腕時計  
+CO02：HDD  
+CO03：玉ねぎ3束  
+CO04：革靴  
+CO05：ノートPC  
+-------------------------
+name: テスト花子  
+email: hanako@example.com  
+password: hanakohanako  
+出品商品：  
+CO06：マイク  
+CO07：ショルダーバッグ  
+CO08：タンブラー  
+CO09：コーヒーミル  
+CO010：メイクセット  
+-------------------------
+name: テスト次郎  
+email: jiro@example.com  
+password: jirojiro  
+出品商品：なし
+-------------------------
+
+
 ## 使用技術
 - PHP 7.4.9
 - Laravel 8.83.29

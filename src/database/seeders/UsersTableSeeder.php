@@ -37,5 +37,16 @@ class UsersTableSeeder extends Seeder
             'profile_img' => 'public/images/test_icon2.jpg',
         ];
         DB::table('users')->insert($param);
+        $param = [
+            'name' => 'テスト次郎',
+            'email' => 'jiro@example.com',
+            'email_verified_at' => date('Y-m-d H:i:s'),
+            'password' => bcrypt('jirojiro'),
+            'nickname' => 'テスト次郎',
+            'post_code' => '222-2222',
+            'address' => 'どこ県そこ市あの町',
+            'building' => '56-7',
+        ];
+        DB::table('users')->insert($param);
     }
 }
