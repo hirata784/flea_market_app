@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/purchase/transaction.css') }}">
+<link rel="stylesheet" href="{{ asset('css/transaction.css') }}">
 @endsection
 
 @section('content')
@@ -9,6 +9,24 @@
     <div class="transaction-contents">
         <div class="side-bar">
             <p class="title">その他の取引</p>
+            @foreach($items as $item)
+            @if($item->id==$item_detail->id)
+            @continue
+            @else
+            @if(($item->purchase()->where('user_id', Auth::user()->id)->exists())
+            or
+            ($item->purchase()->where('item_id', $item->id)->exists())
+            and
+            ($item->sells()->where('user_id', Auth::user()->id)->exists())
+            )
+                <div class="side-row">
+                    <a class="side-a" href="/transaction/:{{ $item['id'] }}">{{$item['name']}}</a>
+                </div>
+            @else
+            @continue
+            @endif
+            @endif
+            @endforeach
         </div>
         <div class="main-contents">
             <div class="user-information">
@@ -47,7 +65,7 @@
             <form class="chat-form">
                 <input class="chat-txt" type="text" placeholder="取引メッセージを記入してください">
                 <button class="chat-btn">画像を追加</button>
-                <button class="submit">送信</button>
+                <input class="submit" type="image" src="{{ asset('storage/images/inputbuttun1.png') }}">
             </form>
         </div>
 

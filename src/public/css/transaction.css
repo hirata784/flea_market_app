@@ -2,6 +2,7 @@ p {
     margin: 0;
 }
 
+
 .transaction-contents {
     display: flex;
     justify-content: space-between;
@@ -19,6 +20,24 @@ p {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
+    height: 10%;
+}
+
+.side-row {
+    background-color: #eeefec;
+    margin: 0 auto 40px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.side-a {
+    display: block;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    padding: 15px 0;
 }
 
 .main-contents {
@@ -96,7 +115,8 @@ p {
 .chat-form {
     height: 5%;
     padding: 0 20px;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
 
 .chat-txt {
@@ -118,6 +138,6 @@ p {
 }
 
 .submit {
-    width: 5%;
     height: 80%;
+    width: auto;
 }
