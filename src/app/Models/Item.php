@@ -65,4 +65,9 @@ class Item extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function chat()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }

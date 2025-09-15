@@ -19,9 +19,9 @@
             and
             ($item->sells()->where('user_id', Auth::user()->id)->exists())
             )
-                <div class="side-row">
-                    <a class="side-a" href="/transaction/:{{ $item['id'] }}">{{$item['name']}}</a>
-                </div>
+            <div class="side-row">
+                <a class="side-a" href="/transaction/:{{ $item['id'] }}">{{$item['name']}}</a>
+            </div>
             @else
             @continue
             @endif
@@ -60,10 +60,42 @@
                 </div>
             </div>
             <div class="chat">
-                <div>チャット履歴</div>
+
+                @foreach($lists as $list)
+                <div class="right">
+                    <div class="chat-list">
+                        <div class="img-name">
+                            <p>
+                                @if ($list['icon'] === "" or $list['icon'] === null)
+                                <img class="chat-img" id="hidden" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
+                                @else
+                                <img class="chat-img" id="hidden" src="{{ Storage::url($list['icon']) }}" alt="プロフィール画像">
+                                @endif
+                            </p>
+                            <p class="chat-name">{{$list['name']}}</p>
+                        </div>
+                        <p class="chat-content">{{ $list['chat'] }}</p>
+                        <!-- 自分のチャットのみボタンを追加 -->
+                        @if($list['name'] === Auth::user()->name)
+                        <div class="my-btn">
+                            <button class="edit">編集</button>
+                            <button class="delete">削除</button>
+                        </div>
+                        @endif
+
+
+                    </div>
+                </div>
+                @endforeach
             </div>
-            <form class="chat-form">
-                <input class="chat-txt" type="text" placeholder="取引メッセージを記入してください">
+            <div class="form-error">
+                @error('chat_txt')
+                {{ $message }}
+                @enderror
+            </div>
+            <form class="chat-form" action="/transaction/:{{ $item_detail['id'] }}/add_chat" method="post">
+                @csrf
+                <input class="chat-txt" name="chat_txt" type="text" placeholder="取引メッセージを記入してください">
                 <button class="chat-btn">画像を追加</button>
                 <input class="submit" type="image" src="{{ asset('storage/images/inputbuttun1.png') }}">
             </form>

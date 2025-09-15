@@ -50,4 +50,5 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
     Route::get('/re_verified', [ProfileController::class, 're_verified']);
 
     Route::get('/transaction/:{item_id}', [TransactionController::class, 'index']);
+    Route::post('/transaction/:{item_id}/add_chat', [TransactionController::class, 'addChat']);
 });

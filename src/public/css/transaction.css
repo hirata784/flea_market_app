@@ -12,7 +12,7 @@ p {
 .side-bar {
     background-color: #868686;
     width: 20%;
-    height: 100vh
+    height: 102vh
 }
 
 .title {
@@ -110,13 +110,67 @@ p {
 
 .chat {
     height: 65%;
+    padding: 20px;
+    overflow-y: scroll;
+    ;
 }
+
+.chat-list {
+    margin: 10px 0;
+}
+
+.right {}
+
+.img-name {
+    /* 相手側のcss。消さないように */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chat-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 200px;
+}
+
+
+.chat-name {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.chat-content {
+    width: 40%;
+    background-color: #E5E5E5;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.edit,
+.delete {
+    padding: 5px 10px 0;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgb(0, 0, 0, 0.3);
+}
+
 
 .chat-form {
     height: 5%;
     padding: 0 20px;
     display: flex;
     flex-direction: row;
+}
+
+.form-error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+    padding-left: 25px;
+    margin-bottom: 5px;
 }
 
 .chat-txt {
