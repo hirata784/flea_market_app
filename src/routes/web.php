@@ -51,4 +51,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
 
     Route::get('/transaction/:{item_id}', [TransactionController::class, 'index']);
     Route::post('/transaction/:{item_id}/add_chat', [TransactionController::class, 'addChat']);
+    Route::post('/transaction/:{item_id}/update_chat', [TransactionController::class, 'updateChat']);
+    Route::post('/transaction/:{item_id}/delete/:{chat_id}', [TransactionController::class, 'delete']);
 });

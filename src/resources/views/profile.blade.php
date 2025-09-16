@@ -33,54 +33,49 @@
             <button class="btn {{($data == 'buy') ? 'choice' : 'not_choice'}}">購入した商品</button>
             <input type="hidden" name="tab" value="buy">
         </form>
-        <form class="form-purchased" action="/mypage?tab=transaction" method="get">
+        <form class="form-transaction" action="/mypage?tab=transaction" method="get">
             <button class="btn {{($data == 'transaction') ? 'choice' : 'not_choice'}}">取引中の商品</button>
+            @if($unread_sum !== 0)
+            <p class="unread-sum">{{$unread_sum}}</p>
+            @endif
             <input type="hidden" name="tab" value="transaction">
         </form>
     </div>
     <!-- 出品した商品のみ表示 -->
     @if ($data == 'sell')
     <div class="items">
-        @foreach($items as $item)
-        @if($item->sells()->where('user_id', Auth::user()->id)->exists())
+        @foreach($lists as $list)
         <div>
             <div class="item-list">
                 <!-- ダミーの商品画像出力 -->
-                @if(preg_match("/https/", $item['img_url']))
-                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ asset($item['img_url']) }}"></a>
+                @if(preg_match("/https/", $list['img_url']))
+                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
                 <!-- 出品した商品画像出力 -->
                 @else
-                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ Storage::url($item['img_url']) }}"></a>
+                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
                 @endif
-                <span>{{$item['name']}}</span>
+                <span>{{$list['name']}}</span>
             </div>
         </div>
-        @else
-        @continue
-        @endif
         @endforeach
     </div>
     @endif
     <!-- 購入した商品のみ表示 -->
     @if ($data == 'buy')
     <div class="items">
-        @foreach($items as $item)
-        @if($item->purchase()->where('user_id', Auth::user()->id)->exists())
+        @foreach($lists as $list)
         <div>
             <div class="item-list">
                 <!-- ダミーの商品画像出力 -->
-                @if(preg_match("/https/", $item['img_url']))
-                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ asset($item['img_url']) }}"></a>
+                @if(preg_match("/https/", $list['img_url']))
+                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
                 <!-- 出品した商品画像出力 -->
                 @else
-                <a href="/item/:{{ $item['id'] }}"><img class="item-img" src="{{ Storage::url($item['img_url']) }}"></a>
+                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
                 @endif
-                <span>{{$item['name']}}</span>
+                <span>{{$list['name']}}</span>
             </div>
         </div>
-        @else
-        @continue
-        @endif
         @endforeach
     </div>
     @endif
@@ -90,32 +85,24 @@
     <!-- 質問の回答次第で修正予定 -->
     @if ($data == 'transaction')
     <div class="items">
-        @foreach($items as $item)
-        @if(($item->purchase()->where('user_id', Auth::user()->id)->exists())
-        or
-        ($item->purchase()->where('item_id', $item->id)->exists())
-        and
-        ($item->sells()->where('user_id', Auth::user()->id)->exists())
-        )
+        @foreach($lists as $list)
         <div>
             <div class="item-list">
                 <!-- ダミーの商品画像出力 -->
-                @if(preg_match("/https/", $item['img_url']))
-                <a href="/transaction/:{{ $item['id'] }}"><img class="item-img" src="{{ asset($item['img_url']) }}"></a>
+                @if(preg_match("/https/", $list['img_url']))
+                <a href="/transaction/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
                 <!-- 出品した商品画像出力 -->
                 @else
-                <a href="/transaction/:{{ $item['id'] }}"><img class="item-img" src="{{ Storage::url($item['img_url']) }}"></a>
+                <a href="/transaction/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
                 @endif
-                <span>{{$item['name']}}</span>
+                @if($list['read'] !== 0)
+                <p class="unread">{{$list['read']}}</p>
+                @endif
+                <span>{{$list['name']}}</span>
             </div>
         </div>
-        @else
-        @continue
-        @endif
         @endforeach
     </div>
     @endif
-
-
 </div>
 @endsection

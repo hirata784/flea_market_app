@@ -69,6 +69,31 @@ div {
     padding: 40px 0 5px 20px;
 }
 
+.form-transaction {
+    padding: 40px 0 5px 20px;
+    position: relative;
+}
+
+.unread-sum {
+    position: absolute;
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    align-items: center;
+    top: 69%;
+    left: 110%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    border-radius: 130px;
+}
+
 .btn {
     margin-left: 50px;
     border: none;
@@ -92,6 +117,29 @@ div {
 .item-img {
     width: 300px;
     height: 300px;
+}
+
+.item-list {
+    position: relative;
+}
+
+.unread {
+    position: absolute;
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    top: 7%;
+    left: 7%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    border-radius: 30px;
 }
 
 @media (max-width:1650px) {

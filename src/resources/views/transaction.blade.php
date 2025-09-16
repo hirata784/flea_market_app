@@ -61,7 +61,7 @@
             </div>
             <div class="chat">
 
-                @foreach($lists as $list)
+                @foreach($lists as $key => $list)
                 <div class="right">
                     <div class="chat-list">
                         <div class="img-name">
@@ -78,8 +78,14 @@
                         <!-- 自分のチャットのみボタンを追加 -->
                         @if($list['name'] === Auth::user()->name)
                         <div class="my-btn">
-                            <button class="edit">編集</button>
-                            <button class="delete">削除</button>
+                            <form action="/transaction/:{{ $item_detail['id'] }}/update_chat" method="post">
+                                @csrf
+                                <button class="edit">編集</button>
+                            </form>
+                            <form action="/transaction/:{{ $item_detail['id'] }}/delete/:{{ $key }}" method="post">
+                                @csrf
+                                <button class="delete">削除</button>
+                            </form>
                         </div>
                         @endif
 
@@ -93,7 +99,7 @@
                 {{ $message }}
                 @enderror
             </div>
-            <form class="chat-form" action="/transaction/:{{ $item_detail['id'] }}/add_chat" method="post">
+            <form class="form-chat" action="/transaction/:{{ $item_detail['id'] }}/add_chat" method="post">
                 @csrf
                 <input class="chat-txt" name="chat_txt" type="text" placeholder="取引メッセージを記入してください">
                 <button class="chat-btn">画像を追加</button>

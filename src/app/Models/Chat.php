@@ -14,6 +14,7 @@ class Chat extends Model
         'item_id',
         'chat',
         'chat_img',
+        'unread',
     ];
 
     public function user()
