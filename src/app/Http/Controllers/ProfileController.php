@@ -37,11 +37,21 @@ class ProfileController extends Controller
             $lists[$id]['name'] = $item_detail[$id]->name;
             // 商品画像を取得
             $lists[$id]['img_url'] = $item_detail[$id]->img_url;
+
             // 相手のチャット未読数を取得
             // 該当商品(自分購入)のチャットを取得
             $chat_detail[$id] = $chats->where('item_id', $purchase_item['item_id']);
             // その中から未読のものを取得する
             $lists[$id]['read'] = $chat_detail[$id]->where('unread', false)->where('user_id', '!=', $user->id)->count();
+            // 各商品の「相手から来た」最新メッセージより、updated_atを取り出す
+            $updated_at = Chat::orderBy('updated_at', 'DESC')->where('item_id', $purchase_item['item_id'])->where('user_id', '!=', $user->id)->first();
+            // 相手からチャットが来ていない場合は過去日付を代入
+            if ($updated_at == null) {
+                $lists[$id]['updated_at'] = '1000-01-01 01:00:00';
+            } else {
+                $lists[$id]['updated_at'] = $updated_at->updated_at->format('Y-m-d H:i:s');
+            }
+
             // 未読数の合計
             $unread_sum += $lists[$id]['read'];
             $id++;
@@ -81,10 +91,22 @@ class ProfileController extends Controller
             $chat_detail[$id] = $chats->where('item_id', $transaction_id);
             // その中から未読のものを取得する
             $lists[$id]['read'] = $chat_detail[$id]->where('unread', false)->where('user_id', '!=', $user->id)->count();
+            // 各商品の「相手から来た」最新メッセージより、updated_atを取り出す
+            $updated_at = Chat::orderBy('updated_at', 'DESC')->where('item_id', $transaction_id)->where('user_id', '!=', $user->id)->first();
+            // 相手からチャットが来ていない場合は過去日付を代入
+            if ($updated_at == null) {
+                $lists[$id]['updated_at'] = '1000-01-01 01:00:00';
+            } else {
+                $lists[$id]['updated_at'] = $updated_at->updated_at->format('Y-m-d H:i:s');
+            }
+
             // 未読数の合計
             $unread_sum += $lists[$id]['read'];
             $id++;
         }
+        // 更新時間より最新順に並び替え
+        $ageArray = array_column($lists, 'updated_at');
+        array_multisort($ageArray, SORT_DESC, $lists);
 
         if ($data == 'sell') {
             // 出品タブの時、認証中のユーザーが出品した商品のみ表示

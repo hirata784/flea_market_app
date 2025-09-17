@@ -24,8 +24,8 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'chat_txt' => ['required', 'max:400']
-
+            'chat_txt' => ['required', 'max:400'],
+            'chat_btn' => ['mimes:jpg,png'],
         ];
     }
     public function messages()
@@ -33,6 +33,7 @@ class TransactionRequest extends FormRequest
         return [
             'chat_txt.required' => '本文を入力してください',
             'chat_txt.max' => '本文は400文字以内で入力してください',
+            'chat_btn.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }
 }

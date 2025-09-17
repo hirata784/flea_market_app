@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TransactionRequest;
 
 
+
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -25,6 +26,7 @@ class TransactionController extends Controller
         $item_detail = Item::find($item_id);
         $lists = [];
         $id = 0;
+        $data = $request->session()->get('chat_txt');
 
         // 自分が購入者か出品者か調べる
         $seller = $sells->where('item_id', $item_id)->where('user_id', $user_id)->first();
@@ -51,6 +53,7 @@ class TransactionController extends Controller
             $lists[$id]['icon'] = User::all()->find($chat_user)->profile_img;
             // 内容
             $lists[$id]['chat'] = $chat_item['chat'];
+            $lists[$id]['chat_img'] = $chat_item['chat_img'];
 
             // 相手の書いたチャットで未読があれば既読に変更
             if (($chat_item['unread'] == false) and ($chat_item['user_id'] != $user_id)) {
@@ -60,16 +63,18 @@ class TransactionController extends Controller
             }
             $id++;
         }
-        return view('transaction', compact('item_detail', 'user', 'items', 'lists'));
+        return view('transaction', compact('item_detail', 'user', 'items', 'lists', 'data'));
     }
 
     public function addChat($item_id, TransactionRequest $request)
     {
+        $chat_txt = $request->input('chat_txt');
+        $request->session()->put('chat_txt', $chat_txt);
+
         // Userのid取得
         $user_id = Auth::id();
         // チャット内容
         $chat = $request['chat_txt'];
-
         // chatsテーブルにデータを追加する
         Chat::create([
             'user_id' => $user_id,
@@ -77,12 +82,28 @@ class TransactionController extends Controller
             'chat' => $chat,
             'unread' => false,
         ]);
+
+        // 画像ファイルの保存場所指定
+        if (request('chat_btn')) {
+            $filename = request()->file('chat_btn')->getClientOriginalName();
+            $inputs['chat_img'] = request('chat_btn')->storeAs('public/images', $filename);
+            // 最新のidを取得
+            $new = Chat::latest()->first();
+            Chat::find($new->id)->update($inputs);
+        }
         return redirect()->action([TransactionController::class, 'index'], compact('item_id'));
     }
 
-    public function updateChat()
+    public function updateChat($item_id, $key, Request $request)
     {
-        dd("編集するよ");
+        $chats = Chat::all();
+        $value = $request['hidden_value'];
+
+        // 該当のチャットのみ取り出す
+        $chat_id = $chats->where('item_id', $item_id)->skip($key)->first()->id;
+        // チャットを更新
+        chat::find($chat_id)->update(['chat' => $value]);
+        return redirect()->action([TransactionController::class, 'index'], compact('item_id'));
     }
 
     public function delete($item_id, $key, Request $request)
