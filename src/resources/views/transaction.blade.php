@@ -51,7 +51,9 @@
                             @csrf
                             <div class="modal-content">
                                 <p class="modal-str2">今回の取引相手はどうでしたか？</p>
-                                <div>星星星星星</div>
+                                <div class="range-group">
+                                    <input type="range" min="1" max="5" value="" class="input-range" name="star" />
+                                </div>
                             </div>
                             <div class="modal-btn">
                                 <button class="modal-submit">送信する</button>
@@ -181,6 +183,25 @@
 
     $('#chat-txt').keyup(function() {
         // テキストボックスに入力する度処理する
+    });
+
+    $(function() {
+        $('.range-group').each(function() {
+            for (var i = 0; i < 5; i++) {
+                $(this).append('<a>');
+            }
+            // 初期表示は星1つ
+            $(this).parent().find('a').eq(0).addClass('on');
+            $(this).parent().find('.input-range').attr('value', 1);
+        });
+        $('.range-group>a').on('click', function() {
+            var index = $(this).index();
+            $(this).siblings().removeClass('on');
+            for (var i = 0; i < index; i++) {
+                $(this).parent().find('a').eq(i).addClass('on');
+            }
+            $(this).parent().find('.input-range').attr('value', index);
+        });
     });
 </script>
 @endsection

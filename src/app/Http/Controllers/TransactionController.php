@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\Sell;
 use App\Models\Purchase;
 use App\Models\Chat;
+use App\Models\Evaluation;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TransactionRequest;
 
@@ -116,8 +117,45 @@ class TransactionController extends Controller
         return redirect()->action([TransactionController::class, 'index'], compact('item_id'));
     }
 
-    public function addEvaluation(Request $request)
+    public function addEvaluation($item_id, Request $request)
     {
+        $user_id = Auth::id();
+        $purchases = Purchase::all();
+        $sells = Sell::all();
+        // 評価を取得
+        $star = $request->star;
+
+        // 自分が購入者か出品者か調べる
+        $seller = $sells->where('item_id', $item_id)->where('user_id', $user_id)->first();
+        $purchaser = $purchases->where('item_id', $item_id)->where('user_id', $user_id)->first();
+
+        if (isset($purchaser)) {
+            // 自分が購入者の場合、出品者のデータを取得する
+            $evaluator = "購入者";
+        } elseif (isset($seller)) {
+            // 自分が出品者の場合、購入者のデータを取得する
+            $evaluator = "出品者";
+        }
+
+        $evaluations = Evaluation::all();
+        $isEmpty = $evaluations->where('item_id', $item_id)->first();
+
+        if ($evaluator == "購入者") {
+            // 自分が購入者の場合、purchaserデータに記述する
+            if (isset($isEmpty)) {
+                // すでに評価済の場合はデータを更新する
+                Evaluation::find($isEmpty->id)->update(['purchaser' => $star]);
+            } else {
+                // evaluationsテーブルにデータを追加する(購入者の場合)
+                Evaluation::create([
+                    'item_id' => $item_id,
+                    'purchaser' => $star,
+                ]);
+            }
+        } elseif ($evaluator == "出品者") {
+            // 自分が出品者の場合、sellerデータに記述する
+            Evaluation::find($isEmpty->id)->update(['seller' => $star]);
+        }
         return redirect()->action([ListController::class, 'index']);
     }
 }

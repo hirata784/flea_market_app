@@ -239,7 +239,7 @@ p {
     font-size: 30px;
 }
 
-.modal-form{
+.modal-form {
     height: 80%;
 }
 
@@ -268,4 +268,27 @@ p {
     color: #fff;
     cursor: pointer;
     font-size: 20px;
+}
+
+.input-range {
+    display: none;
+}
+
+.range-group {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+.range-group>a {
+    display: inline-block;
+}
+
+.range-group>a:before {
+    content: url('http://localhost/storage/images/starGrayBig.png');
+}
+
+.range-group>a.on:before {
+    content: url('http://localhost/storage/images/starYellowBig.png');
 }

@@ -70,4 +70,9 @@ class Item extends Model
     {
         return $this->hasMany(Chat::class);
     }
+
+    public function evaluation()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 }
