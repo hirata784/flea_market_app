@@ -115,4 +115,9 @@ class TransactionController extends Controller
         chat::find($chat_id)->delete();
         return redirect()->action([TransactionController::class, 'index'], compact('item_id'));
     }
+
+    public function addEvaluation(Request $request)
+    {
+        return redirect()->action([ListController::class, 'index']);
+    }
 }

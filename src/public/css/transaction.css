@@ -148,7 +148,7 @@ p {
     padding: 10px;
 }
 
-.chat-img{
+.chat-img {
     height: 100px;
     width: auto;
     margin-bottom: 10px;
@@ -205,4 +205,67 @@ p {
 .submit {
     height: 80%;
     width: auto;
+}
+
+.evaluation-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.evaluation-modal.is-open {
+    display: flex;
+}
+
+.modal-card {
+    width: 100%;
+    max-width: 598px;
+    height: 367px;
+    background: #fdfce6;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.modal-title {
+    border-bottom: 1px solid #000;
+    height: 20%;
+    padding: 15px;
+}
+
+.modal-str1 {
+    font-size: 30px;
+}
+
+.modal-form{
+    height: 80%;
+}
+
+.modal-content {
+    border-bottom: 1px solid #000;
+    height: 75%;
+    padding: 15px;
+}
+
+.modal-str2 {
+    color: #868686;
+}
+
+.modal-btn {
+    height: 25%;
+    text-align: right;
+    padding: 10px;
+}
+
+.modal-submit {
+    padding: 10px;
+    width: 127px;
+    border: none;
+    border-radius: 5px;
+    background: #ff8282;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
 }
