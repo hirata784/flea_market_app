@@ -40,7 +40,12 @@
                     </div>
                     <div class="name">「{{ $user['name'] }}」さんとの取引画面</div>
                 </div>
+                <!-- ボタンは購入者のみ表示 -->
+                @if($roll === "購入者")
                 <button class="transaction-btn" id="openModal">取引を完了する</button>
+                @else
+                <input type="hidden" id="openModal">
+                @endif
                 <!-- モーダル本体(取引完了ボタンで表示) -->
                 <div class="evaluation-modal" id="evaluation-modal">
                     <div class="modal-card">
@@ -137,6 +142,8 @@
                 <label for="chat_btn" class="chat-btn">画像を追加</label>
                 <input class="submit" type="image" src="{{ asset('storage/images/inputbuttun1.png') }}">
             </form>
+            <!-- 購入者側の評価チェック用 -->
+            <span id="evaluated" data-name="{{$evaluated}}"></span>
         </div>
     </div>
 </div>
@@ -181,10 +188,6 @@
         modal.classList.add('is-open');
     }
 
-    $('#chat-txt').keyup(function() {
-        // テキストボックスに入力する度処理する
-    });
-
     $(function() {
         $('.range-group').each(function() {
             for (var i = 0; i < 5; i++) {
@@ -202,6 +205,17 @@
             }
             $(this).parent().find('.input-range').attr('value', index);
         });
+
+        // 購入者が評価済であればモーダル画面をすぐ開く
+        const evaluated = $('#evaluated').data();
+        if (evaluated.name === '評価済') {
+            modal.classList.add('is-open');
+        }
+    });
+
+
+    $('#chat-txt').keyup(function() {
+        // テキストボックスに入力する度処理する
     });
 </script>
 @endsection

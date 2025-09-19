@@ -24,10 +24,12 @@ class TransactionController extends Controller
         $sells = Sell::all();
         $items = Item::all();
         $chats = Chat::all();
+        $evaluation = Evaluation::all();
         $item_detail = Item::find($item_id);
         $lists = [];
         $id = 0;
         $data = $request->session()->get('chat_txt');
+        $evaluated = "";
 
         // 自分が購入者か出品者か調べる
         $seller = $sells->where('item_id', $item_id)->where('user_id', $user_id)->first();
@@ -37,10 +39,12 @@ class TransactionController extends Controller
             // 自分が購入者の場合、出品者のデータを取得する
             $sell = $sells->where('item_id', $item_id)->first();
             $user = User::find($sell->user_id);
+            $roll = "購入者";
         } elseif (isset($seller)) {
             // 自分が出品者の場合、購入者のデータを取得する
             $purchase = $purchases->where('item_id', $item_id)->first();
             $user = User::find($purchase->user_id);
+            $roll = "出品者";
         }
 
         // 該当商品のチャットのみ取り出す
@@ -64,7 +68,14 @@ class TransactionController extends Controller
             }
             $id++;
         }
-        return view('transaction', compact('item_detail', 'user', 'items', 'lists', 'data'));
+
+        // 購入者が評価済の場合、両者ともモーダル画面を呼び出す
+        $isEmpty = $evaluation->where('item_id', $item_id)->first();
+
+        if (isset($isEmpty->purchaser)) {
+            $evaluated = "評価済";
+        }
+        return view('transaction', compact('item_detail', 'user', 'roll', 'items', 'lists', 'data', 'evaluated'));
     }
 
     public function addChat($item_id, TransactionRequest $request)
@@ -122,6 +133,7 @@ class TransactionController extends Controller
         $user_id = Auth::id();
         $purchases = Purchase::all();
         $sells = Sell::all();
+        $evaluation = Evaluation::all();
         // 評価を取得
         $star = $request->star;
 
@@ -137,8 +149,7 @@ class TransactionController extends Controller
             $evaluator = "出品者";
         }
 
-        $evaluations = Evaluation::all();
-        $isEmpty = $evaluations->where('item_id', $item_id)->first();
+        $isEmpty = $evaluation->where('item_id', $item_id)->first();
 
         if ($evaluator == "購入者") {
             // 自分が購入者の場合、purchaserデータに記述する
