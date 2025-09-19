@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Item;
 use App\Models\Sell;
 use App\Models\Purchase;
+use App\Models\Evaluation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,9 @@ class ProfileController extends Controller
         $chats = Chat::all();
         $lists = [];
         $unread_sum = 0;
+        $evaluation_sum = 0;
+        $item_sum = 0;
+        $result = 0;
 
         // 認証中のユーザーが購入した商品と、出品した商品を別ユーザーに購入してもらった商品を表示(総数表示の関係で最初に記述)
         $id = 0;
@@ -55,6 +59,21 @@ class ProfileController extends Controller
             // 未読数の合計
             $unread_sum += $lists[$id]['read'];
             $id++;
+
+            // 購入者としての評価を求める
+            // 出品者側からの評価(seller)を取得
+            $evaluation = Evaluation::all()->where('item_id', $purchase_item['item_id'])->first();
+            if ($evaluation === null) {
+            } else {
+                $evaluation_seller = $evaluation->seller;
+                // 出品者から評価してもらっていない場合、処理しない
+                if ($evaluation_seller !== null) {
+                    // 評価の合計値
+                    $evaluation_sum += $evaluation_seller;
+                    // 評価あり商品数
+                    $item_sum++;
+                }
+            }
         }
 
         // 未定義エラー対策
@@ -103,7 +122,27 @@ class ProfileController extends Controller
             // 未読数の合計
             $unread_sum += $lists[$id]['read'];
             $id++;
+
+            // 出品者としての評価を求める
+            // 購入者側からの評価(purchaser)を取得
+            $evaluation = Evaluation::all()->where('item_id', $transaction_id)->first();
+
+            if ($evaluation === null) {
+                // 出品者から評価してもらっていない場合、処理しない
+            } else {
+                $evaluation_purchaser = $evaluation->purchaser;
+                // 評価の合計値
+                $evaluation_sum += $evaluation_purchaser;
+                // 評価あり商品数
+                $item_sum++;
+            }
         }
+        // 評価あり商品が0の場合処理しない
+        if ($item_sum !== 0) {
+            // 足した合計を購入商品総数で割る(少数になった場合、四捨五入)
+            $result = round($evaluation_sum / $item_sum);
+        }
+
         // 更新時間より最新順に並び替え
         $ageArray = array_column($lists, 'updated_at');
         array_multisort($ageArray, SORT_DESC, $lists);
@@ -133,7 +172,7 @@ class ProfileController extends Controller
         } elseif ($data == 'transaction') {
             // 取引中タブの時、認証中のユーザーが購入した商品と、出品した商品を別ユーザーに購入してもらった商品を表示
         }
-        return view('profile', compact('data', 'user', 'lists', 'unread_sum'));
+        return view('profile', compact('data', 'user', 'lists', 'unread_sum', 'result'));
     }
 
     public function re_verified(Request $request)

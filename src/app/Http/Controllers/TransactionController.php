@@ -10,9 +10,8 @@ use App\Models\Chat;
 use App\Models\Evaluation;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TransactionRequest;
-
-
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -83,8 +82,8 @@ class TransactionController extends Controller
         $chat_txt = $request->input('chat_txt');
         $request->session()->put('chat_txt', $chat_txt);
 
-        // Userのid取得
         $user_id = Auth::id();
+
         // チャット内容
         $chat = $request['chat_txt'];
         // chatsテーブルにデータを追加する
@@ -162,6 +161,27 @@ class TransactionController extends Controller
                     'item_id' => $item_id,
                     'purchaser' => $star,
                 ]);
+
+                // メールテスト用。最終的には、購入者の評価完了後に送信する(メール宛先は出品者。注意)
+                // 該当商品の出品者を取得
+                $recipient = $sells->where('item_id', $item_id)->first();
+                $recipient_id = $recipient->user_id;
+
+                // 出品者名
+                $order['seller'] = User::find($recipient_id)->name;
+                // 購入者名
+                $order['purchaser'] = User::find($user_id)->name;
+                // 商品名
+                $order['item'] = Item::find($item_id)->name;
+                // 金額
+                $order['price'] = Item::find($item_id)->price;
+                // 購入者郵便番号
+                $order['post_code'] = User::find($user_id)->post_code;
+                // 購入者住所
+                $order['address'] = User::find($user_id)->address;
+
+                $email = User::find($recipient_id)->email;
+                Mail::to($email)->send(new OrderShipped($order));
             }
         } elseif ($evaluator == "出品者") {
             // 自分が出品者の場合、sellerデータに記述する

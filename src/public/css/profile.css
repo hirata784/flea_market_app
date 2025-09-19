@@ -28,6 +28,7 @@ div {
 .user-name {
     font-size: 25px;
     font-weight: bold;
+    padding-left: 30px;
 }
 
 .profile-form {

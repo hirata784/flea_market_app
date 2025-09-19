@@ -17,7 +17,17 @@
             </div>
             <div class="user-information">
                 <div class="user-name">{{$user['nickname']}}</div>
-                <div class="user-evaluation">星星星星星</div>
+                <!-- まだ評価をもらっていない場合は表示しない -->
+                @if($result !== 0)
+                <div class="user-evaluation">
+                    @for ($i = 1; $i <= $result; $i++)
+                        <img src="{{ asset('storage/images/starYellowSmall.png') }}" alt="黄星">
+                        @endfor
+                        @for ($i = 1; $i <= 5 - $result; $i++)
+                            <img src="{{ asset('storage/images/starGraySmall.png') }}" alt="灰星">
+                            @endfor
+                </div>
+                @endif
             </div>
         </div>
         <form class="profile-form" action="/mypage/profile">
