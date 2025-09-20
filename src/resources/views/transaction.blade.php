@@ -84,46 +84,46 @@
             </div>
             <div class="chat">
                 @foreach($lists as $key => $list)
-                <div class="right">
-                    <div class="chat-list">
-                        <div class="img-name">
-                            <p>
-                                @if ($list['icon'] === "" or $list['icon'] === null)
-                                <img class="icon" id="icon" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
-                                @else
-                                <img class="icon" id="icon" src="{{ Storage::url($list['icon']) }}" alt="プロフィール画像">
-                                @endif
-                            </p>
-                            <p class="chat-name">{{$list['name']}}</p>
-                        </div>
-                        <div class="chat-content">
-                            <div>
-                                @if ($list['chat_img'] !== null)
-                                <img class="chat-img" src="{{ Storage::url($list['chat_img']) }}">
-                                @endif
-                            </div>
-                            <p>
-                                {{ $list['chat'] }}
-                            </p>
-                        </div>
-                        <!-- 自分のチャットのみボタンを追加 -->
-                        @if($list['name'] === Auth::user()->name)
-                        <div class="my-btn">
-                            <form class="updateForm" action="/transaction/:{{ $item_detail['id'] }}/update_chat/:{{ $key }}" method="post">
-                                @csrf
-                                <input type="hidden" name="hidden_value" class="hiddenValueInput">
-                                <button class="edit">編集</button>
-                            </form>
-                            <form action="/transaction/:{{ $item_detail['id'] }}/delete/:{{ $key }}" method="post">
-                                @csrf
-                                <button class="delete">削除</button>
-                            </form>
-                        </div>
+                <div class="{{$lists[$key]['name'] == Auth::user()->name ? 'img-name right-icon' : 'img-name'}}">
+                    <p>
+                        @if ($list['icon'] === "" or $list['icon'] === null)
+                        <img class="icon" id="icon" src="{{ asset('storage/images/default.png') }}" alt="プロフィール画像">
+                        @else
+                        <img class="icon" id="icon" src="{{ Storage::url($list['icon']) }}" alt="プロフィール画像">
                         @endif
+                    </p>
+                    <p class="chat-name">{{$list['name']}}</p>
+                </div>
+                <div class="{{$lists[$key]['name'] == Auth::user()->name ? 'chat-area right' : 'chat-area'}}">
+                    <div class="chat-content">
+                        <div>
+                            @if ($list['chat_img'] !== null)
+                            <img class="chat-img" src="{{ Storage::url($list['chat_img']) }}">
+                            @endif
+                        </div>
+                        <p>
+                            {{ $list['chat'] }}
+                        </p>
                     </div>
                 </div>
+                <!-- 自分のチャットのみボタンを追加 -->
+                @if($list['name'] === Auth::user()->name)
+                <div class="my-btn right">
+                    <form class="updateForm" action="/transaction/:{{ $item_detail['id'] }}/update_chat/:{{ $key }}" method="post">
+                        @csrf
+                        <input type="hidden" name="hidden_value" class="hiddenValueInput">
+                        <button class="edit">編集</button>
+                    </form>
+                    <form action="/transaction/:{{ $item_detail['id'] }}/delete/:{{ $key }}" method="post">
+                        @csrf
+                        <button class="delete">削除</button>
+                    </form>
+                </div>
+                @endif
                 @endforeach
-                <img class="image" id="hidden">
+                <div class="image">
+                    <img id="hidden">
+                </div>
             </div>
             <div class="form-error">
                 @error('chat_txt')
@@ -212,7 +212,6 @@
             modal.classList.add('is-open');
         }
     });
-
 
     $('#chat-txt').keyup(function() {
         // テキストボックスに入力する度処理する

@@ -55,17 +55,15 @@
     @if ($data == 'sell')
     <div class="items">
         @foreach($lists as $list)
-        <div>
-            <div class="item-list">
-                <!-- ダミーの商品画像出力 -->
-                @if(preg_match("/https/", $list['img_url']))
-                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
-                <!-- 出品した商品画像出力 -->
-                @else
-                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
-                @endif
-                <span>{{$list['name']}}</span>
-            </div>
+        <div class="item-list">
+            <!-- ダミーの商品画像出力 -->
+            @if(preg_match("/https/", $list['img_url']))
+            <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
+            <!-- 出品した商品画像出力 -->
+            @else
+            <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
+            @endif
+            <span>{{$list['name']}}</span>
         </div>
         @endforeach
     </div>
@@ -74,42 +72,36 @@
     @if ($data == 'buy')
     <div class="items">
         @foreach($lists as $list)
-        <div>
-            <div class="item-list">
-                <!-- ダミーの商品画像出力 -->
-                @if(preg_match("/https/", $list['img_url']))
-                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
-                <!-- 出品した商品画像出力 -->
-                @else
-                <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
-                @endif
-                <span>{{$list['name']}}</span>
-            </div>
+        <div class="item-list">
+            <!-- ダミーの商品画像出力 -->
+            @if(preg_match("/https/", $list['img_url']))
+            <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
+            <!-- 出品した商品画像出力 -->
+            @else
+            <a href="/item/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
+            @endif
+            <span>{{$list['name']}}</span>
         </div>
         @endforeach
     </div>
     @endif
-
     <!-- 取引中の商品のみ表示 -->
     <!-- 購入された後、出品者と購入者のリストに表示 -->
-    <!-- 質問の回答次第で修正予定 -->
     @if ($data == 'transaction')
     <div class="items">
         @foreach($lists as $list)
-        <div>
-            <div class="item-list">
-                <!-- ダミーの商品画像出力 -->
-                @if(preg_match("/https/", $list['img_url']))
-                <a href="/transaction/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
-                <!-- 出品した商品画像出力 -->
-                @else
-                <a href="/transaction/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
-                @endif
-                @if($list['read'] !== 0)
-                <p class="unread">{{$list['read']}}</p>
-                @endif
-                <span>{{$list['name']}}</span>
-            </div>
+        <div class="item-list">
+            <!-- ダミーの商品画像出力 -->
+            @if(preg_match("/https/", $list['img_url']))
+            <a href="/transaction/:{{ $list['id'] }}"><img class="item-img" src="{{ asset($list['img_url']) }}"></a>
+            <!-- 出品した商品画像出力 -->
+            @else
+            <a href="/transaction/:{{ $list['id'] }}"><img class="item-img" src="{{ Storage::url($list['img_url']) }}"></a>
+            @endif
+            @if($list['read'] !== 0)
+            <p class="unread">{{$list['read']}}</p>
+            @endif
+            <span>{{$list['name']}}</span>
         </div>
         @endforeach
     </div>

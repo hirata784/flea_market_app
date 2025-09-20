@@ -2,7 +2,6 @@ p {
     margin: 0;
 }
 
-
 .transaction-contents {
     display: flex;
     justify-content: space-between;
@@ -112,21 +111,16 @@ p {
     height: 52vh;
     padding: 20px;
     overflow-y: scroll;
-    ;
 }
-
-.chat-list {
-    margin: 10px 0;
-}
-
-.right {}
 
 .img-name {
-    /* 相手側のcss。消さないように */
     display: flex;
-    justify-content: left;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.right-icon {
+    flex-direction: row-reverse;
 }
 
 .icon {
@@ -135,10 +129,14 @@ p {
     border-radius: 200px;
 }
 
-
 .chat-name {
     font-weight: bold;
     margin-left: 10px;
+}
+
+.chat-area {
+    display: flex;
+    margin-bottom: 5px;
 }
 
 .chat-content {
@@ -157,6 +155,11 @@ p {
 .my-btn {
     display: flex;
     justify-content: left;
+    margin-bottom: 5px;
+}
+
+.right {
+    justify-content: flex-end;
 }
 
 .edit,
@@ -166,6 +169,11 @@ p {
     background: #fff;
     cursor: pointer;
     text-shadow: 0 2px 4px rgb(0, 0, 0, 0.3);
+}
+
+.image {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .form-chat {
@@ -291,4 +299,64 @@ p {
 
 .range-group>a.on:before {
     content: url('http://localhost/storage/images/starYellowBig.png');
+}
+
+@media (max-width:1000px) {
+    .side-bar {
+        width: 40%;
+    }
+
+    .profile {
+        width: 60px;
+        height: 60px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .transaction-btn {
+        width: 150px;
+        font-size: 15px;
+    }
+
+    .chat-txt {
+        width: 60%;
+    }
+
+    .chat-btn {
+        width: 27%;
+        font-size: 18px;
+    }
+}
+
+@media (max-width:850px) {
+    .user-information {
+        height: 8vh;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .profile {
+        width: 40px;
+        height: 40px;
+    }
+
+    .name {
+        font-size: 18px;
+    }
+
+    .transaction-btn {
+        width: 140px;
+    }
+
+    .item-name {
+        font-size: 35px;
+    }
+
+    .chat {
+        height: 54vh;
+        padding: 20px;
+        overflow-y: scroll;
+    }
 }

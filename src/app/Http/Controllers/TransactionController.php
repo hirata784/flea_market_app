@@ -60,14 +60,13 @@ class TransactionController extends Controller
             $lists[$id]['chat_img'] = $chat_item['chat_img'];
 
             // 相手の書いたチャットで未読があれば既読に変更
-            if (($chat_item['unread'] == false) and ($chat_item['user_id'] != $user_id)) {
+            if (($chat_item['read'] == false) and ($chat_item['user_id'] != $user_id)) {
                 Chat::find($chat_item->id)->update([
-                    'unread' => true,
+                    'read' => true,
                 ]);
             }
             $id++;
         }
-
         // 購入者が評価済の場合、両者ともモーダル画面を呼び出す
         $isEmpty = $evaluation->where('item_id', $item_id)->first();
 
@@ -91,7 +90,7 @@ class TransactionController extends Controller
             'user_id' => $user_id,
             'item_id' => $item_id,
             'chat' => $chat,
-            'unread' => false,
+            'read' => false,
         ]);
 
         // 画像ファイルの保存場所指定
@@ -162,7 +161,7 @@ class TransactionController extends Controller
                     'purchaser' => $star,
                 ]);
 
-                // メールテスト用。最終的には、購入者の評価完了後に送信する(メール宛先は出品者。注意)
+                // 購入者の評価完了後にメールを送信する(メール宛先は出品者)
                 // 該当商品の出品者を取得
                 $recipient = $sells->where('item_id', $item_id)->first();
                 $recipient_id = $recipient->user_id;

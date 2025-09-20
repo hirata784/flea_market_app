@@ -5,13 +5,13 @@ div {
 .img-btn {
     display: flex;
     justify-content: center;
-    margin-top: 60px;
+    margin: 100px 0;
 }
 
 .img-user {
     display: flex;
     justify-content: center;
-    padding: 60px;
+    width: 60%;
     align-items: center;
 }
 
@@ -34,7 +34,7 @@ div {
 .profile-form {
     display: flex;
     align-items: center;
-    justify-content: center;
+    width: 40%;
 }
 
 .edit {
@@ -44,7 +44,7 @@ div {
     background: #fff;
     font-size: 20px;
     font-weight: bold;
-    margin-left: 320px;
+    justify-content: left;
     padding: 5px 20px;
 }
 
@@ -154,26 +154,49 @@ div {
 }
 
 @media (max-width:1200px) {
-    .edit {
-        margin-left: 120px;
-    }
-
-    .btn {
-        font-size: 30px;
-    }
-
     .items {
         grid-template-columns: 400px 400px;
     }
 }
 
-@media (max-width:850px) {
-    .edit {
-        margin-left: 20px;
+@media (max-width:1000px) {
+    .profile {
+        width: 100px;
+        height: 100px;
     }
 
-    .profile {
-        width: 200px;
-        height: 200px;
+    .heading {
+        justify-content: center;
+    }
+
+    .btn {
+        margin-left: 30px;
+        font-size: 20px;
+    }
+
+    .form-exhibited {
+        padding: 0 0 5px 0;
+    }
+
+    .form-purchased {
+        padding: 0 0 5px 0;
+    }
+
+    .form-transaction {
+        padding: 0 0 5px 0;
+        position: relative;
+    }
+
+    .unread-sum {
+        font-size: 19px;
+        width: 30px;
+        height: 30px;
+        top: 50%;
+    }
+}
+
+@media (max-width:850px) {
+    .user-information {
+        margin-left: 20px;
     }
 }

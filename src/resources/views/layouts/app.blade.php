@@ -16,6 +16,7 @@
         <div class="header-inner">
             <div class="header-utilities">
                 <img src="{{ asset('storage/images/logo.svg') }}" width="300" height="80">
+                @if(Route::current()->uri() != 'transaction/:{item_id}')
                 <form class="form-search" action="/search" method="get">
                     <input type="text" class="search-txt" name="keyword" placeholder="なにをお探しですか?">
                     <!-- マイリスト選択時に検索→マイリストのまま結果表示 -->
@@ -91,6 +92,7 @@
                         </li>
                     </ul>
                 </nav>
+                @endif
             </div>
         </div>
     </header>

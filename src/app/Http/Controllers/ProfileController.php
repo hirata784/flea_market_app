@@ -46,7 +46,7 @@ class ProfileController extends Controller
             // 該当商品(自分購入)のチャットを取得
             $chat_detail[$id] = $chats->where('item_id', $purchase_item['item_id']);
             // その中から未読のものを取得する
-            $lists[$id]['read'] = $chat_detail[$id]->where('unread', false)->where('user_id', '!=', $user->id)->count();
+            $lists[$id]['read'] = $chat_detail[$id]->where('read', false)->where('user_id', '!=', $user->id)->count();
             // 各商品の「相手から来た」最新メッセージより、updated_atを取り出す
             $updated_at = Chat::orderBy('updated_at', 'DESC')->where('item_id', $purchase_item['item_id'])->where('user_id', '!=', $user->id)->first();
             // 相手からチャットが来ていない場合は過去日付を代入
@@ -109,7 +109,7 @@ class ProfileController extends Controller
             // 該当商品(出品商品を別ユーザーが購入)のチャットを取得
             $chat_detail[$id] = $chats->where('item_id', $transaction_id);
             // その中から未読のものを取得する
-            $lists[$id]['read'] = $chat_detail[$id]->where('unread', false)->where('user_id', '!=', $user->id)->count();
+            $lists[$id]['read'] = $chat_detail[$id]->where('read', false)->where('user_id', '!=', $user->id)->count();
             // 各商品の「相手から来た」最新メッセージより、updated_atを取り出す
             $updated_at = Chat::orderBy('updated_at', 'DESC')->where('item_id', $transaction_id)->where('user_id', '!=', $user->id)->first();
             // 相手からチャットが来ていない場合は過去日付を代入
