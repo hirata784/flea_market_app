@@ -79,7 +79,7 @@
                 </div>
                 <div class="item-text">
                     <div class="item-name">{{ $item_detail['name'] }}</div>
-                    <div class="item-price">{{ $item_detail['price'] }}</div>
+                    <div class="item-price">&yen;{{ $item_detail['price'] }}</div>
                 </div>
             </div>
             <div class="chat">

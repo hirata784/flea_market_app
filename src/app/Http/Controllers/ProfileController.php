@@ -149,6 +149,8 @@ class ProfileController extends Controller
         if ($data == 'sell') {
             // 出品タブの時、認証中のユーザーが出品した商品のみ表示
             $sell_items = $sells->where('user_id', $user->id);
+            // listsの中を空にする
+            $lists = [];
             foreach ($sell_items as $key => $sell_item) {
                 // 出品した商品の詳細を取得
                 $item_detail[$key] = $items->find($sell_item['item_id']);
@@ -160,6 +162,8 @@ class ProfileController extends Controller
         } elseif ($data == 'buy') {
             // 購入タブの時、認証中のユーザーが購入した商品のみ表示
             $purchase_items = $purchases->where('user_id', $user->id);
+            // listsの中を空にする
+            $lists = [];
             foreach ($purchase_items as $key => $purchase_item) {
                 // 購入した商品の詳細を取得
                 $item_detail[$key] = $items->find($purchase_item['item_id']);
