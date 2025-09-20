@@ -200,6 +200,7 @@ p {
 .chat-btn {
     width: 12%;
     height: 80%;
+    padding: 7px 0;
     margin: 0 20px;
     color: #FF5555;
     border: 2px solid #FF5555;
@@ -327,6 +328,7 @@ p {
     .chat-btn {
         width: 27%;
         font-size: 18px;
+        padding: 5px 0;
     }
 }
 

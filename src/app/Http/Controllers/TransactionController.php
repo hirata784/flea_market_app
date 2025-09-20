@@ -116,7 +116,10 @@ class TransactionController extends Controller
         // 該当のチャットのみ取り出す
         $chat_id = $chats->where('item_id', $item_id)->skip($key)->first()->id;
         // チャットを更新
-        chat::find($chat_id)->update(['chat' => $value]);
+        chat::find($chat_id)->update([
+            'chat' => $value,
+            'read' => false,
+        ]);
         return redirect()->action([TransactionController::class, 'index'], compact('item_id'));
     }
 

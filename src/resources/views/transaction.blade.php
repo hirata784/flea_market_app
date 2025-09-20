@@ -71,10 +71,10 @@
                 <div>
                     <!-- ダミーの商品画像出力 -->
                     @if(preg_match("/https/", $item_detail['img_url']))
-                    <img class="item-img" src="{{ asset($item_detail['img_url']) }}">
+                    <img class="item-img" src="{{ asset($item_detail['img_url']) }}" alt="商品画像">
                     <!-- 出品した商品画像出力 -->
                     @else
-                    <img class="item-img" src="{{ Storage::url($item_detail['img_url']) }}">
+                    <img class="item-img" src="{{ Storage::url($item_detail['img_url']) }}" alt="商品画像">
                     @endif
                 </div>
                 <div class="item-text">
@@ -98,7 +98,7 @@
                     <div class="chat-content">
                         <div>
                             @if ($list['chat_img'] !== null)
-                            <img class="chat-img" src="{{ Storage::url($list['chat_img']) }}">
+                            <img class="chat-img" src="{{ Storage::url($list['chat_img']) }}" alt="チャット画像">
                             @endif
                         </div>
                         <p>
@@ -182,6 +182,7 @@
     openBtn.addEventListener('click', function() {
         openModal();
     })
+
     function openModal() {
         modal.classList.add('is-open');
     }
