@@ -86,7 +86,6 @@
     </div>
     @endif
     <!-- 取引中の商品のみ表示 -->
-    <!-- 購入された後、出品者と購入者のリストに表示 -->
     @if ($data == 'transaction')
     <div class="items">
         @foreach($lists as $list)

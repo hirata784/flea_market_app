@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
 
-
 class AddressController extends Controller
 {
     public function index($item_buy, Request $request)

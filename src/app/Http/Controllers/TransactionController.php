@@ -80,7 +80,6 @@ class TransactionController extends Controller
     {
         $chat_txt = $request->input('chat_txt');
         $request->session()->put('chat_txt', $chat_txt);
-
         $user_id = Auth::id();
 
         // チャット内容
@@ -108,6 +107,11 @@ class TransactionController extends Controller
     {
         $chats = Chat::all();
         $value = $request['hidden_value'];
+
+        // 未入力の場合は再読み込み
+        if ($value == null) {
+            return redirect()->action([TransactionController::class, 'index'], compact('item_id'));
+        }
 
         // 該当のチャットのみ取り出す
         $chat_id = $chats->where('item_id', $item_id)->skip($key)->first()->id;

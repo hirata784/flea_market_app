@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
-
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 

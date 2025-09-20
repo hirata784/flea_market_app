@@ -164,11 +164,13 @@
         }
     }
 
-    // 編集ボタン
     const chatTxt = document.getElementById('chat-txt');
     const chatImg = document.getElementById('chat_btn');
     const updateForms = document.querySelectorAll(".updateForm");
+    const openBtn = document.getElementById('openModal');
+    const modal = document.getElementById('evaluation-modal');
 
+    // 編集ボタン
     updateForms.forEach(function(form) {
         form.addEventListener('submit', function() {
             const hiddenValueInput = form.querySelector('.hiddenValueInput');
@@ -177,17 +179,12 @@
     });
 
     // モーダル
-    const openBtn = document.getElementById('openModal');
-    const modal = document.getElementById('evaluation-modal');
-
     openBtn.addEventListener('click', function() {
         openModal();
     })
-
     function openModal() {
         modal.classList.add('is-open');
     }
-
     $(function() {
         $('.range-group').each(function() {
             for (var i = 0; i < 5; i++) {
@@ -205,7 +202,6 @@
             }
             $(this).parent().find('.input-range').attr('value', index);
         });
-
         // 購入者が評価済であればモーダル画面をすぐ開く
         const evaluated = $('#evaluated').data();
         if (evaluated.name === '評価済') {
@@ -213,8 +209,11 @@
         }
     });
 
-    $('#chat-txt').keyup(function() {
-        // テキストボックスに入力する度処理する
+    // 入力時に入力値を保存
+    $('#chat-txt').on('input', function() {
+        localStorage.setItem('chat-txt', $(this).val());
     });
+    // 保存した値を復元
+    $('#chat-txt').val(localStorage.getItem('chat-txt'));
 </script>
 @endsection
